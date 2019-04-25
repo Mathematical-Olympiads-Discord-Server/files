@@ -8,7 +8,7 @@
 \usepackage[hidelinks]{hyperref}
 
 \title{MO Server\thanks{\url{https://discord.gg/NPnGZYH}} PoTD Solutions}
-\author{IcosahedralDice\thanks{Individual solution authors are listed beside each problem}}
+\author{IcosahedralDice\thanks{Individual problem authors are listed beside each problem}}
 
 %Args: Day #, Date, Source, Statement, Genre, Difficulty
 \newcommand{\problem}[6]{
@@ -21,7 +21,7 @@ Source: #3\\
 \newcommand{\solution}[4]{
 \textbf{Solution to Day #1:}\\
 Submitted by \textit{#2} (userID = \textit{#3}). \\
-#4\\
+#4
 }
 
 \begin{document}
@@ -33,35 +33,5 @@ Although the document has been compiled by a moderator, solutions will be typica
 \section{Problems}
 \problem{1}{Mar 26, 2019}{2015 Romanian MoM, Q1}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\vert m - n \vert = 1$?}{Number Theory}{4}\\
 \solution{1}{}{134837275161788416}{Construct a sequence $$a_n = p_{2n}\times p_{2n-1}\times \prod_{i=1}^{n-2} {p_{2i-1+(n \mod 2)}}$$ where $p_n$ is $n$th prime. This can be shown to produce the require co-primality conditions.}
-
-\problem{2}{Mar 27, 2019}{2018 IMO Shortlist, C1}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}{Combinatorics}{5}
-
-\problem{3}{Mar 28, 2019}{2014 BMO2, Q2}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}{Algebra (Inequalities)}{4}
-
-\problem{4}{Mar 29, 2019}{2015 APMO, Q4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}{Combinatorial Geometry}{4}
-
-\problem{5}{Mar 30, 2019}{2005 IMO, Q4}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}{Number Theory}{5}
-
-\problem{6}{Mar 31, 2019}{2007 Romanian Final MO, F9, Q3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}{Combinatorial Geometry}{3}
-
-\problem{7}{April 1, 2019}{2019 AFMO, Q3}{Suppose there are a line of prisoners, each of whom is wearing either a green or red hat. Any individual prisoner can see all the infinitely many prisoners and hats in front of them but none of the finitely many prisoners or hats behind them. They also can't see their own hat. In these circumstances, each prisoner then guesses the colour of their hat by writing it down, and the prison warden sets free any prisoner who correctly guesses the colour of their own hat. Assuming that the prisoners use the best strategy possible, what is the maximum guaranteed density of prisoners set free?}{Combinatorics}{T}
-
-\solution{7}{Eliclax/Tony Wang}{541318134699786272}{Note that this problem was an 'April Fools Joke', and was intended to be more challenging than a usual Problem of the Day; and will likely not appear on a mathematical competition. That being said, the answers are here: \url{https://bit.ly/prisoner-problems-solution}}
-
-\problem{8}{April 2, 2019}{2017 BMO1, Q3}{The triangle $ABC$ has $AB = CA$ and $BC$ is its longest side. The point $N$ is on the side $BC$ and $BN = AB$. The line perpendicular to $AB$ which passes through $N$ meets $AB$ at $M$. Prove that the line $MN$ divides both the area and the perimeter of triangle $ABC$ into equal parts.}{Geometry}{2}
-
-\problem{9}{April 3, 2019}{2017 Canadian MO, Q2}{Define a function $f(n)$ from the positive integers to the positive integers such that $f(f(n))$ is the number of positive integer divisors of $n$. Prove that if $p$ is prime, then $f(p)$ is prime.}{Algebra}{5}
-
-\problem{10}{April 4, 2019}{2015 IMO, Q1}{We say that a finite set $S$ of points in the plane is \textit{balanced} if, for any two different points $A$ and $B$ in $S$, there is a point $C$ in $S$ such that $AC = BC$. We say that $S$ is \textit{centre-free} if for any three different points $A, B$ and $C$ in $S$, there is no point $P$ in $S$ such that $PA = PB = PC$. \\ \space\space(a) Show that for all integers $n \geq 3$, there exists a balanced set consisting of $n$ points.\
-	\\ \space\space(b) Determine all integers $n \geq 3$ for which there exists a balanced centre-free set consisting of $n$ points.}{Combinatorial Geometry}{6}
-
-\problem{11}{April 5, 2019}{2015 IMO, Q2}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}{Algebra (Functional Equations)}{9}
-
-\problem{12}{April 6, 2019}{2013 BMO2, Q4}{Suppose that $ABCD$ is a square and that $P$ is a point which is on the circle inscribed in the square. Determine whether or not it is possible that $PA, PB, PC, PD$ and $AB$ are all integers.}{Number Theory/Geometry}{4-5}
-
-\problem{13}{April 7, 2019}{2018 EGMO, Q2}{Consider the set [A = \left{1 + \frac 1k : k = 1, 2, 3, \dots \right}.]
-Prove that every integer $x \geq 2$ can be written as the product of one or more elements of $A$, which are not necessarily different. \\
-For every integer $x \geq 2$, let $f(x)$ denote the minimum integer such that $x$ can be written as the product of $f(x)$ elements of $A$, which are not necessarily different. \\
-Prove that there exist infinitely many pairs $(x, y)$ of integers with $x \geq 2, y \geq 2$, and [$f(xy) < f(x) + f(y)$.] (Pairs $(x_1, y_1)$ and $(x_2, y_2)$ are different if $x_1 \neq x_2$ or $y_1 \neq y_2$.)}{Number Theory}{5}
 
 \end{document}
