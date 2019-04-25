@@ -3,24 +3,56 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{gensymb}
-
+\usepackage{fancyhdr}
+\usepackage{textpos}
+\usepackage{titlesec}
+\usepackage{enumerate}
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
 
-\title{MO Server\thanks{\url{https://discord.gg/m22vNrX}} PoTD Solutions}
+\title{MO Server\thanks{\url{https://discord.gg/m22vNrX}}\space\space PoTD Solutions}
 \author{IcosahedralDice\thanks{Individual solution authors are listed beside each problem}}
 
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\themonth~\arabic{subsection}}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\cfoot{\thepage}
+
+\renewcommand{\thesubsubsection}{Solution~\arabic{subsubsection}}
+
+\newcommand{\themonth}{April}
+\newcommand{\theyear}{2019}
+\newcommand{\theissue}{04/19}
+\newcommand{\thefirstday}{7}
+
+\newcounter{day}
+\setcounter{day}{\thefirstday}
+\newcounter{solution}
+\setcounter{solution}{1}
 %Args: Day #, Date, Source, Statement, Genre, Difficulty
-\newcommand{\problem}[6]{
+\newcommand{\oproblem}[6]{
+\newpage
 \textbf{Day #1} | #2 (#5, D#6)\\
 #4 \\
 Source: #3\\
 }
 
+%Args: Problem # (optional), Source, Category, Statement
+\newcommand{\problem}[4][0]{
+	\newpage
+	\subsection{[#3] \space #2} \hfill 
+	{\large\textbf{Day \arabic{day}}} %| \arabic{subsection} \themonth~\theyear
+	\begin{flushleft} #4 \end{flushleft}
+	\vspace{1em}
+	\addtocounter{day}{1}
+	\setcounter{solution}{1}
+}
+
 %Args: Problem #, Sumbitter, Solution
 \newcommand{\solution}[4]{
-\textbf{Solution to Day #1:}\\
-Submitted by \textit{#2} (userID = \textit{#3}). \\
+\paragraph{Solution #1} \hfill submitted by #2 \hfill \texttt{#3}\\
 #4\\
 }
 
@@ -31,44 +63,47 @@ This document is an set of problems and solutions which have been listed in the 
 Although the document has been compiled by a moderator, solutions will be typically member-submitted. As these are problems "of the day", the set of problems is continually growing and thus solutions will be welcome. If you wish to submit a solution please either PM a moderator of the Discord server (these will be clearly marked when you join the server) or submit a pull request. You will be credited if you wish. 
 
 \section{Problems}
-\problem{1}{Mar 26, 2019}{2015 Romanian MoM, Q1}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\vert m - n \vert = 1$?}{Number Theory}{4}\\
+These begin on the next page. 
+\oproblem{1}{Mar 26, 2019}{2015 Romanian MoM, Q1}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\vert m - n \vert = 1$?}{Number Theory}{4}\\
 \solution{1}{}{134837275161788416}{Construct a sequence $$a_n = p_{2n}\times p_{2n-1}\times \prod_{i=1}^{n-2} {p_{2i-1+(n \mod 2)}}$$ where $p_n$ is $n$th prime. This can be shown to produce the require co-primality conditions.}
 
-\problem{2}{Mar 27, 2019}{2018 IMO Shortlist, C1}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}{Combinatorics}{5}
+\oproblem{2}{Mar 27, 2019}{2018 IMO Shortlist, C1}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}{Combinatorics}{5}
 
-\problem{3}{Mar 28, 2019}{2014 BMO2, Q2}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}{Algebra (Inequalities)}{4}
+\oproblem{3}{Mar 28, 2019}{2014 BMO2, Q2}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}{Algebra (Inequalities)}{4}
 
-\problem{4}{Mar 29, 2019}{2015 APMO, Q4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}{Combinatorial Geometry}{4}
+\oproblem{4}{Mar 29, 2019}{2015 APMO, Q4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}{Combinatorial Geometry}{4}
 
-\problem{5}{Mar 30, 2019}{2005 IMO, Q4}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}{Number Theory}{5}
+\oproblem{5}{Mar 30, 2019}{2005 IMO, Q4}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}{Number Theory}{5}
 
-\problem{6}{Mar 31, 2019}{2007 Romanian Final MO, F9, Q3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}{Combinatorial Geometry}{3}
+\oproblem{6}{Mar 31, 2019}{2007 Romanian Final MO, F9, Q3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}{Combinatorial Geometry}{3}
 
-\problem{7}{April 1, 2019}{2019 AFMO, Q3}{Suppose there are a line of prisoners, each of whom is wearing either a green or red hat. Any individual prisoner can see all the infinitely many prisoners and hats in front of them but none of the finitely many prisoners or hats behind them. They also can't see their own hat. In these circumstances, each prisoner then guesses the colour of their hat by writing it down, and the prison warden sets free any prisoner who correctly guesses the colour of their own hat. Assuming that the prisoners use the best strategy possible, what is the maximum guaranteed density of prisoners set free?}{Combinatorics}{T}
+\problem[7]{2019 AFMO, Q3}{C0}{Suppose there are a line of prisoners, each of whom is wearing either a green or red hat. Any individual prisoner can see all the infinitely many prisoners and hats in front of them but none of the finitely many prisoners or hats behind them. They also can't see their own hat. In these circumstances, each prisoner then guesses the colour of their hat by writing it down, and the prison warden sets free any prisoner who correctly guesses the colour of their own hat. Assuming that the prisoners use the best strategy possible, what is the maximum guaranteed density of prisoners set free?}
 
-\solution{7}{Eliclax/Tony Wang}{541318134699786272}{Note that this problem was an 'April Fools Joke', and was intended to be more challenging than a usual Problem of the Day; and will likely not appear on a mathematical competition. That being said, the answers are here: \url{https://bit.ly/prisoner-problems-solution}}
+\solution{1}{Tony Wang}{541318134699786272}{This problem was an April Fool's joke, with AFMO being an acronym for April Fool's Mathematical Olympiad. It would not appear on a mathematical competition for it's ``abuse of axiom of choice''. That being said, you can find a document explaining the question and solution here: \url{https://bit.ly/prisoner-problems-solution}.}
 
-\problem{8}{April 2, 2019}{2017 BMO1, Q3}{The triangle $ABC$ has $AB = CA$ and $BC$ is its longest side. The point $N$ is on the side $BC$ and $BN = AB$. The line perpendicular to $AB$ which passes through $N$ meets $AB$ at $M$. Prove that the line $MN$ divides both the area and the perimeter of triangle $ABC$ into equal parts.}{Geometry}{2}
+\problem[8]{2017 BMO1, Q3}{G2}{The triangle $ABC$ has $AB = CA$ and $BC$ is its longest side. The point $N$ is on the side $BC$ and $BN = AB$. The line perpendicular to $AB$ which passes through $N$ meets $AB$ at $M$. Prove that the line $MN$ divides both the area and the perimeter of triangle $ABC$ into equal parts.}
 
-\problem{9}{April 3, 2019}{2017 Canadian MO, Q2}{Define a function $f(n)$ from the positive integers to the positive integers such that $f(f(n))$ is the number of positive integer divisors of $n$. Prove that if $p$ is prime, then $f(p)$ is prime.}{Algebra}{5}
+\problem[9]{2017 Canadian MO, Q2}{A5}{Define a function $f(n)$ from the positive integers to the positive integers such that $f(f(n))$ is the number of positive integer divisors of $n$. Prove that if $p$ is prime, then $f(p)$ is prime.}
 
-\problem{10}{April 4, 2019}{2015 IMO, Q1}{We say that a finite set $S$ of points in the plane is \textit{balanced} if, for any two different points $A$ and $B$ in $S$, there is a point $C$ in $S$ such that $AC = BC$. We say that $S$ is \textit{centre-free} if for any three different points $A, B$ and $C$ in $S$, there is no point $P$ in $S$ such that $PA = PB = PC$. \\ \space\space(a) Show that for all integers $n \geq 3$, there exists a balanced set consisting of $n$ points.\
-	\\ \space\space(b) Determine all integers $n \geq 3$ for which there exists a balanced centre-free set consisting of $n$ points.}{Combinatorial Geometry}{6}
+\problem[10]{2015 IMO, Q1}{Cg6}{We say that a finite set $S$ of points in the plane is \textit{balanced} if, for any two different points $A$ and $B$ in $S$, there is a point $C$ in $S$ such that $AC = BC$. We say that $S$ is \emph{centre-free} if for any three different points $A, B$ and $C$ in $S$, there is no point $P$ in $S$ such that $PA = PB = PC$. \begin{enumerate} \item Show that for all integers $n \geq 3$, there exists a balanced set consisting of $n$ points.\item Determine all integers $n \geq 3$ for which there exists a balanced centre-free set consisting of $n$ points.\end{enumerate}}
 
-\problem{11}{April 5, 2019}{2015 IMO, Q2}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}{Algebra (Functional Equations)}{9}
+\problem[11]{2015 IMO, Q2}{A9}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}
 
-\problem{12}{April 6, 2019}{2013 BMO2, Q4}{Suppose that $ABCD$ is a square and that $P$ is a point which is on the circle inscribed in the square. Determine whether or not it is possible that $PA, PB, PC, PD$ and $AB$ are all integers.}{Number Theory/Geometry}{4-5}
+\problem[12]{2013 BMO2, Q4}{NG5}{Suppose that $ABCD$ is a square and that $P$ is a point which is on the circle inscribed in the square. Determine whether or not it is possible that $PA$, $PB$, $PC$, $PD$ and $AB$ are all integers.}
 
-\problem{13}{April 7, 2019}{2018 EGMO, Q2}{Consider the set
-	$$A = \left\{1 + \frac 1k : k = 1, 2, 3, \dots \right\}.$$
+\problem[13]{2018 EGMO, Q2}{N5}{Consider the set \[A = \left\{1 + \frac 1k : k = 1, 2, 3, \dots \right\}.\]	\begin{enumerate} \item Prove that every integer $x \geq 2$ can be written as the product of one or more elements of $A$, which are not necessarily different. \item For every integer $x \geq 2$, let $f(x)$ denote the minimum integer such that $x$ can be written as the product of $f(x)$ elements of $A$, which are not necessarily different. \end{enumerate} \noindent Prove that there exist infinitely many pairs $(x, y)$ of integers with $x \geq 2, y \geq 2$, and \[f(xy) < f(x) + f(y).\] \\ (Pairs $(x_1, y_1)$ and $(x_2, y_2)$ are different if $x_1 \neq x_2$ or $y_1 \neq y_2$.)}
+
+\problem[14]{2017 NZ Squad Selection Test, Q5}{Cg4}{Let $A$ and $B$ be two distinct points in the plane. Find all points $C$ in the plane such that there does not exist a point $X$ in the plane with the property that $X$ is closer to both $A$ and $B$ than $C$.}
+
+\problem[15]{2009 Russian MO (29th), Grade 11, Q1}{C(GT)2}{Some cities in a country are linked by roads, none of which intersect outside a city. Each city displays the shortest length of a trip (chain of roads) beginning in that city and passing through each of the other cities at least once. Prove that any two displayed lengths $a$ and $b$ satisfies $a \leq 1.5b$ and $b \leq 1.5a.$}
+
+\problem[16]{2005 Korean MO (18th), Final Round, Q5}{N6-8}{Find all positive integers $m$ and $n$ such that both $3^m +1$ and $3^n +1$ are divisible by $mn$.}
+
+\problem[17]{1999 Balkan MO (16th), Q1}{
+	Let $D$ be the midpoint of the shorter arc $BC$ of the circumcircle of an acute-angled triangle $ABC$. The points symmetric to $D$ with respect to $BC$ and the circumcenter are denoted by $E$ and $F$, respectively. Let $K$ be the midpoint of $EA$.\\ 
 	\begin{enumerate}
-		\item Prove that every integer $x \geq 2$ can be written as the product of one or more elements of $A$, which
-		are not necessarily different.
-		\item For every integer $x \geq 2$, let $f(x)$ denote the minimum integer such that $x$ can be written as the
-		product of $f(x)$ elements of $A$, which are not necessarily different.
+	\item[a] Prove that the circle passing through the midpoints of the sides of $\triangle ABC$ also passes through $K$. \\
+	\item[b] The line through $K$ and the midpoint of $BC$ is perpendicular to $AF$. 
 	\end{enumerate}
-	\noindent Prove that there exist infinitely many pairs $(x, y)$ of integers with $x \geq 2, y \geq 2$, and
-	$$f(xy) < f(x) + f(y).$$
-	(Pairs $(x_1, y_1)$ and $(x_2, y_2)$ are different if $x_1 \neq x_2$ or $y_1 \neq y_2$.)}{Number Theory}{5}
-
+}
 \end{document}
