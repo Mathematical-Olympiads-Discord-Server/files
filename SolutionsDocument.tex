@@ -4,10 +4,34 @@
 \usepackage{amssymb}
 \usepackage{gensymb}
 
-\title{MO Server PoTD Solutions}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+
+\title{MO Server\thanks{\url{https://discord.gg/NPnGZYH}} PoTD Solutions}
 \author{IcosahedralDice\thanks{Individual problem authors are listed beside each problem}}
+
+%Args: Day #, Date, Source, Statement, Genre, Difficulty
+\newcommand{\problem}[6]{
+\textbf{Day #1} | #2 (#5, D#6)\\
+#4 \\
+Source: #3\\
+}
+
+%Args: Problem #, Sumbitter, Solution
+\newcommand{\solution}[4]{
+\textbf{Solution to Day #1:}\\
+Submitted by \textit{#2} (userID = \textit{#3}). \\
+#4
+}
 
 \begin{document}
 \maketitle
+\section{Introduction}
+This document is an set of problems and solutions which have been listed in the problems-of-the-day channel of the Mathematical Olympiads Discord Server. Problems are Olympiad-style and range from very easy to IMO P3/6 level, with difficulty indicated on a scale of 1-10, where 10 is IMO P3/6 and 5-6 is IMO P1/4 level. \\
+Although the document has been compiled by a moderator, solutions will be typically member-submitted. As these are problems "of the day", the set of problems is continually growing and thus solutions will be welcome. If you wish to submit a solution please either PM a moderator of the Discord server (these will be clearly marked when you join the server) or submit a pull request. You will be credited if you wish. 
+
+\section{Problems}
+\problem{1}{Mar 26, 2019}{2015 Romanian MoM, Q1}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\vert m - n \vert = 1$?}{Number Theory}{4}\\
+\solution{1}{}{134837275161788416}{Construct a sequence $$a_n = p_{2n}\times p_{2n-1}\times \prod_{i=1}^{n-2} {p_{2i-1+(n \mod 2)}}$$ where $p_n$ is $n$th prime. This can be shown to produce the require co-primality conditions.}
 
 \end{document}
