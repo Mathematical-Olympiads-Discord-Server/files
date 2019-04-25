@@ -1,0 +1,115 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{fancyhdr}
+\usepackage{textpos}
+\usepackage{titlesec}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\themonth}{April}
+\newcommand{\theyear}{2019}
+\newcommand{\theissue}{04/19}
+\newcommand{\thefirstday}{7}
+
+\newcounter{day}
+\setcounter{day}{\thefirstday}
+\newcounter{solution}
+\setcounter{solution}{1}
+
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\themonth~\arabic{subsection}}{1em}{}
+
+
+\renewcommand{\thesubsubsection}{Solution~\arabic{subsubsection}}
+
+\setcounter{tocdepth}{2}
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\theissue}
+\cfoot{\thepage}
+
+%Args: Problem # (optional), Source, Category, Statement
+\newcommand{\problem}[4][0]{
+\newpage
+\subsection{[#3] \space #2} \hfill 
+{\large\textbf{Day \arabic{day}}} %| \arabic{subsection} \themonth~\theyear
+\begin{flushleft} #4 \end{flushleft}
+\vspace{1em}
+\addtocounter{day}{1}
+\setcounter{solution}{1}
+}
+
+%Args: Problem # (optional), Sumbitter, UserID, Solution
+\newcommand{\solution}[4][0]{
+\paragraph{Solution \arabic{solution}} \hfill submitted by #2 \hfill \texttt{#3}
+\begin{flushleft} #4 \end{flushleft}
+\addtocounter{solution}{1}
+\vspace{1em}
+}
+
+\begin{document}
+	\begin{titlepage}
+	\begin{textblock*}{2cm}(13.75cm,-4cm) \begin{flushright}\theissue \end{flushright} \end{textblock*}
+		\vspace*{\stretch{1.0}}
+		\begin{center}
+			\LARGE\textbf{Mathematical Olympiads\\Discord Server}\\
+			\vspace*{\stretch{3.0}}
+			\Huge\textbf{POTD Solutions}\\
+			\vspace*{\stretch{2.0}}
+			\Large\textbf{for \themonth \space \theyear}\\
+			%\vspace*{\stretch{3.0}}
+			%\large\textit{Compiled by server staff}\\
+			\vspace*{\stretch{15.0}}
+			\Large\textsc{Contributors}\\
+			\vspace*{\stretch{0.7}}
+			\normalsize{brainysmurfs, Daniel, Tony Wang}\\
+			\vspace*{\stretch{0.7}}
+			Discord Server Link: \texttt{https://discord.gg/2749t}\\
+		\end{center}
+		\vspace*{\stretch{2.0}}
+	\end{titlepage}
+	
+	%\renewcommand{\thesubsection}{\arabic{subsection}}
+		
+	\tableofcontents
+	\newpage
+
+	\section{Introduction}
+	
+	This document is an set of problems and solutions which have been listed in the \texttt{\#problem-of-the-day} channel of the Mathematical Olympiads Discord Server. Problems are selected from past contests and range from very easy to IMO3/6 level and beyond.
+	
+	Although the document has been compiled by staff, solutions will be typically member-submitted. As these are problems ``of the day'', the set of problems is continually growing and thus solutions are welcome. If you wish to submit a solution, please send a direct message to the bot \texttt{Staff Mail} via the command \texttt{m.submit}. Alternatively, you may submit a pull request on Github. You will be credited if you wish.
+	
+	The staff team are indebted to \texttt{www.imomath.org} for making available English translations of many national and international Mathematics Olympiads.
+	
+	 \paragraph{Tag system} Each problem is tagged according to its genre and difficulty. Genre is indicated using initials\footnote{\textbf{A}lgebra, \textbf{C}ombinatorics, \textbf{G}eometry, \textbf{N}umber theory and \textbf{C}ombinatorial \textbf{g}eometry.} and difficulty is indicated on a scale with 1 being very easy, 6 being the typical difficulty of an IMO1/4 problem, and 10 being the typical difficulty of an IMO3/6 problem. For example, a problem assigned the [NCg2] tag is an easy problem in number theory involving some combinatorial geometry.
+
+	\section{Problems}
+	
+	These begin on the next page.
+	
+	\problem[7]{2019 AFMO, Q3}{C0}{Suppose there are a line of prisoners, each of whom is wearing either a green or red hat. Any individual prisoner can see all the infinitely many prisoners and hats in front of them but none of the finitely many prisoners or hats behind them. They also can't see their own hat. In these circumstances, each prisoner then guesses the colour of their hat by writing it down, and the prison warden sets free any prisoner who correctly guesses the colour of their own hat. Assuming that the prisoners use the best strategy possible, what is the maximum guaranteed density of prisoners set free?}
+
+	\solution[7]{Tony Wang}{541318134699786272}{This problem was an April Fool's joke, with AFMO being an acronym for April Fool's Mathematical Olympiad. It would not appear on a mathematical competition for it's ``abuse of axiom of choice''. That being said, you can find a document explaining the question and solution here: \url{https://bit.ly/prisoner-problems-solution}.}
+
+	\problem[8]{2017 BMO1, Q3}{G2}{The triangle $ABC$ has $AB = CA$ and $BC$ is its longest side. The point $N$ is on the side $BC$ and $BN = AB$. The line perpendicular to $AB$ which passes through $N$ meets $AB$ at $M$. Prove that the line $MN$ divides both the area and the perimeter of triangle $ABC$ into equal parts.}
+
+	\problem[9]{2017 Canadian MO, Q2}{A5}{Define a function $f(n)$ from the positive integers to the positive integers such that $f(f(n))$ is the number of positive integer divisors of $n$. Prove that if $p$ is prime, then $f(p)$ is prime.}
+
+	\problem[10]{2015 IMO, Q1}{Cg6}{We say that a finite set $S$ of points in the plane is \textit{balanced} if, for any two different points $A$ and $B$ in $S$, there is a point $C$ in $S$ such that $AC = BC$. We say that $S$ is \emph{centre-free} if for any three different points $A, B$ and $C$ in $S$, there is no point $P$ in $S$ such that $PA = PB = PC$. \begin{enumerate} \item Show that for all integers $n \geq 3$, there exists a balanced set consisting of $n$ points.\item Determine all integers $n \geq 3$ for which there exists a balanced centre-free set consisting of $n$ points.\end{enumerate}}
+
+	\problem[11]{2015 IMO, Q2}{A9}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}
+
+	\problem[12]{2013 BMO2, Q4}{NG5}{Suppose that $ABCD$ is a square and that $P$ is a point which is on the circle inscribed in the square. Determine whether or not it is possible that $PA$, $PB$, $PC$, $PD$ and $AB$ are all integers.}
+
+	\problem[13]{2018 EGMO, Q2}{N5}{Consider the set \[A = \left\{1 + \frac 1k : k = 1, 2, 3, \dots \right\}.\]	\begin{enumerate} \item Prove that every integer $x \geq 2$ can be written as the product of one or more elements of $A$, which are not necessarily different. \item For every integer $x \geq 2$, let $f(x)$ denote the minimum integer such that $x$ can be written as the product of $f(x)$ elements of $A$, which are not necessarily different. \end{enumerate} \noindent Prove that there exist infinitely many pairs $(x, y)$ of integers with $x \geq 2, y \geq 2$, and \[f(xy) < f(x) + f(y).\] \\ (Pairs $(x_1, y_1)$ and $(x_2, y_2)$ are different if $x_1 \neq x_2$ or $y_1 \neq y_2$.)}
+	
+	\newpage
+	
+	\section{Appendix}
+	
+\end{document}
