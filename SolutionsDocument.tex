@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass[10pt]{article}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -6,38 +7,61 @@
 \usepackage{fancyhdr}
 \usepackage{textpos}
 \usepackage{titlesec}
-\usepackage{enumerate}
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
 
-\title{MO Server\thanks{\url{https://discord.gg/m22vNrX}}\space\space PoTD Solutions}
-\author{IcosahedralDice\thanks{Individual solution authors are listed beside each problem}}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}[theorem]{Lemma}
 
-\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\themonth~\arabic{subsection}}{1em}{}
+\newcommand{\paren}[1]{\left ( #1 \right )}
+\newcommand{\set}[1]{\left \{ #1 \right \}}
+\newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\dst}{\displaystyle}
+\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
+\newcommand{\symsum}{\sum_{\mathrm{sym}}}
+\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
+\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+\newcommand{\dang}{\measuredangle}
+\newcommand{\ray}[1]{\overrightarrow{#1}} 
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\geoarc}[1]{\wideparen{#1}}
+\DeclareMathOperator{\sign}{sgn}
+\newcommand{\dg}{^\circ}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\field}{\mathbb{F}}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\rightmark}
-\cfoot{\thepage}
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator{\lcm}{lcm}
 
-\renewcommand{\thesubsubsection}{Solution~\arabic{subsubsection}}
-
-\newcommand{\themonth}{April}
+\newcommand{\themonth}{March}
 \newcommand{\theyear}{2019}
-\newcommand{\theissue}{04/19}
-\newcommand{\thefirstday}{7}
+\newcommand{\theissue}{The Big Document}
+\newcommand{\thefirstday}{1}
 
 \newcounter{day}
 \setcounter{day}{\thefirstday}
 \newcounter{solution}
 \setcounter{solution}{1}
-%Args: Day #, Date, Source, Statement, Genre, Difficulty
-\newcommand{\oproblem}[6]{
-\newpage
-\textbf{Day #1} | #2 (#5, D#6)\\
-#4 \\
-Source: #3\\
-}
+\newcounter{datenumber}
+\setcounter{datenumber}{26} %starts on the 26th of March
+
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\themonth~\arabic{datenumber}}{1em}{}
+
+\renewcommand{\thesubsubsection}{Solution~\arabic{subsubsection}}
+
+\setcounter{tocdepth}{2}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\theissue}
+\cfoot{\thepage}
 
 %Args: Problem # (optional), Source, Category, Statement
 \newcommand{\problem}[4][0]{
@@ -47,39 +71,74 @@ Source: #3\\
 	\begin{flushleft} #4 \end{flushleft}
 	\vspace{1em}
 	\addtocounter{day}{1}
+	\addtocounter{datenumber}{1}
 	\setcounter{solution}{1}
 }
 
-%Args: Problem #, Sumbitter, Solution
-\newcommand{\solution}[4]{
-\paragraph{Solution #1} \hfill submitted by #2 \hfill \texttt{#3}\\
-#4\\
+%Args: Problem # (optional), Sumbitter, UserID, Solution
+\newcommand{\solution}[4][0]{
+	\paragraph{Solution \arabic{solution}} \hfill submitted by #2 \hfill \texttt{#3}
+	\begin{flushleft} #4 \end{flushleft}
+	\addtocounter{solution}{1}
+	\vspace{1em}
 }
 
 \begin{document}
-\maketitle
+	\begin{titlepage}
+		\begin{textblock*}{2cm}(13.75cm,-4cm) \begin{flushright}\theissue \end{flushright} \end{textblock*}
+		\vspace*{\stretch{1.0}}
+		\begin{center}
+			\LARGE\textbf{Mathematical Olympiads\\Discord Server}\\
+			\vspace*{\stretch{3.0}}
+			\Huge\textbf{POTD Solutions}\\
+			\vspace*{\stretch{2.0}}
+			\Large\textbf{\theissue}\\
+			%\vspace*{\stretch{3.0}}
+			%\large\textit{Compiled by server staff}\\
+			\vspace*{\stretch{15.0}}
+			\Large\textsc{Main Contributors}\\
+			\vspace*{\stretch{0.7}}
+			\normalsize{brainysmurfs, Daniel, Tony Wang (individual contributors listed next to each problem)}\\
+			\vspace*{\stretch{0.7}}
+			Discord Server Link: \texttt{https://discord.gg/2749t}\\
+		\end{center}
+		\vspace*{\stretch{2.0}}
+	\end{titlepage}
 \section{Introduction}
-This document is an set of problems and solutions which have been listed in the problems-of-the-day channel of the Mathematical Olympiads Discord Server. Problems are Olympiad-style and range from very easy to IMO P3/6 level, with difficulty indicated on a scale of 1-10, where 10 is IMO P3/6 and 5-6 is IMO P1/4 level. \\
-Although the document has been compiled by a moderator, solutions will be typically member-submitted. As these are problems "of the day", the set of problems is continually growing and thus solutions will be welcome. If you wish to submit a solution please either PM a moderator of the Discord server (these will be clearly marked when you join the server) or submit a pull request. You will be credited if you wish. 
+
+This document is an set of problems and solutions which have been listed in the \texttt{\#problem-of-the-day} channel of the Mathematical Olympiads Discord Server. Problems are selected from past contests and range from very easy to IMO3/6 level and beyond.
+
+Although the document has been compiled by staff, solutions will be typically member-submitted. As these are problems ``of the day'', the set of problems is continually growing and thus solutions are welcome. If you wish to submit a solution, please send a direct message to the bot \texttt{Staff Mail} via the command \texttt{m.submit}. Alternatively, you may submit a pull request on Github. You will be credited if you wish.
+
+The staff team are indebted to \texttt{www.imomath.org} for making available English translations of many national and international Mathematics Olympiads.
+
+\paragraph{Tag system} Each problem is tagged according to its genre and difficulty. Genre is indicated using initials\footnote{\textbf{A}lgebra, \textbf{C}ombinatorics, \textbf{G}eometry, \textbf{N}umber theory and \textbf{C}ombinatorial \textbf{g}eometry.} and difficulty is indicated on a scale with 1 being very easy, 6 being the typical difficulty of an IMO1/4 problem, and 10 being the typical difficulty of an IMO3/6 problem. For example, a problem assigned the [NCg2] tag is an easy problem in number theory involving some combinatorial geometry.\\
+
+Note that this document is a compilation of all the problems ever to be submitted. Monthly releases will also be available. 
 
 \section{Problems}
-These begin on the next page. 
-\oproblem{1}{Mar 26, 2019}{2015 Romanian MoM, Q1}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\vert m - n \vert = 1$?}{Number Theory}{4}\\
-\solution{1}{}{134837275161788416}{Construct a sequence $$a_n = p_{2n}\times p_{2n-1}\times \prod_{i=1}^{n-2} {p_{2i-1+(n \mod 2)}}$$ where $p_n$ is $n$th prime. This can be shown to produce the require co-primality conditions.}
 
-\oproblem{2}{Mar 27, 2019}{2018 IMO Shortlist, C1}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}{Combinatorics}{5}
+These begin on the next page.
 
-\oproblem{3}{Mar 28, 2019}{2014 BMO2, Q2}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}{Algebra (Inequalities)}{4}
+\problem[1]{2015 Romanian MoM, Q1}{N4}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\lvert m - n \rvert = 1$?}
 
-\oproblem{4}{Mar 29, 2019}{2015 APMO, Q4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}{Combinatorial Geometry}{4}
+\problem[2]{2018 IMO Shortlist, C1}{C5}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}
 
-\oproblem{5}{Mar 30, 2019}{2005 IMO, Q4}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}{Number Theory}{5}
+\problem[3]{2014 BMO2, Q2}{A(Ineq)4}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}
 
-\oproblem{6}{Mar 31, 2019}{2007 Romanian Final MO, F9, Q3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}{Combinatorial Geometry}{3}
+\problem[4]{2015 APMO, Q4}{Cg4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}
+
+\problem[5]{2005 IMO, Q4}{N5}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}
+
+\problem[6]{2007 Romanian Final MO, F9, Q3}{Cg3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}
+
+%reset date to April
+\renewcommand{\themonth}{April}
+\setcounter{datenumber}{1}
 
 \problem[7]{2019 AFMO, Q3}{C0}{Suppose there are a line of prisoners, each of whom is wearing either a green or red hat. Any individual prisoner can see all the infinitely many prisoners and hats in front of them but none of the finitely many prisoners or hats behind them. They also can't see their own hat. In these circumstances, each prisoner then guesses the colour of their hat by writing it down, and the prison warden sets free any prisoner who correctly guesses the colour of their own hat. Assuming that the prisoners use the best strategy possible, what is the maximum guaranteed density of prisoners set free?}
 
-\solution{1}{Tony Wang}{541318134699786272}{This problem was an April Fool's joke, with AFMO being an acronym for April Fool's Mathematical Olympiad. It would not appear on a mathematical competition for it's ``abuse of axiom of choice''. That being said, you can find a document explaining the question and solution here: \url{https://bit.ly/prisoner-problems-solution}.}
+\solution[7]{Tony Wang}{541318134699786272}{This problem was an April Fool's joke, with AFMO being an acronym for April Fool's Mathematical Olympiad. It would not appear on a mathematical competition for it's ``abuse of axiom of choice''. That being said, you can find a document explaining the question and solution here: \url{https://bit.ly/prisoner-problems-solution}.}
 
 \problem[8]{2017 BMO1, Q3}{G2}{The triangle $ABC$ has $AB = CA$ and $BC$ is its longest side. The point $N$ is on the side $BC$ and $BN = AB$. The line perpendicular to $AB$ which passes through $N$ meets $AB$ at $M$. Prove that the line $MN$ divides both the area and the perimeter of triangle $ABC$ into equal parts.}
 
@@ -95,15 +154,37 @@ These begin on the next page.
 
 \problem[14]{2017 NZ Squad Selection Test, Q5}{Cg4}{Let $A$ and $B$ be two distinct points in the plane. Find all points $C$ in the plane such that there does not exist a point $X$ in the plane with the property that $X$ is closer to both $A$ and $B$ than $C$.}
 
-\problem[15]{2009 Russian MO (29th), Grade 11, Q1}{C(GT)2}{Some cities in a country are linked by roads, none of which intersect outside a city. Each city displays the shortest length of a trip (chain of roads) beginning in that city and passing through each of the other cities at least once. Prove that any two displayed lengths $a$ and $b$ satisfies $a \leq 1.5b$ and $b \leq 1.5a.$}
+\problem[15]{2009 Russian MO (29th), Grade 11, Q1}{C2}{Some cities in a country are linked by roads, none of which intersect outside a city. Each city displays the shortest length of a trip (chain of roads) beginning in that city and passing through each of the other cities at least once. Prove that any two displayed lengths $a$ and $b$ satisfies $a \leq 1.5b$ and $b \leq 1.5a.$}
 
 \problem[16]{2005 Korean MO (18th), Final Round, Q5}{N6-8}{Find all positive integers $m$ and $n$ such that both $3^m +1$ and $3^n +1$ are divisible by $mn$.}
 
-\problem[17]{1999 Balkan MO (16th), Q1}{
-	Let $D$ be the midpoint of the shorter arc $BC$ of the circumcircle of an acute-angled triangle $ABC$. The points symmetric to $D$ with respect to $BC$ and the circumcenter are denoted by $E$ and $F$, respectively. Let $K$ be the midpoint of $EA$.\\ 
-	\begin{enumerate}
-	\item[a] Prove that the circle passing through the midpoints of the sides of $\triangle ABC$ also passes through $K$. \\
-	\item[b] The line through $K$ and the midpoint of $BC$ is perpendicular to $AF$. 
-	\end{enumerate}
-}
+\problem[17]{1999 Balkan MO (16th), Q1}{G4}{Let $D$ be the midpoint of the shorter arc $BC$ of the circumcircle of an acute-angled triangle $ABC$. The points symmetric to $D$ with respect to $BC$ and the circumcenter are denoted by $E$ and $F$, respectively. Let $K$ be the midpoint of $EA$. \begin{enumerate} \item[(a)] Prove that the circle passing through the midpoints of the sides of $\triangle ABC$ also passes through $K$. \item[(b)] The line through $K$ and the midpoint of $BC$ is perpendicular to $AF$. \end{enumerate}}
+
+\problem[18]{2015/16 BMO1, Q6}{N5}{A positive integer is called \emph{charming} if it is equal to 2 or is of the form $3^i5^j$ where $i$ and $j$ are non-negative integers. Prove that every positive integer can be written as a sum of different charming integers.}
+
+\problem[19]{2004 Swedish MO (44th), Final Round, Q3}{A(FE)3}{Find all functions $f$ satisfying $f(x)+x f(1-x) = x^2$ for all real $x$.}
+
+\problem[20]{2018 IMO Shortlist, C2}{C5}{Let $n$ be a positive integer. Define a \emph{chameleon} to be any sequence of $3n$ letters, with exactly $n$ occurrences of each of the letters $a$, $b$, and $c$. Define a \emph{swap} to be the transposition of two adjacent letters in a chameleon. Prove that for any chameleon $X$, there exists a chameleon $Y$ such that $X$ cannot be changed to $Y$ using fewer than $3n^2/2$ swaps.}
+
+\problem[21]{2009 Japanese MO, Final Round, Q2}{N3}{Let $N$ be a positive integer. Prove that if the sum of the elements in ${1,2,\dots,N}$ is even, then it is possible to paint each each element red or green so that the sum of the red numbers is equal to the sum of the green numbers.}
+
+\problem[22]{2004 Swedish MO (44th), Final Round, Q4}{Cg6}{A square with integer side length $n \geq 3$ is divided into $n^2$ unit squares, and $n-1$ lines are drawn so that each square's interior is cut by at least one line. \begin{enumerate} \item[(a)] Give an example of such a configuration for some $n$. \item[(b)] Show that some two of the lines must meet inside the square \end{enumerate}}
+
+\problem[23]{2018 Euclid Contest, Q10 (adapted)}{A5-6}{In an infinite grid with two rows, each row continues to the left and right without bound. Each cell contains a positive real number. Prove that if each cell is the average of its three neighbours, then all the numbers in the grid are equal.}
+
+\problem[24]{2015/16 BMO1, Q2}{G2}{Let $ABCD$ be a cyclic quadrilateral and let the lines $CD$ and $BA$ meet at $E$. The line through $D$ which is tangent to the circle $ADE$ meets the line $CB$ at $F$. Prove that the triangle $CDF$ is isosceles.}
+
+\problem[25]{1993 IMO (34th), Q1}{A(Poly)5}{Let $n > 1$ be an integer and let $f(x) = x^n + 5x^{n-1} + 3$. Prove that there do not exist polynomials $g(x),h(x)$, each having integer coefficients and degree at least one, such that $f(x) = g(x)h(x)$.}
+
+\problem[26]{2000 Dutch MO, Second Round, Q5 of 5}{C4}{Consider an infinite strip of unit squares numbered $1, 2, 3, \dots$. A pawn starting on one of these squares can, at each step, move between squares numbered $n$, $2n$, and $3n+1$. Show that the pawn will be able to reach the square $1$ after finitely many steps.}
+
+\problem[27]{2005 Canadian MO (37th), Q2 of 5}{A/N4}{Let ((a,b,c)) be a Pythagorean triple, i.e.\ a triplet of positive integers with ($a^2$ + $b^2$ = $c^2$). \begin{enumerate} \item[(a)] Prove that $(\left( \frac{c}{a} + \frac{b}{a} \right) ^2 > 8)$. \item[(b)] Prove that there are no integers $n$ and Pythagorean triples $(a,b,c)$ satisfying $\left( \frac{c}{a} + \frac{b}{a} \right) ^2 = n$. \end{enumerate}}
+
+\problem[28]{2016 IMO (57th), Q1}{G6}{Triangle $BCF$ has a right angle at $B$. Let $A$ be the point on line $CF$ such that $FA=FB$ and $F$ lies between $A$ and $C$. Point $D$ is chosen so that $DA=DC$ and $AC$ is the bisector of $\angle{DAB}$. Point $E$ is chosen so that $EA=ED$ and $AD$ is the bisector of $\angle{EAC}$. Let $M$ be the midpoint of $CF$. Let $X$ be the point such that $AMXE$ is a parallelogram (where $AM \parallel EX$ and $AE \parallel MX$). Prove that $BD,FX$ and $ME$ are concurrent.}
+
+\problem[29]{2018 Putnam, B3}{N3}{Find all positive integers $n < 10^{100}$ for which simultaneously $n$ divides $2^n, n - 1$ divides $2^n - 1$ and $n - 2$ divides $2^n - 2$.}
+
+\problem[30]{2008 Polish MO, Second Round, Q4}{C4}{An integer is written in every square of an $n \times n$ board such that the sum of all the integers in the board is 0. A move consists of choosing a square and decreasing the number in it by the number of neighbouring squares (by side), while increasing the numbers in each of the neighbouring squares by 1. Determine if there is an $n \geq 2$ for which it is always possible to turn all the integers into zeros in finitely many moves.}
+
+\problem[31]{2005 Serbia and Montenegro TST, Test 1, Q3}{A4}{Find all polynomials $P\left(x\right)$ that satisfy $P\left(x^2+1\right) = P\left(x\right)^2 + 1$ for all $x$.}
 \end{document}
