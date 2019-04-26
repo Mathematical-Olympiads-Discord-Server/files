@@ -123,13 +123,49 @@ These begin on the next page.
 
 \problem[1]{2015 Romanian MoM, Q1}{N4}{Does there exist an infinite sequence of positive integers $a_1, a_2, a_3, \dots$ such that $a_m$ and $a_n$ are coprime if and only if $\lvert m - n \rvert = 1$?}
 
+\solution[1]{SharkyKesa}{268970368524484609}{Suppose the primes are $p_1$, $p_2$, $p_3$, ... . Set $$a_1 = p_2 \cdot p_3$$and $$a_n = p_{n+2} \cdot p_{n-1} \cdot p_{n-3} \cdot p_{n-5} \cdots$$ Then it is trivial to show consecutive $a_i$ are co-prime, but the rest are not co-prime.\footnote{It would be great if someone were to provide a solution which explicitly showed how this sequence fulfilled the conditions of the problem.}}
+
 \problem[2]{2018 IMO Shortlist, C1}{C5}{A rectangle $R$ with odd integer side lengths is divided into small rectangles with integer side lengths. Prove that there is at least one among the small rectangles whose distances from the four sides of $R$ are either all odd or all even.}
 
-\problem[3]{2014 BMO2, Q2}{A(Ineq)4}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}
+\solution[2]{SharkyKesa}{268970368524484609}{Colour in chessboard fashion with the corners as black, so the number of blacks is 1 greater than whites. Then there exists an internal rectangle with more blacks than whites, so it must have all corners as blacks, which means it satisfies the property that the distance to the sides is all odd or even.}
+
+\problem[3]{2014 BMO2, Q2}{A4}{Prove that it is impossible to have a cuboid for which the volume, the surface area and the perimeter are numerically equal. (The perimeter of a cuboid is the sum of the lengths of all its twelve edges.)}
+
+\solution[3]{Tony Wang}{541318134699786272}{Let the sides of the cuboid be $a$, $b$ and $c$. Furthermore let $X = abc$, $Y = 2(ab+bc+ca)$, and $Z=4(a+b+c)$. \\
+Now suppose that $XZ = Y^2$, from $X=Y=Z$. Then this means that $$
+4(a^2bc+b^2ca+c^2ab) = 4(a^2b^2+ab^2c+a^2bc+ab^2c+b^2c^2+abc^2+a^2bc+abc^2+a^2c^2)$$
+So $$a^2b^2+ab^2c+b^2c^2+a^2bc+a^2c^2=0$$
+Since $a$, $b$, $c > 0$ this is impossible, as required. 
+}
 
 \problem[4]{2015 APMO, Q4}{Cg4}{Let $n$ be a positive integer. Consider $2n$ distinct lines on the plane, no two of which are parallel. Of the $2n$ lines, $n$ are colored blue, the other $n$ are colored red. Let $\mathcal{B}$ be the set of all points on the plane that lie on at least one blue line, and $\mathcal{R}$ the set of all points on the plane that lie on at least one red line. Prove that there exists a circle that intersects $\mathcal{B}$ in exactly $2n-1$ points, and also intersects $\mathcal{R}$ in exactly $2n-1$ points.}
 
+\solution[4]{SharkyKesa}{268970368524484609}{Consider the pair of red-blue lines with maximal angle between them, and consider a circle of increasing radius tangent to them through this angle. Trivial angle chasing yields that this circle must eventually intersect every other line (else you get a bigger angle)\footnote{Not rigorous yet. Additions are welcome.}}
+
 \problem[5]{2005 IMO, Q4}{N5}{Determine all positive integers relatively prime to all the terms of the infinite sequence \[a_n=2^n+3^n+6^n -1,\, n\geq 1.\]}
+
+\solution[5]{SharkyKesa}{268970368524484609}{Note that $2 \vert a_1=10$, $3 \vert a_2=48$. Now suppose $p > 3$ and p is prime. Then, 
+\begin{equation}
+$$\begin{align*}
+a_{p-2} &= (3^{p-2} + 1)(2^{p-2} + 1) - 2\\
+&= (1/3 + 1)(1/2 + 1) - 2\\
+&= 4/3 \times 3/2 - 2 = 2 - 2\\
+&= 0 \mod p
+\end{align*}$$
+\end{equation}
+So $p \vert a_{p-2}$. Thus all primes $p$ eventually divide $a_n$, so only 1 satisfies.}
+
+\solution[5]{SharkyKesa}{268970368524484609}{We proceed same as before for $p = 2, 3$. \\
+Then, note that 
+\begin{equation*}
+$$
+\begin{align*}
+6a_{p-2} &= 6^{p-1} + 3 \times 2^{p-1} + 2 \times 3^{p-1} - 6\\
+ &= 1 + 3 + 2 - 6\\
+ &= 0 \mod p
+\end{align*}$$
+\end{equation*}
+so we're done again}
 
 \problem[6]{2007 Romanian Final MO, F9, Q3}{Cg3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}
 
