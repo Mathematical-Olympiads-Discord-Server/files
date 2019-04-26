@@ -9,6 +9,8 @@
 \usepackage{titlesec}
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\graphicspath{ {./images/}}
 
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -223,5 +225,21 @@ so we're done again}
 
 \problem[30]{2008 Polish MO, Second Round, Q4}{C4}{An integer is written in every square of an $n \times n$ board such that the sum of all the integers in the board is 0. A move consists of choosing a square and decreasing the number in it by the number of neighbouring squares (by side), while increasing the numbers in each of the neighbouring squares by 1. Determine if there is an $n \geq 2$ for which it is always possible to turn all the integers into zeros in finitely many moves.}
 
+\solution[30]{Denial}{118831126239248397}{
+Consider all the squares on the main diagonal of the board (shown in yellow and red), as shown in the figure below. Let $S$ represent the sum of all the numbers of the squares on the main diagonal. \\ 
+\begin{center}
+\includegraphics[scale=0.5]{q30-diagram}
+\end{center}
+\paragraph{Lemma 1: }$S$ is invariant mod 2. \\
+Note that any 'move' performed will only affect the integers on the main diagonal if it is performed on either a square on the main diagonal (a yellow or red square in the diagram) or on a square adjacent to the main diagonal. We handle these cases separately. 
+\begin{enumerate}
+	\item[1. ]The move is performed on one of the squares of the main diagonal. Then if it is a yellow square, its number increases by $2$; whereas if it is a red square, its number increases by $4$. So $S$ will be invariant mod 2 in this case. Note that since squares on the main diagonal are not adjacent to each other, performing a move on one square will not affect any of the other squares. 
+	\item[2. ]The move is performed on one of the squares adjacent to the main diagonal. Each of these squares is adjacent to exactly two squares on the main diagonal, and so the $S$ decreases by 2 and is thus invariant mod 2. 
+\end{enumerate}
+Note that having all 0's on the main diagonal means $S = 0 \mod 2$. However, since $S$ is invariant mod 2, then if the original configuration had $S = 1 \mod 2$, then it would be impossible to achieve the configuration with all the numbers being $0$. 
+}
+
 \problem[31]{2005 Serbia and Montenegro TST, Test 1, Q3}{A4}{Find all polynomials $P\left(x\right)$ that satisfy $P\left(x^2+1\right) = P\left(x\right)^2 + 1$ for all $x$.}
+
+\problem[32]{2008 BMO2, Q3}{C5}{Adrian has drawn a circle in the $xy-$plane whose radius is a positive integer at most 2008. The origin lies somewhere inside the circle. You are allowed to ask him questions of the form "Is the point $(x,y)$ inside your circle?" After each question he will answer truthfully "yes" or "no". Show that it is always possible to deduce the radius of the circle after at most sixty questions. [Note: Any point which lies exactly on the circle may be considered to lie inside the circle.]}
 \end{document}
