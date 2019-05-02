@@ -253,4 +253,40 @@ Note that having all 0's on the main diagonal means $S = 0 \mod 2$. However, sin
 
 \problem[37]{2018 NZ Camp Selection Test, Q2 of 9}{G3}{Let \(ABC\) be an equilateral triangle and let \(P\) be a point on the minor arc \(BC\) of the circumcircle of \(ABC\). Prove that \(PB+PC=PA\).}
 
+\begin{center}
+\includegraphics[scale=0.4]{q37-diagram}
+\end{center}
+
+\solution[37]{brainysmurfs}{281300961312374785}{
+Suppose $\angle BAP = a$. Then $\angle CBP = 60 - a \implies \angle ACP = a \implies \angle BCP = 60 + a$. \\
+By extended sine rule, 
+\begin{equation}
+$$\begin{align*}
+PA &= 2R \sin \angle ABP\\
+&= 2R \sin a\\
+PB &= 2R \sin (60 + a) \\
+&= 2R (\sin a \cos 60 + \cos a \sin 60)\\
+&= 2R(\frac{1}{2}\sin a + \frac{\sqrt{3}}{2}\cos a)\\
+PC &= 2R(\sin(60 - a))\\
+&= 2R(\frac{\sqrt{3}}{2} \cos a - \frac{1}{2}\sin a)
+\end{align*}$$\end{equation}
+So, 
+\begin{equation}
+$$\begin{align*}
+PA+PC &= 2R(\sin a - \frac{1}{2} \sin a + \frac{\sqrt{3}{2}} \cos a)\\
+&= 2R(\frac{\sqrt{3}}{2} \cos a + \frac{1}{2} \sin a)\\
+&= PB \\
+\end{align*}$$
+\end{equation}
+as required. This finishes the proof. 
+}
+
+%May
+\renewcommand{\themonth}{May}
+\setcounter{datenumber}{1}
+
+\problem[38]{2007 Canadian MO (37th), Q2 of 5}{C4}{"For two real numbers $a,b$ with $ab \neq 1$, define operation $\star$ by $a \star b = \frac{a + b - 2ab}{1 - ab}$. Start with a list of $n \geq 2$ real numbers that all satisfy $0 < x < 1$. Select any two numbers $a$ and $b$ in the list; remove them and put the number $a \star b$ at the end of the list, therefore reducing its length by 1. Repeat this procedure until a single number remains.\\
+	(a) Prove that this single number is the same regardless of the choice of pair at each stage.\\
+	(b) Suppose the condition on the numbers in the list is weakened to $0 < x \leq 1$. What happens if the list contains exactly one 1?"}
+
 \end{document}
