@@ -85,6 +85,14 @@
 	\vspace{1em}
 }
 
+%Args: Problem # (optional), Sumbitter, UserID, Solution
+\newcommand{\anonsolution}[2][0]{
+	\paragraph{Solution \arabic{solution}} 
+	\begin{flushleft} #2 \end{flushleft}
+	\addtocounter{solution}{1}
+	\vspace{1em}
+}
+
 \begin{document}
 	\begin{titlepage}
 		\begin{textblock*}{2cm}(13.75cm,-4cm) \begin{flushright}\theissue \end{flushright} \end{textblock*}
@@ -183,6 +191,11 @@ so we're done again}
 
 \problem[9]{2017 Canadian MO, Q2}{A5}{Define a function $f(n)$ from the positive integers to the positive integers such that $f(f(n))$ is the number of positive integer divisors of $n$. Prove that if $p$ is prime, then $f(p)$ is prime.}
 
+\anonsolution[9]{Let \(\tau(x)\) be the divisor function so that by the problem condition, \[f(f(n))=\tau(n) \tag{1}\] for all \(n\in\mathbb{Z^+}\). If we substitute \(n\to f(n)\) in \((1)\), we find that both \(f(f(f(n)))=\tau(f(n))\) and \(f(f(f(n)))=f(\tau(n))\) depending on what order we evaluate the \(f\)s in \(f(f(f(n)))\). Hence \[\tau(f(n))=f(\tau(n))\tag{2}\] If we substitute into \((2)\) an arbitrary prime \(p\), then since \(\tau(p)=2\), \(\tau(f(p))=f(2)\) for all such \(p\).  In particular, \(\tau(f(2))=f(2)\), and it is easily seen that the only fixed points of \(\tau\) are \(1\) and \(2\). Hence \(f(2)=1\) or \(2\). 
+
+
+We now show that \(f(2)\neq 1\). Suppose for sake of contradiction that \(f(2)=1\). Then \(f(1)=f(f(2))=2\) and \[f(f(3))=2 \implies f(f(f(3)))=f(2)=1 \implies \tau(f(3))=1 \implies f(3)=1\] Now \(f(f(9))=3\) since there are \(3\) positive divisors of \(9\), but this implies \[f(f(f(9)))=f(3)=1 \implies  \tau(f(9))=1 \implies f(9)=1 \implies f(f(9))=f(1)=2\] which is a contradiction. Hence \(f(2)=2\). Then by \((2)\), for all prime \(p\) we have \(\tau(f(p))=2\) which means for any prime \(p\), \(f(p)\) is prime as desired.} 
+
 \problem[10]{2015 IMO, Q1}{Cg6}{We say that a finite set $S$ of points in the plane is \textit{balanced} if, for any two different points $A$ and $B$ in $S$, there is a point $C$ in $S$ such that $AC = BC$. We say that $S$ is \emph{centre-free} if for any three different points $A, B$ and $C$ in $S$, there is no point $P$ in $S$ such that $PA = PB = PC$. \begin{enumerate} \item Show that for all integers $n \geq 3$, there exists a balanced set consisting of $n$ points.\item Determine all integers $n \geq 3$ for which there exists a balanced centre-free set consisting of $n$ points.\end{enumerate}}
 
 \problem[11]{2015 IMO, Q2}{(FE)A9}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}
@@ -202,6 +215,8 @@ so we're done again}
 \problem[18]{2015/16 BMO1, Q6}{N5}{A positive integer is called \emph{charming} if it is equal to 2 or is of the form $3^i5^j$ where $i$ and $j$ are non-negative integers. Prove that every positive integer can be written as a sum of different charming integers.}
 
 \problem[19]{2004 Swedish MO (44th), Final Round, Q3}{(FE)A3}{Find all functions $f$ satisfying $f(x)+x f(1-x) = x^2$ for all real $x$.}
+
+\anonsolution[19]{Notice that if we substitute \(x\to 1-x\) in our original equation, we find that \[f(1-x)+(1-x)f(x)=(1-x)^2\tag{1}\] If we let \(a=x\) and \(b=1-x\), upon comparing \((1)\) with the original equation we have a simultaneous equation in \(a\) and \(b\): \[\begin{cases} f(a)+af(b)=a^2 \\ f(b)+bf(a)=b^2 \end{cases} \implies \begin{cases} f(a)+af(b)=a^2  \\ baf(a)+af(b)=ab^2  \end{cases} \]From the last pair of simultaneous equations, if we subtract the first equation from the second, we find \begin{align*} (ba-1)f(a)=a(b^2-a) \implies f(a)& =\frac{a(b^2-a)}{ab-1} \\ \implies f(x) &= \frac{x((1-x)^2-x)}{x(1-x)-1} \\ &= \frac{-x^3+3x^2-x}{x^2-x+1} 	 \end{align*} Because this satisfies the original equation (the reader is invited to verify if so inclined), \(f(x)=\frac{-x^3+3x^2-x}{x^2-x+1}\) is the only solution to the original equation.}
 
 \problem[20]{2018 IMO Shortlist, C2}{C5}{Let $n$ be a positive integer. Define a \emph{chameleon} to be any sequence of $3n$ letters, with exactly $n$ occurrences of each of the letters $a$, $b$, and $c$. Define a \emph{swap} to be the transposition of two adjacent letters in a chameleon. Prove that for any chameleon $X$, there exists a chameleon $Y$ such that $X$ cannot be changed to $Y$ using fewer than $3n^2/2$ swaps.}
 
@@ -227,9 +242,7 @@ so we're done again}
 
 \solution[30]{Denial}{118831126239248397}{
 Consider all the squares on the main diagonal of the board (shown in yellow and red), as shown in the figure below. Let $S$ represent the sum of all the numbers of the squares on the main diagonal. \\ 
-\begin{center}
-\includegraphics[scale=0.5]{q30-diagram}
-\end{center}
+
 \paragraph{Lemma 1: }$S$ is invariant mod 2. \\
 Note that any 'move' performed will only affect the integers on the main diagonal if it is performed on either a square on the main diagonal (a yellow or red square in the diagram) or on a square adjacent to the main diagonal. We handle these cases separately. 
 \begin{enumerate}
@@ -250,5 +263,20 @@ Note that having all 0's on the main diagonal means $S = 0 \mod 2$. However, sin
 \problem[35]{2002 Taiwan MO (11th), Day 1, Q2}{N4/Cg4}{A lattice point $X$ in the plane is said to be \emph{visible} from the origin $O$ if the line segment $OX$ does not contain any other lattice points. Show that for any positive integer n, there is a square $ABCD$ of area $n^2$ such that none of the lattice points inside the square is visible from the origin.}
 
 \problem[36]{1997 Balkan MO (14th), Q4}{(FE)A5}{Determine all functions $f:\mathbb{R}\to\mathbb{R}$ that satisfy $f(xf(x)+f(y))=(f(x))^2+y$ for all $x,y\in \mathbb{R}$.}
+
+\anonsolution[36]{Since the right hand side of the original equation can attain any real value when \(x\) is fixed, \(f\) is clearly surjective. Hence their exists a constant \(c\) such that \(f(c)=0\). Substituting \(x\to c\), we find that \(f(f(y))=y\) and hence \(f\) is also an involution. Then since \(xf(x)\) remains the same whether you replace \(x\) with \(x\) or \(f(x)\), we have \begin{align*} f(xf(x)+f(y))&=(f(x))^2+y  \\ &= x^2+y \qquad \qquad \text{ if we substitute } x\to f(x)  \\ \implies (f(x))^2+y &= x^2+y \\ \implies (f(x))^2&= x^2 \end{align*}}  Note that while \(f(x)=\pm x\), we cannot conclude that \(f(x)=x\) and \(f(x)=-x\) are the only solutions. For example, \(f(x)=\begin{cases} x \text{ if } x\in S \\ -x \text{ if } x\notin S\end{cases}\) for some arbitrary \(S\subset \mathbb{R}\) satisfies \((f(x))^2=x^2\). However, such a solution seems unlikely, and we now prove such a function that isn't \(f(x)\equiv x\) or \(f(x)\equiv -x\) cannot exist. \\
+
+Suppose for sake of contradiction that there exist two positive reals \(a,b\) such that \(f(a)=a\) and \(f(b)=-b\). Then if we substitute \((a,b)\) for \((x,y)\) in the original equation, we find \(f(a^2-b)=a^2+b\). But we know that \(f(a^2-b)=\pm(a^2-b)\), and \(a^2+b\neq a^2-b\) for positive reals \(a,b\). \\ 
+
+Hence the only functions satisfying the original equation are \(f(x)=x\) and \(f(x)=-x\), which clearly work. 
+
+\problem[37]{2018 NZ Camp Selection Test, Q2 of 9}{G3}{Let \(ABC\) be an equilateral triangle and let \(P\) be a point on the minor arc \(BC\) of the circumcircle of \(ABC\). Prove that \(PB+PC=PA\).}
+
+\problem[38]{2007 Canadian MO (37th), Q2 of 5}{A4}{For two real numbers $a,b$ with $ab \neq 1$, define operation $\star$ by $a \star b = \frac{a + b - 2ab}{1 - ab}$. Start with a list of $n \geq 2$ real numbers that all satisfy $0 < x < 1$. Select any two numbers $a$ and $b$ in the list; remove them and put the number $a \star b$ at the end of the list, therefore reducing its length by 1. Repeat this procedure until a single number remains.\
+(a) Prove that this single number is the same regardless of the choice of pair at each stage.\
+(b) Suppose the condition on the numbers in the list is weakened to $0 < x \leq 1$. What happens if the list contains exactly one 1?}
+
+\problem[39]{C3}{2014 BMO1, Q3 of 6}{A hotel has ten rooms along each side of a corridor. An olympiad team leader wishes to book seven rooms on the corridor so that no two reserved rooms on the same side of the corridor are adjacent. In how many ways can this be done?}
+
 
 \end{document}
