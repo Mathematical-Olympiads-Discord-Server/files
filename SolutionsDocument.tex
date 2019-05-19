@@ -363,4 +363,24 @@ Clearly, \(\star\) is commutative due to symmetry; we now prove that it is assos
 \problem[51]{A3}{2008 Polish MO Round 1, Q9 of 12}{"Determine the smallest real number $a$ having the following property: For any real numbers $x,y,z \geq a$ satisfying $x+y+z = 3$, it holds that $x^3 + y^3 + z^3 \geq 3$.}
 
 \problem[52]{G3}{2000 Mexico MO, Q6 of 6}{Let $ABC$ be a triangle with $\angle B > 90^{\circ}$ such that there is a point $H$ on side $AC$ with $AH = BH$ and $BH$ perpendicular to $BC$. Let $D$ and $E$ be the midpoints of $AB$ and $BC$ respectively. A line through $H$ parallel to $AB$ cuts $DE$ at $F$. Prove that $\angle BCF = \angle ACD$.}
+
+\problem[53]{C4}{2019 NZ Squad Selection Test, Q7 of 9}{A set $S$ of positive integers is \textit{self-indulgent} if $\gcd (a, b) = \vert a - b \vert$ for any two distinct $a, b \in S$. \begin{itemize} \item[(a)] Prove that any self-indulgent set is finite. \item[(b)] Prove that for any positive integer n, there exists a self-indulgent set with at least n elements. \end{itemize}}
+
+\anonsolution[53]{
+\begin{itemize}
+	\item[(a)] Let $a_1$ be the smallest element of the set. Let $a_n$ be the largest element of the set. Since $a_n - a_0 = gcd(a_0, a_n) \leq a_0$ we have that $a_n \leq 2a_0$. So each self-indulgent set is bounded above by twice its smallest element, so is necessarily finite. 
+	\item[(b)] Note that the following sets are self-indulgent for the various values of $n$:
+		\begin{itemize}
+			\item[n=1:] {1}
+			\item[n=2:] {5,10}
+			\item[n=3:] {6,8,9}
+			\item[n=4:] {8,9,10,12}
+		\end{itemize}
+	We prove this result for all $n \geq 4$ by induction on $n$. \\
+	\paragraph{Base case ($n=4$)} is taken care of earlier. \\
+	\paragraph{Inductive step:}
+	Let $\{a_1, a_2, a_3, \dots , a_n\}$ be a self-indulgent set with $n$ elements. We claim that the set $\{b_0, b_1, b_2, \dots , b_n\}$ is also self-indulgent with $n+1$ elements, where $b_0 = \lcm(a_1, a_2, \dots a_n)$ and $b_i=a_i+b_0$ $\forall$ $0 < i \leq n$. Then it is trivial to note this new set is also self-indulgent. 
+\end{itemize}}
+
+\problem[54]{A2}{2018 Putnam, Q1 of 12}{Find all ordered pairs of integers $(a,b)$ for which $$\frac{1}{a}+\frac{1}{b}= \frac{3}{2018}$$}
 \end{document}
