@@ -226,6 +226,12 @@ We now show that \(f(2)\neq 1\). Suppose for sake of contradiction that \(f(2)=1
 
 \problem[21]{2009 Japanese MO, Final Round, Q2}{N3}{Let $N$ be a positive integer. Prove that if the sum of the elements in ${1,2,\dots,N}$ is even, then it is possible to paint each each element red or green so that the sum of the red numbers is equal to the sum of the green numbers.}
 
+\anonsolution[21]{It is well known that the sum of the elements in the set is \(\frac{N(N+1)}{2}\). Since we have that \(\frac{N(N+1)}{2}\) is even, it follows that \(N(N+1)\) is divisible by \(4\). Then  \(N\equiv 0\) or \(3\pmod 4\). We treat these two cases separately. 
+	\begin{enumerate}
+		\item[1. \(N\equiv 0\pmod 4\)] Let \(N=4k\). Then from our set \(\{1,2,\dots, 4k-1, 4k\}\) consider the \(2k\) subsets \(S_i=\{i,4k+1-i\}. \) Since \(|S_1|=|S_2|=\dots = |S_{2k}|\), it is easy to verify that \[\left|\bigcup_{i=1}^k S_i\right|=\left|\bigcup_{i=k+1}^{2k} S_i\right|\] and so we can paint all the elements on the left set red and all the elements on the right set green.
+		\item[2.  \(N\equiv 3 \pmod 4\)] Notice that if \(N=3\) then we can paint \(\{1,2\}\) red while painting \(\{3\}\) green. Then for \(N>3\) where \(N\equiv 3\pmod 4\), we can consider the set \(N'=N\setminus \{1,2,3\}=\{4,\dots, 4k+3\}\) for some positive integer \(k\). But notice that \(|N'|\equiv 0\pmod 4\) and so we can apply the same construction used in case 1. Indeed, letting \(S_i=\{3+i,4k+4-i\}\) we have that again, \[\left|\bigcup_{i=1}^k S_i\right|=\left|\bigcup_{i=k+1}^{2k} S_i\right|\] So that we can paint \(\{1,2,4,4k+3,5,4k+2,\dots, 3+k, 3k+4\}\) red and \(\{3,4+k,3k+3, 5+k, 3k+2,\dots, 3+2k, 2k+4\}\), where the two sets clearly have equal sums.
+\end{enumerate}}
+
 \problem[22]{2004 Swedish MO (44th), Final Round, Q4}{Cg6}{A square with integer side length $n \geq 3$ is divided into $n^2$ unit squares, and $n-1$ lines are drawn so that each square's interior is cut by at least one line. \begin{enumerate} \item[(a)] Give an example of such a configuration for some $n$. \item[(b)] Show that some two of the lines must meet inside the square \end{enumerate}}
 
 \problem[23]{2018 Euclid Contest, Q10 (adapted)}{A5-A6}{In an infinite grid with two rows, each row continues to the left and right without bound. Each cell contains a positive real number. Prove that if each cell is the average of its three neighbours, then all the numbers in the grid are equal.}
