@@ -179,6 +179,25 @@ so we're done again}
 
 \problem[6]{2007 Romanian Final MO, F9, Q3}{Cg3}{The plane is partitioned into unit-width parallel bands, each colored white or black. Show that one can always place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same color.}
 
+\solution[6]{Daniel}{118831126239248397}{Define coordinates on the plane such that the axes are parallel and perpendicular to the unit-width bands, and such that the unit-width bands are of the form \(n \leq x < n+1\) for some integer \(n\). \\
+	
+	Suppose there exists a colouring of the plane such that it is impossible to place an equilateral triangle of side length 100 in the plane such that its vertices lie on the same colour, and that there exist an integer \(m\) and a positive integer \(k\) such that all of the plane with \(m \leq x < m + k\) is coloured a single colour.\\
+	
+	Consider the equilateral triangles of side length 100 with vertices \[(m+t,50), (m+t,-50) \mathop{\text{and}} m+t+50\sqrt(3), 0)\] for \(0 \leq t \leq  \floor{50\sqrt{3}} - 50\sqrt(3) + k\). \\
+	
+	Note since the x-coordinates of the first two points satisfy \(m \leq x < m + k\), these two points, as t varies, all lie on the same colour. Hence the third points, as t varies, must all lie on the opposite colour to the first two points. However the x-coordinates of the third points takes on the values  
+	\begin{align*}
+	m + 50\sqrt{3} \leq x &\leq m + \floor{50\sqrt{3}+k},\\
+	\text{so the bands}\\
+	m + \floor{50\sqrt{3}} \leq x &< m + \floor{50\sqrt{3}} + 1,\\
+	m + \floor{50\sqrt{3}} + 1 \leq x &< m + \floor{50\sqrt{3}} + 2,\\
+	&\vdots\\
+	m + \floor{50\sqrt{3}} + k \leq x &< m + \floor{50\sqrt{3}} + k + 1
+	\end{align*}
+	must all be the same colour. Hence there exists an integer \(n\) such that all of the plane with \(n \leq x < n + k + 1\) is coloured a single colour.\\
+	
+	Hence, by induction on k, there exist arbitrary many consecutive strips of the same colour. In particular, taking \(k > 50\sqrt{3}\), there exist 87 consecutive strips of the same colour, in which an equilateral triangle of side length 100 can be placed with the vertices coloured the same colour.}
+
 %reset date to April
 \renewcommand{\themonth}{April}
 \setcounter{datenumber}{1}
@@ -205,6 +224,14 @@ We now show that \(f(2)\neq 1\). Suppose for sake of contradiction that \(f(2)=1
 \problem[11]{2015 IMO, Q2}{(FE)A9}{Let $\mathbb{R}$ be the set of real numbers. Determine all functions $f : \mathbb{R} \to \mathbb{R}$ such that, for all real numbers $x$ and $y$, \[f(f(x)f(y)) + f(x + y) = f(xy).\]}
 
 \problem[12]{2013 BMO2, Q4}{NG5}{Suppose that $ABCD$ is a square and that $P$ is a point which is on the circle inscribed in the square. Determine whether or not it is possible that $PA$, $PB$, $PC$, $PD$ and $AB$ are all integers.}
+
+\solution[12]{Daniel}{118831126239248397}{Let the centre of the circle be \(O\). Then \(AO\) = \(\frac{1}{\sqrt{2}}AB\) and \(OP = \frac{1}{2} AB\), so by Apollonius' theorem, \(PA^2 + PC^2 =  \frac{3}{2} AB^2\), so \(\left(2PA\right)^2 + \left(2PC\right)^2 = 6AB^2\). Suppose \(PA, PC\) and \(AB\) are all integers, and enlarge about \(O\), scale factor \(\frac{1}{\gcd\left(PA,PC,AB\right)}\) so that \(PA, PC\) and \(AB\) are coprime. Now
+	\[\left(2PA\right)^2 + \left(2PC\right)^2 \equiv 0 \pmod 3\]
+	so, since all squares are either \(0\) or \(1 \pmod 3\),
+	\[PA \equiv PC \equiv 0 \pmod 3.\]
+	However, this means that 9 divides \(6AB^2\), and so 3 divides \(AB\), contradicting the coprimality of \(PA, PC\) and \(AB\).\\
+	
+	Hence it is not possible that \(PA, PB, PC, PD\) and \(AB\) are all integers.}
 
 \problem[13]{2018 EGMO, Q2}{N5}{Consider the set \[A = \left\{1 + \frac 1k : k = 1, 2, 3, \dots \right\}.\]	\begin{enumerate} \item Prove that every integer $x \geq 2$ can be written as the product of one or more elements of $A$, which are not necessarily different. \item For every integer $x \geq 2$, let $f(x)$ denote the minimum integer such that $x$ can be written as the product of $f(x)$ elements of $A$, which are not necessarily different. \end{enumerate} \noindent Prove that there exist infinitely many pairs $(x, y)$ of integers with $x \geq 2, y \geq 2$, and \[f(xy) < f(x) + f(y).\] \\ (Pairs $(x_1, y_1)$ and $(x_2, y_2)$ are different if $x_1 \neq x_2$ or $y_1 \neq y_2$.)}
 
