@@ -1,0 +1,232 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage{soul} %strikethrough text available
+
+\begin{document}
+		\setcounter{section}{0}
+		\noindent \huge\textbf{Solutions}\vspace{2pt}\\
+		\noindent \large\textbf{to the MODS 2019 May Intermediate Contest} \vspace{3pt}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\
+	
+		\noindent \normalsize Compiled by the Mathematical Olympiads Discord Server (MODS) at \url{https://discord.gg/94UnnAG}\\
+		
+		\noindent This contest was hosted by Sharky Kesa, brainysmurfs, and Tony Wang in the Mathematical Olympiads Discord Server on the 11th and 12th of May. Throughout the document the following names correspond to the following users on Discord:
+		\begin{itemize}[noitemsep]
+		\item 666 \tabto*{80pt}\texttt{298843311353888770}
+		\item brainysmurfs \tabto*{80pt}\texttt{281300961312374785}
+		\item Daniel \tabto*{80pt}\texttt{118831126239248397}
+		\item Gonzo17 \tabto*{80pt}\texttt{472091598759526410}
+		\item Sharky Kesa \tabto*{80pt}\texttt{268970368524484609}
+		\item Tony Wang \tabto*{80pt}\texttt{541318134699786272}
+		\end{itemize}
+		
+		
+	\newpage		
+			
+	\section*{Problem 1}
+	
+	Find all positive integers \(a\) and \(b\) such that \(a^2  + 2b^2\) is a power of 2.
+	\begin{flushright}
+	\textit{(Proposed by Tony Wang)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent Define a \emph{primitive} solution to be a triple of positive integers \((x, y, z)\) such that \(z = 0\) or \(1\) and \(x^2 + 2y^2 = 2^z\). Suppose that \(a^2 + 2b^2 = 2^n\) for some non-primitive triple \((a, b, n)\). Taking both sides modulo 2 we have \[a^2 \equiv 0 \pmod 2 \implies a \equiv 0 \pmod 2.\] Thus we may write \(a = 2c\) for some positive integer \(c\), and the equation becomes \(4c^2 + 2b^2 = 2^n\). Dividing both sides by 2 we obtain \(2c^2 + b^2 = 2^{n-1}\). Using the same argument on \(b\) we note that we may write \(b = 2d\) for some positive integer \(d\). Hence the equation becomes \(2c^2 + 4d^2 = 2^{n-1}\), which after dividing both sides by 2 becomes \(c^2 + 2d^2 = 2^{n-2}\).
+	
+	Thus we note that if \((a, b, n)\) is a non-primitive solution, then \((c, d, n-2)\) is also a solution. This implies that any solution \((a, b, n)\) to the original equation can be reduced by repeatedly applying the above method to reach a primitive solution \((a', b', n')\) where \(n' = 0\) or \(1\). However we note that there are no pairs of positive integers \(a\) and \(b\) such that \(a^2 + 2b^2 = 1\) or \(2\), and so there are no primitive solutions.
+	
+	We note that the existence of any general solution \((a, b, n)\) to the original equation would contradict the non-existence of primitive solutions, and thus we can conclude that there cannot be any solutions in general.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Daniel)}\\
+	
+	\noindent Let \(v_2(n) = a\) denote the maximal number of times of 2 in \(a\) -- that is, \(2^a \mid n\), but \(2^{a+1} \nmid n\). Note that \(v_2(a^2) = p\) is even but \(v_2(2b^2) = q\) is odd, so in particular, we have \(p \neq q\). Let \(k = \min (p,q)\). Then we have \(2^k c + 2^k d = 2^n\) where \(c = a^2/2^k\) and \(d = 2b^2/2^k\). However since \(k = p \neq q\) or \(k = q \neq p\) we know that exactly one of \(c\) and \(d\) is odd, and so \(2^k (c+d) = 2^n \implies c+d = 1 \implies c = 0\) or \(d = 0\). But this implies \(a = 0\) or \(b = 0\), so therefore we conclude that there are no solutions.\hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 2}
+	
+	Let \(\mathbb{R}\) denote the set of real numbers. Find all functions \(f:\mathbb{R} \to \mathbb{R}\) such that for all real numbers \(x\) and \(y\), \[f(x f(x) + f(y)) = x f(x + y).\]
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Gonzo17)}\\
+	
+	\noindent Substituting \(x = 0\) yields \(f(f(y)) = 0\) for all \(y \in \mathbb{R}\). Now for any real \(u\), substitute \(x = f(u)\) and \(y = u - f(u)\) to obtain
+	\begin{align*}
+	f(x f(f(u)) + f(y)) = f(u) f(f(u) + u - f(u)) &\implies f(f(y)) = f(u) f(u)\\
+	&\implies 0 = f(u)^2.
+	\end{align*}
+	 From this it immediate follows that \(f(u) = 0\) for all real \(u\), which we can verify as if \(f(x) = 0\) for all real \(x\), we have \[f(xf(x) + f(y)) = xf(x+y) \implies 0 = 0. \tag*{\(\square\)}\]
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Tony Wang)}\\
+	
+	\noindent Substituting \(x = 0\), we note that the function must satisfy \(f(f(y)) = 0\) for all \(y \in \mathbb{R}\). Now suppose that there exists \(c \in \mathbb{R}\) such that \(f(c) \neq 0\). Then we substitute \(x = \frac{c}{f(c)}\) and \(y = c-\frac{c}{f(c)}\) to get
+	\begin{align*}
+	f(xf(x) + f(y)) = xf(x+y) &\implies f(f(xf(x) + f(y))) = f(xf(x+y))\\ &\implies f(f(X)) = 0 = f(c),
+	\end{align*}
+	a contradiction. Hence \(f(c) = 0\) for all \(c \in \mathbb{R}\) is the only possible solution. It is easy to check that it is a valid solution as in solution 1.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 3} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Substituting \(x=0\), we note that the function must satisfy \(f(f(y)) = f^2(y) = 0\) for all \(y \in \mathbb{R}\). Thus, \[f(0) = f(f^2(y)) = f(f(f(y))) = f^2(f(y)) = 0.\] Substituting \(x=1\) gives \(f(f(1)+f(y)) = f(y+1)\), and substituting \(x=f(1)\) and \(y=f(z)\) for some \(z \in \mathbb{R}\) gives \[f(1)f(f(1)+f(z)) = f(f(1)f(f(1)) + f(f(z)))=f(0+0)=0.\] However, we know \(f(f(1)+f(z))=f(z+1)\), so we must have \(f(1) f(z+1) = 0\). Therefore, \(f(1)=0\) or \(f(z+1)=0\) for all \(z\). If \(f(1)=0\), then \(f(z+1)=f(f(1)+f(z))=f(f(z))=0\). Thus, \(f(z+1)=0 \implies f(z) = 0\) for all \(z \in \mathbb{R}\). This is easily verified as a valid solution as in solution 1.\hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 3}
+	
+	Let \(n\) and \(k\) be given positive integers.  Find the number of \(k\)-tuples \((S_1, S_2, \dots, S_k)\) of sets \(S_i\) such that \(S_i \subseteq \{1, 2, \dots, n\}\) and \(S_1 \subseteq S_2 \supseteq S_3 \subseteq S_4 \supseteq S_5 \subseteq \cdots S_k\).
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent Suppose that there is a grid with \(k\) columns and \(n\) rows. A cell in the \(i\)-th column and \(j\)-th row is \emph{marked} iff \(j \in S_i\). Notice that if \(K\) is a \(k\)-tuple of sets \((S_i)\), then there exists a corresponding configuration of marked and unmarked cells in the grid, and vice versa. In particular, notice that two grids cannot be the same if not all rows are the same, and notice that the configuration of each row is independent of the others. As such, we need only consider the number of configurations for a single row, and take the result to the power of \(n\).
+		
+		Let \(A(k)\) be the number of possible configurations for a single row in the grid with \(k\) columns. Note that \(A(1) = 2\) and \(A(2) = 3\). Also note that for a single row, the \(k\)-th cell can be marked or unmarked. If \(k \geq 3\) is even, then the \(k\)-th cell can be marked for any configuration of the first \(k-1\) cells (of which there are \(A(k-1)\)), and the \(k\)-th cell can be unmarked for any configuration of the first \(k-2\) cells, with the \(k-1\)th cell unmarked (of which there are \(A(k-2)\)). Hence we obtain the relation \(A(k) = A(k-1) + A(k-2)\). If \(k \geq 3\) is odd, then a similar argument yields the same relation.
+		
+		Now notice that the recursive form of \(A(k)\) is the same as the Fibonacci numbers such that \(A(k) = F_{k+2}\), where \(F_1 = F_2 = 1\). Thus the answer to the problem is \(F_{k+2}^n\).\hfill\ensuremath{\square}\\
+		
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Sharky Kesa)}\\
+		
+	\noindent Note that a number can't be in $S_1$ without being in $S_2$, and a number can't be in $S_3$ without being in both $S_2$ and $S_4$, etc. However, the numbers are not restricted in the even-index sets. Let $T_k$ denote the set of all subsets of $\{1, 2, \dots, k\}$, and $A(k)$ denote the set of all elements in $T_k$ such that for any odd term in an element of $A(k)$, then its adjacent even terms are also present in that element if these numbers are between $1$ and $k$. For example, if $k=3$, then $T_3 = \{\{\phi\}, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}$ and $A(k) = \{\{\phi\}, \{2\}, \{1, 2\}, \{2, 3\}, \{1, 2, 3\}\}$. 
+	
+	What $A(k)$ represents is the possible distributions each integer in $\{1, 2, \dots, n\}$ could be in, with each term representing the set of indices the number is present in. For example, if $n=5, k=3$, then one such distribution that satisfies $S_1 \subseteq S_2 \supseteq S_3$ is $S_1 = \{1, 2\}$, $S_2 = \{1, 2, 3, 4\}$, $S_3 = \{2, 3\}$. Here, the $1$ is present in $S_1$ and $S_2$ - corresponding to the element $\{1, 2\}$ in $A(3)$, the $2$ is present in $S_1, S_2$ and $S_3$ - corresponding to the element $\{1, 2, 3\}$ in $A(3)$, the $3$ is present in $S_2$ and $S_3$ - corresponding to the element $\{2, 3\}$ in $A(3)$, the $4$ is present in $S_2$ only - corresponding to the element $\{2\}$ in $A(3)$, the $5$ is present in none of the sets - corresponding to the element $\{\phi \}$ in $A(3)$.
+	
+	We will now determine the size of $A(k)$. Note that $A(1) = \{\{\phi\}, \{1\}\}$ and $A(2) = \{\{\phi\}, \{2\}, \{1, 2\}\}$, so $|A(1)| = 2$, $|A(2)| = 3$. Consider $A(k)$. 
+	
+	If $k$ is odd, then either a set in $A(k)$ doesn't have the element $k$ (and this satisfies the properties set out before), of which there are $|A(k-1)|$ possible instances, or a set in $A(k)$ does contain $k$, so it must contain $k-1$, which can happen for any satisfying set in $A(k-2)$ by appending $k-1$ to the end of each set in $A(k-2)$. Therefore, if $k$ odd, then $|A(k)| = |A(k-1)| + |A(k-2)|$.
+	
+	If $k$ is even, then either a set in $A(k)$ doesn't have the element $k$, so it cannot have the element $k-1$ either, of which there are $|A(k-2)|$ possible instances, or a set in $A(k)$ does contain $k$, which can happen by choosing any element in $A(k-1)$ and appending $k$ to the end of it, so there are $|A(k-1)|$ possible instances in this case. Therefore, if $k$ even, then $|A(k)| = |A(k-1)| + |A(k-2)|$.
+	
+	Thus, we have the recurrence $|A(1)| = 2$, $|A(2)| = 3$, $|A(k)| = |A(k-1)| + |A(k-2)|$, which can be observed to be the Fibonacci sequence $F_i$. In particular, if $F_1 = 1$, $F_2 = 1$, then $|A(k)| = F_{k+2}$.
+	
+	Now, each number in $\{1, 2, \dots, n\}$ must have a distribution as one of the elements in $A(k)$, of which there are $F_{k+2}$ possible choices, so there are a total of $F_{k+2}^n$ possible ways of this happening. Therefore, the number of \(k\)-tuples \((S_1, S_2, \dots, S_k)\) of sets \(S_i\) such that \(S_i \subseteq \{1, 2, \dots, n\}\) and \(S_1 \subseteq S_2 \supseteq S_3 \subseteq S_4 \supseteq S_5 \subseteq \cdots S_k\) is $F_{k+2}^n$.\hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 4}
+	
+	Let $\Gamma$ be the circumcircle of $\triangle ABC$. \(O\) lies on the internal angle bisector of \(\angle BAC\) such that a circle centred at $O$ is tangent to the segment $BC$ at $P$ and the arc $BC$ of $\Gamma$ without $A$ at $Q$. Prove that $\angle PAO = \angle QAO$.
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent Let \(O'\) be the circumcetre of \(ABC\). Let the second intersection of \(AO\) with the circumcircle of \(ABC\) be \(A'\), and construct the point \(P'\) as the reflection of \(A'\) in \(O'\).
+	
+	\begin{center}
+		
+	\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+	\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+	\definecolor{yqyqyq}{rgb}{0.5019607843137255,0.5019607843137255,0.5019607843137255}
+	\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+	\clip(-3.5004037263518986,-5.976747407005555) rectangle (8.907007152346795,6.868572090941294);
+	\draw [line width=0.8pt] (-2.3560372713650066,3.194542015721918)-- (-2.9098780211404938,-0.9297331978917649);
+	\draw [line width=0.8pt] (-2.9098780211404938,-0.9297331978917649)-- (8.235319943900116,-0.7952917266608771);
+	\draw [line width=0.8pt] (8.235319943900116,-0.7952917266608771)-- (-2.3560372713650066,3.194542015721918);
+	\draw [line width=0.4pt,color=yqyqyq] (2.647210061406528,0.42334114550885016) circle (5.719443865967664cm);
+	\draw [line width=0.4pt,color=yqyqyq] (1.3218841923305649,-2.9623098104461874) circle (2.083471624577466cm);
+	\draw [line width=0.8pt] (2.647210061406528,0.42334114550885016)-- (0.5623582700023515,-4.902579539577808);
+	\draw [line width=0.8pt] (-2.3560372713650066,3.194542015721918)-- (1.2967536729240063,-0.8789897516424948);
+	\draw [line width=0.8pt] (0.5623582700023515,-4.902579539577808)-- (-2.3560372713650066,3.194542015721918);
+	\draw [line width=0.8pt] (1.3218841923305649,-2.9623098104461874)-- (1.2967536729240063,-0.8789897516424948);
+	\draw [line width=0.8pt] (2.5782229951211537,6.14236894056637)-- (2.716197127691902,-5.295686649548669);
+	\draw [line width=0.8pt] (-2.3560372713650066,3.194542015721918)-- (2.716197127691902,-5.295686649548669);
+	\draw [line width=0.8pt] (1.2967536729240063,-0.8789897516424948)-- (0.5623582700023515,-4.902579539577808);
+	\begin{scriptsize}
+	\draw [fill=ududff] (-2.3560372713650066,3.194542015721918) circle (2.5pt);
+	\draw[color=ududff] (-2.6099895338805803,3.4163924758680784) node {$A$};
+	\draw [fill=ududff] (-2.9098780211404938,-0.9297331978917649) circle (2.5pt);
+	\draw[color=ududff] (-3.2084646468531055,-1.0794693484133189) node {$B$};
+	\draw [fill=ududff] (8.235319943900116,-0.7952917266608771) circle (2.5pt);
+	\draw[color=ududff] (8.498292441048486,-0.9918876245636812) node {$C$};
+	\draw [fill=uuuuuu] (2.647210061406528,0.42334114550885016) circle (2.0pt);
+	\draw[color=uuuuuu] (2.9222560226215433,0.5407925428049769) node {$O'$};
+	\draw [fill=uuuuuu] (2.5782229951211537,6.14236894056637) circle (2.0pt);
+	\draw[color=uuuuuu] (2.776286482872147,6.408768040730696) node {$P'$};
+	\draw [fill=xdxdff] (1.3218841923305649,-2.9623098104461874) circle (2.5pt);
+	\draw[color=xdxdff] (1.5939332109020359,-2.962476411180527) node {$O$};
+	\draw [fill=uuuuuu] (1.2967536729240063,-0.8789897516424948) circle (2.0pt);
+	\draw[color=uuuuuu] (1.4771575791025189,-0.6561576831400704) node {$P$};
+	\draw [fill=uuuuuu] (0.5623582700023515,-4.902579539577808) circle (2.0pt);
+	\draw[color=uuuuuu] (0.3969829849569855,-5.166616461396407) node {$Q$};
+	\draw [fill=uuuuuu] (2.716197127691902,-5.295686649548669) circle (2.0pt);
+	\draw[color=uuuuuu] (2.7470925749222674,-5.575331172694716) node {$A'$};
+	\end{scriptsize}
+	\end{tikzpicture}
+	
+	\end{center}	
+	
+	Note that \(\angle BCA' = \angle BAA' = \angle CAA' = \angle CBA'\), and so \(BCA'\) is an isosceles triangle with base \(BC\). Thus \(A'\) is the midpoint of the arc \(BC\) not containing \(A\), and so \(OP \perp BC \perp A'O' \implies OP \parallel A'O'\). As the two circles in the problem are tangent to each other at \(Q\), we have that \(Q\), \(O\), and \(O'\) are collinear.
+	
+	Now note that as \(QO'P'\) and \(QOP\) are both isosceles triangles, we have \(\angle QPO = \frac 12(180^{\circ} - \angle QOP) = \frac 12(180^{\circ} - \angle QO'P') = \angle QP'O' = \angle QP'A' = \angle QAA' = \angle QAO\), and hence \(QOPA\) is a cyclic quad. Then we have \(\angle QAO = \angle QPO = \angle PQO = \angle PAO\) as desired. \hfill\ensuremath{\square}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by 666)}\\
+	
+	Consider the inversion $\Psi$ centred at $A$ with radius $\sqrt{AB \cdot AC}$ followed by a reflection over the angle bisector of $\angle BAC$. This has the effect of switching $B$ and $C$, and sends segment $BC$ to arc $BC$ not containing $A$ and vice-versa.
+
+Note that since $\gamma$ is a circle not passing through $A$, then the image of $\gamma$ from $\Psi$ is $\gamma'$, another circle. This circle must remain tangent to both segment $BC$ and arc $BC$. Furthermore, since the centre of $\gamma$ is $O$ and lies on the angle bisector of $\angle BAC$, then the image of $O$, $O'$, also lies on the angle bisector. This is enough to ensure uniqueness, so $\gamma = \gamma'$. 
+
+Finally, since segment $BC$ and arc $BC$ switch between each other, and circle $\gamma$ is preserved, then $P$ and $Q$ switch places. Thus, due to the reflection undertaken, we must have $\angle OAP = \angle OAQ$. \hfill\ensuremath{\square}
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

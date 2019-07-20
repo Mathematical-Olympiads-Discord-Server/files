@@ -1,0 +1,304 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage{soul} %strikethrough text available
+
+\newcommand{\ws}{\square}
+\newcommand{\bs}{\blacksquare}
+
+\begin{document}
+		\setcounter{section}{0}
+		\noindent \huge\textbf{Solutions}\vspace{2pt}\\
+		\noindent \large\textbf{to the MODS 2019 June Advanced Contest} \vspace{3pt}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\
+	
+		\noindent \normalsize Compiled by the Mathematical Olympiads Discord Server (MODS) at \url{https://discord.gg/94UnnAG}\\
+		
+		\noindent This contest was hosted by Sharky Kesa, brainysmurfs, and Tony Wang in the Mathematical Olympiads Discord Server on the 8th and 9th of June. Throughout the document the following names correspond to the following users on Discord:
+		\begin{itemize}[noitemsep]
+		\item 666 \tabto*{80pt}\texttt{298843311353888770}
+		\item brainysmurfs \tabto*{80pt}\texttt{281300961312374785}
+		\item Daniel \tabto*{80pt}\texttt{118831126239248397}
+		\item Gonzo17 \tabto*{80pt}\texttt{472091598759526410}
+		\item Sharky Kesa \tabto*{80pt}\texttt{268970368524484609}
+		\item Tony Wang \tabto*{80pt}\texttt{541318134699786272}
+		\end{itemize}
+		
+		
+	\newpage		
+			
+	\section*{Problem 1}
+	
+	Let \(n\) be a given positive integer. Find the minimum \(m\) such that for all real sequences \(x_1, x_2, \dots, x_n\) there exists a real number \(y\) such that \[\langle y - x_1 \rangle + \langle y - x_2 \rangle + \dots + \langle y - x_n \rangle \leq m,\] where \(\langle x \rangle = x - \lfloor x \rfloor\) is the difference between \(x\) and the greatest integer less than or equal to \(x\).
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		{\centering \noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent We will prove that the answer is \(m = \frac{n-1}{2}\).
+	
+	First we show that \(m \leq \frac{n-1}{2}\). For a sequence \(X = x_1, x_2, \dots, x_n\) and a real number \(y\), let \(S(X,y) = \langle y - x_1 \rangle + \langle y - x_2 \rangle + \dots + \langle y - x_n \rangle\). Now consider the sum of the \(S(X,y)\) as \(y\) takes on the value of each term in \(X\). That is, we consider \begin{equation}
+	\sum_{i=1}^n S(X,x_i) = \sum_{j=1}^n \sum_{i=1}^n \langle x_j - x_i \rangle.
+	\end{equation} Note that for each of the \(n^2\) pairs of \((i,j)\), the expression \(\langle x_j - x_i \rangle\) appears exactly once. Of these, \(n\) are of the form \(\langle x_i - x_i \rangle = 0\), and the remaining \(n(n-1)\) can be paired up into \(\langle x_i - x_j \rangle\) and \(\langle x_j - x_i \rangle\). The sum of each pair is either 0 if \(x_i = x_j\) or 1 otherwise. As there are \(\frac{n(n-1)}{2}\) pairs, the total sum in (1) is at most \(\frac{n(n-1)}{2}\) and so the average value of \(S(X,x_i)\) is \(\frac{n-1}{2}\). In particular, this means that there exists an \(x_k \in X\) such that when \(y = x_k\), \(S(X,y) \leq \frac{n-1}{2}\), as desired.
+	
+	We now show that \(m \geq \frac{n-1}{2}\). Let the sequence \(X\) be \(0, \frac 1n, \frac 2n, \dots, \frac{n-1}{n}\), and let \(y_{\text{min}}\) be a real number such that \(S(X, y_{\text{min}})\) is minimal. For the sake of contradiction assume that \(\langle y_{\text{min}} - x_i \rangle \neq 0\) for all \(x_i \in X\). Then let \(x_k\) be the term in \(X\) such that \(\langle y_{\text{min}} - x_k \rangle\) is minimal. We note that \(S(X,y_{\text{min}}) = n \langle y_{\text{min}} - x_k \rangle + S(X,x_k)\), implying that \(S(X, y_{\text{min}}) > S(X, x_k)\), a contradiction. Hence \(\langle y_{\text{min}} - x_i \rangle = 0\) for some \(x_i \in X\). Finally we note that this implies that \(S(X,y_{\text{min}}) = 0 + \frac 1n + \frac 2n + \cdots + \frac{n-1}{n}\) (not necessarily in that order), which evaluates to \(\frac{n(n-1)}{2n} = \frac{n-1}{2}\), as desired.\\[-10pt]
+	
+	Since we have shown that \(m \geq \frac{n-1}{2}\) and \(m \leq \frac{n-1}{2}\), we conclude that \(m = \frac{n-1}{2}\).\hfill\ensuremath{\square}\\
+	
+		{\centering \noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+	
+	\paragraph{Solution 2} \textit{(by Tony Wang)}\\
+	
+	\noindent We will prove that the answer is \(m = \frac{n-1}{2}\).
+	
+	As above, for a sequence \(X = x_1, x_2, \dots, x_n\) and a real number \(y\), let \(S(X,y) = \langle y - x_1 \rangle + \langle y - x_2 \rangle + \dots + \langle y - x_n \rangle\). Note that the fractional part of a real number is constant if we add an arbitrary integer, and so \(S(X,y)\) is invariant under the addition of arbitrary integers to \(y, x_1, x_2, \dots, x_n\). In particular, this implies that we need only consider sequences \(X\) where each term is in the interval \([0,1)\).
+	
+	Now suppose there is a circle with circumference 1. Each point on the circle corresponds to a number in the interval \([0,1)\), where the top of the circle represents 0 and the point at \(x\) full turns clockwise represents the number \(x\), where \(0 \leq x < 1\). Note that \(\langle y - x_i \rangle\) is interpreted as the arc length between \(y\) and \(x_i\), starting from \(y\) and traveling anti-clockwise. Under this interpretation we see that sum of the \(S(X,y)\) as \(y\) ranges over \(X\) is the sum of all anti-clockwise arc-lengths between pairs of points. Of these \(n^2\) arc-lengths, the \(n\) that are formed by a point being paired with itself always have length 0, and of the remaining \(n(n-1)\), for each anti-clockwise arc-length from \(x_i\) to \(x_j\), there is a corresponding anti-clockwise arc-length from \(x_j\) to \(x_i\). Their sum is hence either 1 full turn, or 0 full turns (if \(x_i = x_j\)). Hence the average value of \(S(X,y)\) as \(y\) varies over \(X\) is at most \(\frac{n-1}{2}\), and so \(m \leq \frac{n-1}{2}\).
+	
+	Now suppose that \(X\) forms a regular \(n\)-gon inscribed in the circle. For any point on the circle not on the \(n\)-gon, we see that the sum of the anti-clockwise arc-lengths to each \(x_i\) from that point can be reduced by moving that point anti-clockwise until it reaches a point on the \(n\)-gon. But for any point \(y\) on the \(n\)-gon, we have \(S(X,y) = 0 + \frac 1n + \frac 2n + \cdots + \frac{n-1}{n} = \frac{n-1}{2}\). Hence \(m \geq \frac{n-1}{2}\) as required.\hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 2}
+	
+	Sharky has a collection of \(2^n\) strips of \(n \times 1\) strips of paper, with each strip divided into \(n\) unit squares. Each square on a strip is coloured black or white such that every strip is unique. Find the smallest \(m\) such that for any \(m\) strips, Sharky can choose \(n\) of these strips and arrange them (without flipping any of the strips) into a \(n \times n\) square grid with the property that a main diagonal is monochromatic.
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa and Tony Wang)}\\
+	
+	\noindent We will prove that \(m_1 = 1, m_2 = 3, m_3 = 4\), and \(m_n = 2^{n-2}+1\) when \(n \geq 4\).
+	
+	Let $m_n$ denote the value of $m$ for a particular \(n\). Denote a \(n \times n\) square as \emph{satisfactory} if a main diagonal is monochromatic, and \emph{balanced} if the main diagonals are both monochromatic but of different colours.  
+	
+	When \(n = 1\), both \(\ws\) and \(\bs\) both form a satisfactory \(1 \times 1\) square, so \(m_1 = 1\).
+	
+	If $n=2$, then $m > 2$ as the strips \(\bs \bs\) and \(\ws \ws\) fail. Note that in any 3 strips, there must exist at least 1 monochromatic and 1 dichromatic strip by pigeonhole principle, and these form a satisfactory \(2 \times 2\) square. Hence \(m_2 = 3\).
+	
+	If $n=3$, note that $m>3$ as we can choose the monochromatic strips and guarantee no monochromatic diagonal. We will now show that \(m_3 = 4\) suffices by considering two cases:
+	
+	\begin{enumerate}
+	\item \textbf{Case 1:} Suppose that there is a monochromatic strip in the 4 chosen strips. Then WLOG it is the \(\ws \ws \ws\) strip. Of the three remaining strips, at least 2 must be dichromatic. Note that these must contain a white square from each strip in different positions (otherwise they would be the same strip), which we use with the \(\ws \ws \ws\) strip to form a square with a white diagonal.
+	\item \textbf{Case 2:} Suppose that there are no monochromatic strips. Then there are 3 pairs of complementary (i.e. colour-negative) strips left to choose from, and hence by pigeonhole principle, at least 2 of the 4 strips are a complementary pair. Because both strips in the pair are dichromatic, they must form a balanced \(2 \times 2\) square. Hence any colour for the remaining position (which is either 1 or 3) works to form a monochromatic diagonal.
+	\end{enumerate}
+	
+	For \(n \geq 4\), note that \(m_n \geq 2^{n-2}\), as if we pick all the strips that start with \(\ws \bs\), then we have \(2^{n-2}\) strips that fail to form an \(n \times n\) square with a monochromatic diagonal.
+	
+	We will now show that $m_n \leq 2^{n-2} + 1$ for $n \geq 4$ using induction, with the base case being \(n = 4\). For the 5 strips in this case, combine them to form a \(4 \times 5\) grid. Let us denote the 4 squares left after removing any 2 columns and 3 rows a \emph{table}. We consider the following two cases:
+	
+	\begin{enumerate}
+	\item \textbf{Case 1:} Suppose that there exists a balanced table in the \(4 \times 5\) grid, denoted \(G\). Then consider the \(2 \times 3\) grid formed by removing from \(G\) the 2 rows and 2 columns that the balanced table is in. If this small grid, denoted \(g_1\), contains a satisfactory table, then we can append this to the balanced table to form a monochromatic diagonal. If not, then each row in \(g_1\) must be identical and either \(\bs \ws\) or \(\ws \bs\). WLOG we can assume it is \(\bs \ws\).
+	
+	In this case we consider the \(2 \times 3\) grid, denoted \(g_2\), formed by the two other squares in each of the 3 strips in \(g_1\). No row of \(g_2\) can be the same (otherwise there would be two identical strips) and hence there must exist a satisfactory white table and a satisfactory black table in \(g_2\). Thus, using these three strips containing both \(g_1\) and \(g_2\) we can find a \(3 \times 3\) square (not necessarily contiguous) with a main diagonal monochromatic.
+	
+	If, at this point, it were still impossible to form a satisfactory \(4 \times 4\) square it would have to because the two other strips have \(\bs \ws\) in the same position as the \(\bs \ws\) in \(g_1\). However there would be 5 strips containing \(\bs \ws\) at the same position, a contradiction.
+	\item \textbf{Case 2:} Suppose that there does not exist a balanced table in the \(4 \times 5\) grid. Then no two rows can contain the same number of white squares, as otherwise their uniqueness would guarantee a balanced table. Then the strips must have 0, 1, 2, 3, and 4 white squares in some order. In this case it is clear we can form a \(4 \times 4\) square with a main diagonal white by omitting \(\bs \bs \bs \bs\) and prioritising placement of strips with fewer white squares.
+	\end{enumerate}
+	
+	Now we will prove that \(m_n \leq 2^{n-2} + 1\) for \(n \geq 5\) by induction. Denote the set of strips that end in \(\bs\) by \(B\), and the others by \(W\).
+	
+	Suppose we know that \(m_k = 2^{k-2} + 1\) for some \(k \geq 4\). Note that if we pick \(2^{k-1}+1\) strips of dimensions \((k+1) \times 1\), then not both starting and ending squares on both strips can be entirely one colour, as there are only \(2^{k-1}\) such strips. WLOG let there be both white and black squares at the end of the strips, such that \(B\) and \(W\) are both non-empty. By pigeonhole principle either \(|B| > 2^{k-2} + 1\) or \(|W| > 2^{k-2}+1\). Let this be the former without loss of generality. Notice that the first \(k\) squares in each of the strips in \(B\) must be a unique, as otherwise there would be two strips in \(B\) that are identical. Hence we invoke the inductive hypothesis to show that there is a satisfactory \(k \times k\) square made using the first \(k\) squares of each strip.
+	
+	As \(k < 2^{k-2} + 1\) for \(k \geq 4\), there must be elements in both \(B\) and \(W\) that are unused so far. Hence, regardless of whether the satisfactory \(k \times k\) square had a white or black diagonal, there exists a strip that forms a satisfactory \((k+1) \times (k+1)\) square.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Sharky Kesa)}\\
+	
+	\noindent We complete the cases \(n = 1\) and \(n = 2\) as in solution 1.
+	
+	For \(n = 3\) we can choose the monochromatic strips and have no monochromatic diagonal, so $m_3 \geq 4$. However, we note that in any 4 chosen strips, the extremal (first and third) cells of each strip must be in this set $\{\bs \bs, \bs \ws, \ws \bs, \ws \ws\}$. Note that the set of all the extremal cell tuples in the four chosen strips must have either size $2$, $3$, or $4$, and each tuple is repeated at most twice. We will now devise an algorithm to produce the monochromatic diagonal:
+	
+	\begin{enumerate}
+	\item If no $\bs \ws$ or $\ws \bs$ strip is chosen, choose the two $\bs \bs$ strips, and set them as your first and third row. One of the white strips will have a black middle cell, so this can be used as the second row to create a monochromatic diagonal. Else, go to 2. 
+	
+	\item Choose one of the $\bs \ws$ or $\ws \bs$ strips as the first layer. If you have another $\bs \ws$ or $\ws \bs$ as the extremal cells of the chosen strips, but it is distinct to the extremal cells of the first strip, use this strip as your third layer. Now you can fit whichever strip in your second layer as the middle square being either $B$ or $W$ results in a monochromatic diagonal. Else, go to 3.
+	
+	\item If you have another $\bs \ws$ or $\ws \bs$ as the extremal cells of the chosen strips (WLOG its $\bs \ws$), but it is the same as the extremal cells of the first strip, then choose one of the strips with the monochromatic extremal cells as the third row. There exists one of the two $\bs \ws$ strips with their middle colour being the same as the extremal cells of the strip in the third row, so set this strip as the second row, and set the other $\bs \ws$ strip as the first row, yielding a monochromatic diagonal. Else, go to 4.
+	
+	\item Choose the less common strip with the monochromatic extremal cells as the third row (WLOG its $\bs \bs$). For the two strips left with monochromatic extremal cells, one of them contains $B$ as their middle square, so this will go in the second row, thus yielding the monochromatic diagonal.
+	\end{enumerate}
+	Thus we have proven that 4 strips is sufficient when $n=3$, so $m_3 = 4$.
+	
+	Now when \(n = 4\), we apply Hall's marriage theorem to the following cases:
+	
+	\begin{enumerate}
+	\item \textbf{Case 1:} There exists an index $i$ such that the $i$-th cell of each strip is the same colour.
+	
+	WLOG this colour is black. In this case, we need to show that for any distribution of \(\bs\) in the other three indices, we must have a monochromatic diagonal. Suppose not, because then by Hall's Marriage Theorem, we have either another index composed purely of \(\ws\) across the strips, which is bad as then we have at most $2^2 = 4$ strips satisfying these two indices having a fixed colour, or at most one strip contains two more \(\bs\) cells in it, but these \(\bs\) cells aren't found in that same index for other strips, which is also impossible as that leaves $3$ strips with $2^1 = 2$ possible designs, which is impossible, or we must have at most one strip containing three more \(\bs\) cells in it, which is also impossible, so this case is impossible for a similar reason, so we have a contradiction in this case.
+	
+	\item \textbf{Case 2:} There exist two indices $i, j$ such that the only black cells with those indices are on at most one strip.
+	
+	WLOG this colour is black. In this case, we have the other $4$ strips having \(\ws\) on the $i, j$ indices, and having all the possible $2^2 = 4$ variants of \(\bs\) and \(\ws\) for the other two indices. Then order these $4$ strips so that the first non-$i, j$-th row contains the $\bs \ws$ variant, and the other one has the $\ws \bs$ variant. This yields a monochromatic diagonal of \(\ws\), so there is a contradiction here.
+	
+	\item \textbf{Case 3:} There exist three indices $i, j, k$ such that the only black cells with those indices are on at most two strips.
+	
+	WLOG this colour is black. In this case, we have the other $2$ strips having \(\ws\) on the $i, j, k$ indices, and having all the possible $2$ variants of \(\bs\) and \(\ws\) for the other index, which is a contradiction.
+	
+	\item \textbf{Case 4:} There exists at most three strips with all four of their cells being the same
+	
+	This case is impossible as all strips are distinct.
+	\end{enumerate}
+	
+	Therefore, over all cases, it is impossible for the selection of $5$ strips to not yield a monochromatic diagonal, so we have $m_4 = 2^{4-2} + 1 = 5$.
+	
+	Now suppose that \(m_n = 2^{n-2}+1\) for \(n \geq 4\). Then for $n+1$, suppose there is a selection $S$ of $2^{n-1} + 1$ strips of length $n$, and let $A_S$ denote the set of the strips in $S$ if the last cell is removed. Then we have $2^{n-1} + 1 = |S| \leq 2|A_S|$, so $|A_S| \geq 2^{n-2} + 1$, which means there exist $n-1$ strips in $A_S$ that can be arranged to form a monochromatic diagonal by the inductive hypothesis. 
+	
+	Consider the set of strips in $S$ of size $n-1$ which form the monochromatic diagonal in $A_S$ (call this set $B_S$, and WLOG this diagonal is black. Then, either there exists another strip in $S$ ending with \(\bs\) or all the strips end in \(\bs\) so all the elements in $A_S$ are distinct. Then we have $\left \lvert S / B_S \right \rvert \leq 2^{n - 2} + 1 - (n - 1) \geq 2^{n - 3} + 1$ for all $n \geq 5$. Then, there exists a selection in $S / B_S$ such that we can form a monochromatic diagonal by the inductive hypothesis once more. Let's denote this selection in $S / B_S$ as $C_S$. 
+	
+	Then we have $|S / B_S| \geq 2^{n-3} + 1 - (n - 1) \geq 1$, so there exists another strip $s$ in $S / B_S$ not in $C_S$. This strip ends with \(\ws\) by definition of $S / B_S$, and $|S| \geq 2^{n-2} + 1$ implies there is a strip $t$ in $S$ that ends in \(\bs\). All strips in $S / B_S$ end with \(\ws\), so $s \in B_S$. Then either $s$ or $t$ can be added to $C_S$ to create the monochromatic diagonal so we must have a monochromatic diagonal regardless.
+	
+	Therefore, $m_n = 2^{n-2} + 1$ for all $n \geq 4$.\hfill\ensuremath{\square}\\
+	
+	\newpage
+	
+	\section*{Problem 3}
+	
+	Let \(ABC\) be a triangle with circumcentre \(O\), and let \(P\) be a point on \(BC\) distinct from \(B\) and \(C\). Construct \(X\) and \(Y\) on \(AB\) and \(AC\) respectively such that \(XB = XP\) and \(YP = YC\). Prove that \(AXOY\) is cyclic.
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent Let \(X'\) and \(Y'\) be the projection of \(X\) and \(Y\) onto \(BC\) respectively. Denote the midpoint of \(BC\) by \(M\), and let the intersection of \(AB\) and \(AC\) with the perpendicular bisector of \(BC\) be \(S\) and \(T\) respectively.
+	\begin{center}
+	\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+	\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+	\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm, scale = 0.85]
+	\clip(-2.7517730802588436,-13.174531574820056) rectangle (18.680494861674806,11.33250381893187);
+	\draw[line width=0.8pt] (2.1095275151966293,-5.) -- (2.1095275151966293,-4.758423453805287) -- (1.867950969001916,-4.758423453805287) -- (1.867950969001916,-5.) -- cycle; 
+	\draw[line width=0.8pt] (10.109527515196628,-5.) -- (10.109527515196628,-4.758423453805287) -- (9.867950969001916,-4.758423453805287) -- (9.867950969001916,-5.) -- cycle; 
+	\draw[line width=0.8pt] (8.241576546194713,-5.) -- (8.241576546194713,-4.758423453805287) -- (8.,-4.758423453805287) -- (8.,-5.) -- cycle; 
+	\draw [line width=0.8pt] (8.,-3.3361254670577543) circle (4.085599052200723cm);
+	\draw [line width=0.8pt,domain=-2.7517730802588436:18.680494861674806] plot(\x,{(-24.802308419293027--9.248707114224585*\x)/4.960461683858606});
+	\draw [line width=0.8pt,domain=-2.7517730802588436:18.680494861674806] plot(\x,{(--92.78162224688639-9.248707114224585*\x)/11.039538316141394});
+	\draw [line width=0.8pt] (1.867950969001916,-1.5172331695964025)-- (3.735901938003832,-5.);
+	\draw [line width=0.8pt] (3.735901938003832,-5.)-- (9.867950969001917,0.137309539008766);
+	\draw [line width=0.8pt] (8.,-3.3361254670577543)-- (0.,-5.);
+	\draw [line width=0.8pt] (8.,9.915881147627811)-- (8.,-5.);
+	\draw [line width=0.8pt,domain=-2.7517730802588436:18.680494861674806] plot(\x,{(-80.-0.*\x)/16.});
+	\draw [line width=0.8pt] (8.,-3.3361254670577543)-- (16.,-5.);
+	\draw [line width=0.8pt] (1.867950969001916,-1.5172331695964025)-- (1.867950969001916,-5.);
+	\draw [line width=0.8pt] (9.867950969001917,0.137309539008766)-- (9.867950969001916,-5.);
+	\draw [line width=0.8pt] (8.,-3.3361254670577543)-- (0.1661631102208901,-1.0124477687291435);
+	\draw [line width=0.8pt] (8.,-3.3361254670577543)-- (11.870172143509958,3.8604185674753024);
+	\begin{scriptsize}
+	\draw [fill=ududff] (4.960461683858606,4.248707114224585) circle (1.5pt);
+	\draw[color=ududff] (4.88,4.85) node {$A$};
+	\draw [fill=ududff] (0.,-5.) circle (1.5pt);
+	\draw[color=ududff] (-0.45,-4.66) node {$B$};
+	\draw [fill=ududff] (16.,-5.) circle (1.5pt);
+	\draw[color=ududff] (16.45,-4.66) node {$C$};
+	\draw [fill=uuuuuu] (8.,-3.3361254670577543) circle (1.2pt);
+	\draw[color=uuuuuu] (8.5,-3.1) node {$O$};
+	\draw [fill=xdxdff] (3.735901938003832,-5.) circle (1.5pt);
+	\draw[color=xdxdff] (3.74,-5.42) node {$P$};
+	\draw [fill=uuuuuu] (1.867950969001916,-1.5172331695964025) circle (1.2pt);
+	\draw[color=uuuuuu] (1.71233373867739,-1.0690582367353445) node {$X$};
+	\draw [fill=uuuuuu] (9.867950969001917,0.137309539008766) circle (1.2pt);
+	\draw[color=uuuuuu] (10.39,0.22) node {$Y$};
+	\draw [fill=uuuuuu] (8.,1.7022419593048694) circle (1.2pt);
+	\draw[color=uuuuuu] (8.39,1.9146049942883567) node {$T$};
+	\draw [fill=uuuuuu] (8.,9.915881147627811) circle (1.2pt);
+	\draw[color=uuuuuu] (8.37,9.9) node {$S$};
+	\draw [fill=uuuuuu] (8.,-5.) circle (1.2pt);
+	\draw[color=uuuuuu] (8.00,-5.37) node {$M$};
+	\draw [fill=uuuuuu] (1.867950969001916,-5.) circle (1.2pt);
+	\draw[color=uuuuuu] (1.94,-5.37) node {$X'$};
+	\draw [fill=uuuuuu] (9.867950969001916,-5.) circle (1.2pt);
+	\draw[color=uuuuuu] (9.95,-5.37) node {$Y'$};
+	\end{scriptsize}
+	\end{tikzpicture}
+	\end{center}
+	\vspace{-0.8cm}
+	
+	We begin by noting that since \(BOC\) is an isosceles triangle, \(ST\) bisects \(\angle BOC \implies \angle BOT = \angle TOC\). Now note that \(\angle BAT = \angle BAC = \frac{\angle BOC}{2} = \angle BOM = 180 - \angle BOT\), and so \(BOTA\) is a cyclic quad. This implies that \(\angle OTC = \angle OBS\), and since we also have \(\angle BOT = \angle TOC\), we can deduce that \(OTC\) and \(OBS\) are similar triangles.
+	
+	Now note that \(X', M\), and \(Y'\) are the midpoints of \(BP\), \(BC\), and \(PC\) respectively, and so we have \(BP = 2BX'\), \(PC = 2Y'C\), and \(BC = 2BM = 2MC\). Hence we know that \[\frac{BP}{BC} = \frac{BX'}{BM} = \frac{BX}{BS} \qquad \text{ and } \qquad \frac{BP}{BC} = \frac{BC-PC}{BC} = \frac{MC - Y'C}{MC} = \frac{MY'}{MC} = \frac{TY}{TC},\] where the last equality in each case is due to the fact that \(XX' \parallel SM\) and \(TM \parallel YY'\) respectively. Since \(OTC\) and \(OBS\) are similar, we deduce that \(OTY\) and \(OBX\) are similar, and in particular, that \(\angle BOX = \angle TOY\). Hence we see that \(\angle BOT = \angle XOY\), and so as \(\angle BOT + \angle TAB = 180^{\circ}\), we also have \(\angle XOY + \angle TAB = \angle XOY + \angle YAX = 180^{\circ}\), and hence \(AXOY\) is a cyclic quad. \hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Tony Wang)}\\
+	
+	\noindent We define additional points as above, and we consider the spiral symmetry \(f\) centered at \(O\) that takes line \(BA\) to line \(AC\). When \(P = X = B\), we have that \(Y = T\). Since \(BOTA\) is a cyclic quad, \(\angle OBS = \angle OTC\) and so \(f: B \mapsto T\). By noting that \(X'Y'\) is a constant length, we deduce that the map from \(BX\) to \(TY\) is linear. Hence we have \(f : X \mapsto Y\), and so \(\angle BOX = \angle TOY\). Then as \(BOTA\) is cyclic, so is \(AXOY\).\space \hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 4}
+	
+	Prove that for all Pythagorean triples \(A\) and \(B\) there exists a finite sequence of Pythagorean triples starting with \(A\) and ending with \(B\) such that any two consecutive triples share at least one number.
+	
+	(A \emph{Pythagorean triple} is a triple of positive integers \((a, b, c)\) such that \(a\), \(b\), and \(c\) are the side lengths of a right-angled triangle.)
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Let \(B\) be called \emph{traversable} from \(A\), denoted \(A \to B\), if there exists such a sequence from \(A\) to \(B\). Additionally, for a triple $A=(a_1, a_2, a_3)$, let \(kA\) denote the triple \((ka_1, ka_2, ka_3)\).
+	
+	We begin by noting that if \(A \to B\), then \(B \to A\). Thus, it suffices to show that $(3, 4, 5) \to P$ for all Pythagorean triples \(P\), since this would imply that \(A \to (3,4,5) \to B\) for any triples \(A\) and \(B\).
+	
+	We then reduce the problem further by noticing that taking both sides of \(a^2 + b^2 = c^2\) modulo 3 reveals that all Pythagorean triples must contain a multiple of 3. Therefore it suffices to show that $(3, 4, 5) \to k(3, 4, 5)$ for all positive integers \(k\), as then we would be able to traverse to any Pythagorean triple containing a multiple of 3, and hence all of them.
+	
+	Thus let $K$ denote the set of $k$ such that \((3,4,5) \to k(3,4,5)\). We now prove two lemmas:
+	
+	\begin{enumerate}
+	\item \textbf{Lemma 1:} \textit{If \(n, m \in K\), then \(nm \in K\).}
+	
+	\textit{Proof:} Note that for any traversal \(A \to B\), multiplying each triple by a positive integer \(k\) gives us a valid traversal \(kA \to kB\). Since \((3,4,5) \to n(3, 4, 5)\) and \((3,4,5) \to m(3, 4, 5)\), we multiply each triple in the latter traversal by \(n\) to obtain the valid traversal \(n(3, 4, 5) \to nm(3, 4, 5)\). Thus we have \((3, 4, 5) \to n(3, 4, 5) \to nm(3, 4, 5)\), and hence \(mn \in K\), as desired.
+	
+	\item \textbf{Lemma 2:} \textit{If the prime factors of \(n\) are in $K$, then $n \in K$.}
+	
+	\textit{Proof:} This follows from repeatedly applying \textbf{Lemma 1} to all prime factors of $k$.
+	\end{enumerate}
+	By \textbf{Lemma 2}, it suffices to show that $K$ contains all primes. To prove this, firstly note that $2 \in K$ by the following traversal:
+	\[(3, 4, 5) \to (5, 12, 13) \to (9, 12, 15) \to (8, 15, 17) \to (6, 8, 10).\]
+	We now continue by strong induction: suppose that $p_1, p_2, \dots, p_n \in K$, where \(p_i\) denotes the \(i\)-th prime. To prove that \(p_{n+1} \in K\), we first note that 
+	\begin{align*}
+	p_{n+1}(3,4,5) &\to (4p_{n+1} \; \; , \; \; 2p_{n+1}^2 - 2 \; \; , \; \; 2p_{n+1}^2 + 2)\\
+	&\to \frac{2p_{n+1}^2-2}{4} (3, 4, 5),
+	\end{align*}
+	where we remark that \(\frac{2p_{n+1}^2-2}{4}\) is an integer as \(4 \mid 2(p_{n+1}-1)(p_{n+1}+1)\). Finally, as \(2 \mid p_{n+1}+1\), we note that the prime factorisation of \(2p_{n+1}^2 - 2\) must consist only of primes that are less than \(p_n\), and is hence is fully contained within the primes \(p_1, \dots, p_n\). Then \(p_{n+1} \in K\), as desired, and so \(K\) is the set of all positive integers and hence \(A \to (3,4,5) \to B\) for any triples \(A\) and \(B\).\hfill\ensuremath{\square}
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
