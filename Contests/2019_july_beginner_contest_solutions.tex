@@ -1,0 +1,354 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage{soul} %strikethrough text available
+
+\begin{document}
+		\setcounter{section}{0}
+		\noindent \huge\textbf{Solutions}\vspace{2pt}\\
+		\noindent \large\textbf{to the MODS 2019 July Beginner Contest} \vspace{3pt}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\
+	
+		\noindent \normalsize Compiled by the Mathematical Olympiads Discord Server (MODS) at \url{https://discord.gg/94UnnAG}\\
+		
+		\noindent This contest was hosted by Sharky Kesa, brainysmurfs, and Tony Wang in the Mathematical Olympiads Discord Server on the 5th and 6th of July. Throughout the document the following names correspond to the following users on Discord:
+		\begin{itemize}[noitemsep]
+		\item Sharky Kesa \tabto*{100pt}\texttt{268970368524484609}
+		\item brainysmurfs \tabto*{100pt}\texttt{281300961312374785}
+		\item IndigoManedWolf \tabto*{100pt}\texttt{452275673776652288}
+		\item maxkvant \tabto*{100pt}\texttt{509503185447026688}
+		\item Tony Wang \tabto*{100pt}\texttt{541318134699786272}
+		\end{itemize}
+		
+		
+	\newpage		
+			
+	\section*{Problem 1}
+	
+	Amy writes a 1 or a \(-1\) in each cell of an \(n \times 2\) grid, where \(n\) is not a multiple of 4. Below each column she writes the product of the 2 entries in that column in blue, and to the right of each row she writes the product of the \(n\) entries in that row in green. Amy notices that the sum of the blue numbers is 0. Prove that the sum of the green numbers is 0.
+	\begin{flushright}
+	\textit{(Proposed by Tony Wang)}
+	\end{flushright}
+	
+		{\centering \noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Note that all blue numbers are either \(1\) or \(-1\) since \(\{xy \mid x, y \in \{-1, 1\}\} = \{-1, 1\}\). A similar argument holds for both green numbers. Since the sum of the blue numbers is \(0\), the number of blue \(1\)'s is equal to the number of blue \(-1\)'s, so there must be \(\frac{n}{2}\) instances of each, and in particular \(n\) must be even. Because \(4\) doesn't divide \(n\), \(n\) must be of the form \(4k + 2\), where \(k\) is a non-negative integer. Thus we must have an odd number (that is, \(2k+1\)) of blue \(-1\)s and blue \(1\)s.
+	
+	Now, note that the only way a blue number is \(-1\) is if the numbers in its columns are \((1, -1)\), and the only way a blue number is \(1\) is if the numbers in its column is either \((1, 1)\) and \((-1, -1)\). Since there are an odd number of blue \(1\)'s and \(-1\)'s, the number of \(-1\)'s in the grid is \(\text{ odd } \times \text{ odd } + \text{ odd } \times \text{ even } = \text{ odd}\). Thus, the number of \(-1\)s in the grid is odd.
+	
+	Since there are 2 rows, one of the rows must contain an odd number of \(-1\)s and the other row must contain an even number of \(-1\)s. We note that the green number corresponding to the row with an odd number of \(-1\)s is \(-1\), and the green number corresponding to the row with an even number of \(-1\) is \(1\). Therefore, the sum of the green numbers is \(0\).\hfill\ensuremath{\square}\\
+	
+	\newpage
+	
+	\section*{Problem 2}
+	
+	Let \(ABCD\) be a parallelogram. The internal angle bisectors of \(ABC\) and \(BCD\) meet at \(P\), and the internal angle bisectors of \(CDA\) and \(DAB\) meet at \(Q\). Prove that \(PQ \parallel AB\).
+	\begin{flushright}
+	\textit{(Proposed by Tony Wang)}
+	\end{flushright}
+	
+	\noindent \textit{Editor's note: we overlooked the possibility that \(ABCD\) might be a rhombus and so \(PQ\) might be undefined. In the following solutions we assume that \(ABCD\) is not a rhombus.}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent Construct a circle centered at \(P\) and tangent to \(BC\). Because \(BP\) and \(CP\) are angle bisectors of \(\angle ABC\) and \(\angle BCD\) respectively, the circle must also be tangent to the parallel lines \(AB\) and \(CD\), and hence \(P\) must lie exactly halfway between \(AB\) and \(CD\). A similar argument works for \(Q\). Hence \(PQ \parallel AB\).\hfill\ensuremath{\square}\\
+	
+
+	\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+	\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+	\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+	\clip(-0.3,-0.3) rectangle (5.3,3.3);
+	\draw[line width=0.4pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (2.0811388300841895,2.8146414552999013) -- (2.266497374784288,2.8146414552999013) -- (2.266497374784288,3.) -- (2.0811388300841895,3.) -- cycle; 
+	\draw[line width=0.4pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (2.0811388300841895,0.1853585447000984) -- (1.895780285384091,0.18535854470009844) -- (1.895780285384091,0.) -- (2.0811388300841895,0.) -- cycle; 
+	\draw[line width=0.4pt,color=qqwuqq,fill=qqwuqq,fill opacity=0.10000000149011612] (0.8339604385163519,1.9157261305226125) -- (0.8925759570189963,2.0915726860305455) -- (0.7167294015110633,2.15018820453319) -- (0.658113883008419,1.974341649025257) -- cycle; 
+	\draw [line width=0.4pt] (0.,0.)-- (1.,3.);
+	\draw [line width=0.4pt] (1.,3.)-- (5.,3.);
+	\draw [line width=0.4pt] (5.,3.)-- (4.,0.);
+	\draw [line width=0.4pt] (4.,0.)-- (0.,0.);
+	\draw [line width=0.4pt] (1.,3.)-- (2.0811388300841895,1.5);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5)-- (0.,0.);
+	\draw [line width=0.4pt] (5.,3.)-- (2.91886116991581,1.5);
+	\draw [line width=0.4pt] (2.91886116991581,1.5)-- (4.,0.);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5) circle (2.1cm);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5)-- (2.91886116991581,1.5);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5)-- (0.658113883008419,1.974341649025257);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5)-- (2.0811388300841895,3.);
+	\draw [line width=0.4pt] (2.0811388300841895,1.5)-- (2.0811388300841895,0.);
+	\begin{footnotesize}
+	\draw [fill=ududff] (0.,0.) circle (1.5pt);
+	\draw[color=ududff] (-0.18,-0.18) node {$C$};
+	\draw [fill=ududff] (1.,3.) circle (1.5pt);
+	\draw[color=ududff] (0.82,3.18) node {$B$};
+	\draw [fill=ududff] (5.,3.) circle (1.5pt);
+	\draw[color=ududff] (5.18,3.18) node {$A$};
+	\draw [fill=ududff] (4.,0.) circle (1.5pt);
+	\draw[color=ududff] (4.18,-0.18) node {$D$};
+	\draw [fill=uuuuuu] (2.0811388300841895,1.5) circle (1.0pt);
+	\draw[color=uuuuuu] (2.22,1.67) node {$P$};
+	\draw [fill=uuuuuu] (2.91886116991581,1.5) circle (1.0pt);
+	\draw[color=uuuuuu] (2.81,1.66) node {$Q$};
+	\draw [fill=uuuuuu] (0.658113883008419,1.974341649025257) circle (1.0pt);
+	\draw [fill=uuuuuu] (2.0811388300841895,3.) circle (1.0pt);
+	\draw [fill=uuuuuu] (2.0811388300841895,0.) circle (1.0pt);
+	\end{footnotesize}
+	\end{tikzpicture}
+	\end{center}
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by IndigoManedWolf)}\\
+	
+	\noindent Construct \(A'\) and \(D'\) on rays \(BA\) and \(CD\) respectively such that \(A'B = BC = CD'\). We note that \(A'BCD'\) is a rhombus and that all internal angle bisectors therefore concur at \(P\). In particular, the internal angle bisectors of \(\angle BA'D'\) and \(\angle A'D'C\) meet at \(P\). The translation that takes \(A'\) to \(A\) also takes \(D'\) to \(D\), and so it must take \(P\) to \(Q\). This translation is parallel to \(AB\), so \(PQ \parallel AB\).\hfill\ensuremath{\square}\\
+	
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+	\clip(-0.3,-0.3) rectangle (5.3,3.3);
+	\*CB*\  \draw [line width=0.4pt] (0.,0.)-- (1.,3.);
+	\*BA*\  \draw [line width=0.4pt] (1.,3.)-- (5.,3.);
+	\*AD*\  \draw [line width=0.4pt] (5.,3.)-- (4.,0.);
+	\*DC*\  \draw [line width=0.4pt] (4.,0.)-- (0.,0.);
+	\*BP*\  \draw [line width=0.4pt] (1.,3.)-- (2.0811388300841895,1.5);
+	\*PC*\  \draw [line width=0.4pt] (2.0811388300841895,1.5)-- (0.,0.);
+	\*AQ*\  \draw [line width=0.4pt] (5.,3.)-- (2.91886116991581,1.5);
+	\*A'P*\ \draw [dashed, line width=0.4pt] (4.162277660168379331,3.)-- (2.08113883006837933,1.5);
+	\*QD*\  \draw [line width=0.4pt] (2.91886116991581,1.5)-- (4.,0.);
+	\*PD'*\ \draw [dashed, line width=0.4pt] (2.08113883006837933,1.5)-- (3.162277660168379331,0.);
+	\*A'D'*\ \draw [dashed, line width=0.4pt] (4.162277660168379331,3.)-- (3.162277660168379331,0.);
+	\*PQ*\  \draw [line width=0.4pt] (2.0811388300841895,1.5)-- (2.91886116991581,1.5);
+	\begin{footnotesize}
+	\*C*\   \draw [fill=ududff] (0.,0.) circle (1.5pt);
+	\*C*\   \draw[color=ududff] (-0.18,-0.18) node {$C$};
+	\*B*\   \draw [fill=ududff] (1.,3.) circle (1.5pt);
+	\*B*\   \draw[color=ududff] (0.82,3.18) node {$B$};
+	\*A*\   \draw [fill=ududff] (5.,3.) circle (1.5pt);
+	\*A*\   \draw[color=ududff] (5.18,3.18) node {$A$};
+	\*D*\   \draw [fill=ududff] (4.,0.) circle (1.5pt);
+	\*D*\   \draw[color=ududff] (4.18,-0.18) node {$D$};
+	\*A'*\  \draw [fill=ududff] (4.162277660168379331,3.) circle (1.5pt);
+	\*A'*\  \draw[color=ududff] (4.342277660168379331,3.18) node {$A'$};
+	\*D'*\  \draw [fill=ududff] (3.162277660168379331,0.) circle (1.5pt);
+	\*D'*\  \draw[color=ududff] (3.342277660168379331,-0.18) node {$D'$};
+	\*P*\   \draw [fill=uuuuuu] (2.0811388300841895,1.5) circle (1.0pt);
+	\*P*\   \draw[color=uuuuuu] (2.16,1.73) node {$P$};
+	\*Q*\   \draw [fill=uuuuuu] (2.91886116991581,1.5) circle (1.0pt);
+	\*Q*\   \draw[color=uuuuuu] (2.81,1.66) node {$Q$};
+	\end{footnotesize}
+	\end{tikzpicture}
+	\end{center}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+		
+	\newpage
+	
+	\paragraph{Solution 3} \textit{(by Tony Wang)}\\
+	
+	\noindent Let the external angle bisectors of \(\angle ABC\) and \(\angle BCD\) meet at \(Q'\). Note that the translation from \(A\) to \(B\) translates \(Q\) to \(Q'\), and hence \(QQ' \parallel AB\).
+	
+	Note that \(\angle DCB + \angle CBA = 180^\circ\) and so \(\angle PCB + \angle PBC = 90^\circ\). This proves that \(\angle BPC\) is a right angle, and a symmetric argument shows that \(\angle BQ'C\) is also a right angle. Note that \(\angle BCQ' = \angle CBP\), and so \(\angle PCB + \angle BCQ' = 90^\circ\). Hence \(PBQ'C\) is a rectangle.
+	
+	Now we have \(\angle CQ'P = \angle CBP = \angle PBA\). Because \(CQ' \parallel PB\), we now also have \(Q'P \parallel BA\). Hence \(Q', Q\), and \(P\) all lie on the same line, and thus \(PQ \parallel AB\).\hfill\ensuremath{\square}\\
+	
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+	\clip(-2.3,-0.3) rectangle (5.3,3.3);
+	\*CB*\  \draw [line width=0.4pt] (0.,0.)-- (1.,3.);
+	\*BA*\  \draw [line width=0.4pt] (1.,3.)-- (5.,3.);
+	\*AD*\  \draw [line width=0.4pt] (5.,3.)-- (4.,0.);
+	\*DC*\  \draw [line width=0.4pt] (4.,0.)-- (0.,0.);
+	\*BP*\  \draw [line width=0.4pt] (1.,3.)-- (2.0811388300841895,1.5);
+	\*PC*\  \draw [line width=0.4pt] (2.0811388300841895,1.5)-- (0.,0.);
+	\*AQ*\  \draw [line width=0.4pt] (5.,3.)-- (2.91886116991581,1.5);
+	\*QD*\  \draw [line width=0.4pt] (2.91886116991581,1.5)-- (4.,0.);
+	\*Q'Q*\ \draw [line width=0.4pt] (-1.0811388300841895,1.5)-- (2.91886116991581,1.5);
+	\*BQ'*\ \draw [line width=0.4pt] (1.,3.)-- (-1.0811388300841895,1.5);
+	\*Q'C*\ \draw [line width=0.4pt] (-1.0811388300841895,1.5)-- (0.,0.);
+	\begin{footnotesize}
+	\*C*\   \draw [fill=ududff] (0.,0.) circle (1.5pt);
+			\draw[color=ududff] (-0.18,-0.18) node {$C$};
+	\*B*\   \draw [fill=ududff] (1.,3.) circle (1.5pt);
+	   		\draw[color=ududff] (0.82,3.18) node {$B$};
+	\*A*\   \draw [fill=ududff] (5.,3.) circle (1.5pt);
+			\draw[color=ududff] (5.18,3.18) node {$A$};
+	\*D*\   \draw [fill=ududff] (4.,0.) circle (1.5pt);
+			\draw[color=ududff] (4.18,-0.18) node {$D$};
+	\*P*\   \draw [fill=uuuuuu] (2.0811388300841895,1.5) circle (1.0pt);
+			\draw[color=uuuuuu] (2.18,1.68) node {$P$};
+	\*Q*\   \draw [fill=uuuuuu] (2.91886116991581,1.5) circle (1.0pt);
+			\draw[color=uuuuuu] (2.82,1.66) node {$Q$};
+	\*Q'*\  \draw [fill=uuuuuu] (-1.0811388300841895,1.5) circle (1.0pt);
+			\draw[color=uuuuuu] (-1.16,1.66) node {$Q'$};
+	\end{footnotesize}
+	\end{tikzpicture}
+	\end{center}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 4} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Let the angle bisector of \(\angle ABC\) and \(\angle CDA\) intersect \(CD\) and \(AB\) at \(X\) and \(Y\) respectively. Note that \(\angle ABC = \angle CDA\) implies that \(\angle YBX = \angle XDY\). Since \(BY \parallel DX\) \(\angle YBX = \angle XDY\), \(BXDY\) must be a parallelogram, and so \(BX \parallel DY\). 
+	
+	  Note that \(\angle YDA = \frac{1}{2} \angle CDA = 90^{\circ} - \frac{1}{2} \angle DAB\), so \(\angle AYD = 180^{\circ} - (\angle YDA + \angle DAY) = 90^{\circ} - \frac{1}{2} \angle DAB = \angle YDA\), implying \(\triangle AYD\) is isosceles. This gives \(AD = AY\), and \(AP \perp DY\). Note that a similar argument holds true for \(\triangle BXC\).
+	  
+	  Finally, since \(\angle PAY = \angle BCQ\), \(\angle YPA = \angle CQB = 90^{\circ}\), and \(AY = AD = BC\), \(\triangle APY\) is congruent to \(\triangle CQB\), and so \(PY = QB\). Since \(PY \parallel QB\), we can conclude that \(PYBQ\) is a parallelogram, and in particular, \(PQ \parallel YB\). It follows that \(PQ \parallel AB\), as required.\hfill\ensuremath{\square}\\
+	  
+	\begin{center}
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+	\clip(-0.3,-0.3) rectangle (5.3,3.3);
+	\*CB*\  \draw [line width=0.4pt] (0.,0.)-- (1.,3.);
+	\*BA*\  \draw [line width=0.4pt] (1.,3.)-- (5.,3.);
+	\*AD*\  \draw [line width=0.4pt] (5.,3.)-- (4.,0.);
+	\*DC*\  \draw [line width=0.4pt] (4.,0.)-- (0.,0.);
+	\*BX*\  \draw [line width=0.4pt] (1.,3.)-- (3.162277660168379,0);
+	\*PC*\  \draw [line width=0.4pt] (2.0811388300841895,1.5)-- (0.,0.);
+	\*AQ*\  \draw [line width=0.4pt] (5.,3.)-- (2.91886116991581,1.5);
+	\*YD*\  \draw [line width=0.4pt] (1.837722339831621,3)-- (4.,0.);
+	\*PQ*\  \draw [line width=0.4pt] (2.0811388300841895,1.5)--(2.91886116991581,1.5);
+	\begin{footnotesize}
+	\*C*\   \draw [fill=ududff] (0.,0.) circle (1.5pt);
+			\draw[color=ududff] (-0.18,-0.18) node {$C$};
+	\*B*\   \draw [fill=ududff] (1.,3.) circle (1.5pt);
+	   		\draw[color=ududff] (0.82,3.18) node {$B$};
+	\*A*\   \draw [fill=ududff] (5.,3.) circle (1.5pt);
+			\draw[color=ududff] (5.18,3.18) node {$A$};
+	\*D*\   \draw [fill=ududff] (4.,0.) circle (1.5pt);
+			\draw[color=ududff] (4.18,-0.18) node {$D$};
+	\*P*\   \draw [fill=uuuuuu] (2.0811388300841895,1.5) circle (1.0pt);
+			\draw[color=uuuuuu] (1.8,1.52) node {$P$};
+	\*Q*\   \draw [fill=uuuuuu] (2.91886116991581,1.5) circle (1.0pt);
+			\draw[color=uuuuuu] (3.2,1.45) node {$Q$};
+	\*X*\   \draw [fill=uuuuuu] (3.162277660168379,0) circle (1.0pt);
+			\draw[color=uuuuuu] (3.34,-0.18) node {$X$};
+	\*Y*\   \draw [fill=uuuuuu] (1.837722339831621,3) circle (1.0pt);
+			\draw[color=uuuuuu] (1.66,3.18) node {$Y$};
+	\end{footnotesize}
+	\end{tikzpicture}
+	\end{center}
+	
+	\newpage
+	
+	\section*{Problem 3}
+	
+	Determine all positive integers that can be written as the sum of 2 or more consecutive positive integers.
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent We claim that all positive integers except for powers of 2 can be written as such a sum.
+	\begin{itemize}
+	\item \textbf{Case 1:} Suppose that \(x = 2^k, k \geq 0\) is a power of 2. Note that any sequence with \(m > 1\) terms \(n + (n+1) + \cdots + (n+m-1) = \frac{m(2n+m-1)}{2}\), where \(n \geq 1\). Note that \(m\) is a factor of \(2^k\) greater than 1, so it must be even. Thus \(2n+m-1 > 1\) is an odd factor of \(2^k\), but this is a contradiction.
+	\item \textbf{Case 2:} Suppose that \(x\) is not a power of 2. Then there must exist an \(m \geq 1\) such that \(2m+1 \mid x\). Let \(n = \frac{x}{2m+1} \geq 1\). Note that the sum \((n-m) + (n-m+1) + \cdots + (n+m)\) has \(2m+1\) terms, the average of which is \(n\), and so the total sum is \((2m+1)n = x\). Observe that the sum contains at most \(m-1\) negative terms and at most one \(0\) term. We can now cancel the negative terms with the corresponding positive terms and remove the 0 term without changing the sum. After this process, at least \((2m+1) - 2(m-1) - 1 = 2\) of the largest terms are left in the sequence, all of which are positive. This provides us with a construction for expressing \(x\) as the sum of 2 or more consecutive positive integers.
+	\end{itemize}
+	
+	\noindent Thus we have shown that a number is expressible as the sum of 2 or more consecutive positive integers iff it is a positive integer that is not a power of 2.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Sharky Kesa)}\\
+	
+	\noindent As above, we will show all positive integers except powers of 2 satisfy can be written as such a sum.
+	
+	\begin{itemize}
+	\item \textbf{Case 1:} In the case that \(x\) is a power of 2, we proceed as above.
+	\item \textbf{Case 2:} Now suppose that \(x\) is not a power of \(2\). Suppose \(x\) can be written as the sum of \(m\) consecutive positive integers \(n + (n+1) + \dots + (n + m - 1)\), where \(n, m \in \mathbb{N}\). Then, we have \(x = \frac{m(2n + m - 1)}{2}\). Write \(x\) as \(2^k y\), where \(k \in \{0, 1, 2, \dots \}\), and \(y\) is an odd positive integer greater than \(1\). Note that we either have \(y < 2^{k+1} + 1\) or \(y \geq 2^{k+1} + 1\).
+		\begin{itemize}
+		\renewcommand\labelitemii{•}
+		\item \textbf{Case 2.1:} \(y < 2^{k+1} + 1\).
+	
+	In this case, set \(m = y\), and \(n = \frac{2^{k+1} + 1 - y}{2}\). Note that  \(y \geq 3 \implies m \geq 3\), and \(2^{k+1} + 1 - y \geq 2 \implies n \geq 1\). Furthermore, this gives \[\frac{m(2n+m-1)}{2} = \frac{y\left ( 2 \left( \frac{2^{k+1} + 1 - y}{2} \right) + y - 1 \right )}{2} = 2^k y = x,\] so this is a valid construction.
+	
+	\item \textbf{Case 2.2:} \(y \geq 2^{k+1} + 1\).
+	
+	In this case, set \(m = 2^{k+1}\), and \(n = \frac{y - 2^{k+1} + 1}{2}\). Note that \(y \geq 2^{k+1} + 1 \implies n \geq 1\), and \(k \geq 0 \implies m \geq 2\). Furthermore, this gives \[\frac{m(2n+m-1)}{2} = \frac{2^{k+1}\left ( 2 \cdot \left( \frac{y - 2^{k+1} + 1}{2} \right) + 2^{k+1} - 1 \right )}{2} = 2^k y = x,\] so this is a valid construction.
+		\end{itemize}
+	\end{itemize}
+	
+	\noindent Thus, all positive integers except powers of \(2\) can be written as the sum of \(2\) or more positive integers. \hfill \ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 4}
+	
+	Let \(a_1, a_2, \dots, a_n\) and \(b_1, b_2, \dots, b_n\) be positive real numbers with the property that \(a_1+a_2+ \cdots + a_n = b_1+b_2+ \cdots + b_n\). Prove that \[\sum_{i=1}^n \frac{a_i^2}{a_i+b_i} \geq \frac 12 \sum_{i=1}^n a_i.\]
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Note that by Cauchy-Schwarz Inequality,
+	
+	\[\left ( \displaystyle \sum \limits_{i=1}^n \left(\sqrt{\dfrac{a_i^2}{a_i + b_i}}\right)^2 \right ) \left ( \displaystyle \sum \limits_{i=1}^n \left(\sqrt{a_i + b_i}\right)^2 \right ) \geq \left (\displaystyle \sum \limits_{i=1}^n a_i \right )^2.\]
+	
+	\noindent Combining this with \(a_1 + a_2 + \dots + a_n = b_1 + b_2 + \dots + b_n\), we get
+	
+	\[\displaystyle \sum \limits_{i=1}^n \dfrac{a_i^2}{a_i + b_i} \geq \dfrac{(a_1 + a_2 + \dots + a_n)^2}{2(a_1 + a_2 + \dots + a_n)} = \frac{1}{2} \displaystyle \sum \limits_{i=1}^n a_i. \tag*{\(\square\)}\]\\[-13pt]
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+		
+	\paragraph{Solution 2} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Note that by the AM-GM inequality,
+	
+	\[\frac{\frac{a_i^2}{a_i + b_i} + \frac{a_i + b_i}{4}}{2} \geq \sqrt{\frac{a_i^2}{4}} = \frac{a_i}{2} \iff \frac{a_i^2}{a_i + b_i} + \frac{a_i + b_i}{4} \geq a_i.\]
+	Therefore, we have 
+	\[\displaystyle \sum_{i = 1}^n \frac{a_i^2}{a_i + b_i} + \displaystyle \sum_{i = 1}^n \frac{a_i + b_i}{4} \geq \displaystyle \sum_{i=1}^n a_i.\]
+	Since \(\sum \limits_{i=1}^n \frac{a_i+b_i}{4} = \frac{2 \sum \limits_{i=1}^n a_i}{4} = \frac{1}{2} \sum \limits_{i=1}^n a_i\), we have
+	 \[\displaystyle \sum_{i = 1}^n \frac{a_i^2}{a_i + b_i} + \frac{1}{2} \displaystyle \sum_{i=1}^n a_i \geq \displaystyle \sum_{i=1}^n a_i,\]
+	 which rearranges to give
+	 \[\sum_{i=1}^n \frac{a_i^2}{a_i+b_i} \geq \frac 12 \sum_{i=1}^n a_i.\tag*{\(\square\)}\]\\[-13pt]
+	 
+	 \noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	 
+	 \paragraph{Solution 3} \textit{(by Sharky Kesa)}\\
+	
+	\noindent Let $f(x) = \frac{1}{x+1}$. Then $f$ is easily seen to be convex for positive reals $x$. Thus, by the weighted Jensen's inequality,
+	
+	\[\frac{1}{\sum \limits_{i=1}^n a_i} \sum \limits_{i=1}^n \frac{a_i^2}{a_i + b_i} = \sum \limits_{i=1}^n \frac{a_i}{\sum \limits_{i=1}^n a_i} f \left ( \frac{b_i}{a_i} \right ) \geq f \left ( \frac{\sum \limits_{i=1}^n b_i}{\sum \limits_{i=1}^n a_i} \right ) = f(1) = \frac{1}{2}.\]
+	Rearranging yields the result
+	
+	\[\sum_{i=1}^n \frac{a_i^2}{a_i+b_i} \geq \frac 12 \sum_{i=1}^n a_i.\tag*{\(\square\)}\]\\[-13pt]
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 4} \textit{(by maxkvant)}\\
+	
+	\noindent Note that,
+	\begin{align*}
+	\sum_{i=1}^n \frac{a_i^2}{a_i + b_i} &= \frac 12 \sum_{i=1}^n \frac{a_i^2}{a_i + b_i} + \frac 12 \sum_{i=1}^n \frac{a_i^2 - b_i^2 + b_i^2}{a_i + b_i}\\
+	&= \frac 14 \sum_{i=1}^n \frac{2a_i^2}{a_i + b_i} + \frac 14 \sum_{i=1}^n \left( 2a_i - 2b_i + \frac{2b_i^2}{a_i + b_i} \right)\\
+	&= \frac 14 \sum_{i=1}^n \frac{2a_i^2 + 2b_i^2}{a_i + b_i}&\left(\text{as }\sum a_i = \sum b_i \right)\\
+	&\geq \frac 14 \sum_{i=1}^n \frac{a_i^2 + b_i^2 + 2a_ib_i}{a_i + b_i} &\left(\text{as } a_i^2+b_i^2 \geq 2a_ib_i \right)\\
+	&= \frac 14 \sum_{i=1}^n \frac{(a_i + b_i)^2}{a_i + b_i}\\
+	&= \frac 14 \sum_{i=1}^n a_i + b_i\\
+	&= \frac 12 \sum_{i=1}^n a_i. \tag*{\(\square\)}
+	\end{align*}
+	
+\end{document}
