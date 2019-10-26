@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+
+\begin{document}
+	\pagenumbering{gobble}
+		\noindent \Large\textbf{Mathematical Olympiads Discord Server}
+		\vspace{5pt}\\
+		\noindent \huge\textbf{2019 August Intermediate Contest}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\begin{flushright}
+	\textit{Time: 4 hours} \hfill \textit{Each problem is worth 7 points}
+	\end{flushright}
+	
+	\noindent \textit{Calculators and protractors are not allowed. Do not write your name on your working. After your timeslot finishes, please read the instructions in} \texttt{\#how-to-submit-scripts}\textit{. Do not discuss the contents of this paper outside the text channel }\texttt{\#finished-contestants}\textit{ and the voice channel }\texttt{Post-Contest Banter}\textit{ until notified by staff.}
+	
+	\paragraph{Problem \large \(\times\).} Find the smallest positive integer \(c\) such that for any positive integer $n$, there exist integers \(m\) and \(k>1\) satisfying \[1! \times 2! \times \cdots \times (cn)! = m! \times k^2.\]
+	
+	\paragraph{Problem \(\square\).} Consider a \(20\) by \(19\) grid with each square coloured black or white. Andy the ant starts at the center of the square at the bottom-left corner of the grid and travels in horizontal or vertical line segments of positive integer length, never travelling outside the grid. Each time he crosses a black-white boundary, he gets a point. Andy cannot visit a square twice, and before starting he must change the colour of exactly half the squares in the grid.
+	
+	What is the largest number of points Andy can obtain, regardless of how the grid is initially coloured?
+
+	\paragraph{Problem {\footnotesize \raisebox{1.6pt}{\(\bigcirc\)}}.} \(ABC\) is a triangle and \(P\) is a variable point on side \(BC\) distinct from \(B\) and \(C.\) Let \(I_b\) and \(I_c\) be the incentres of \(ABP\) and \(ACP\) respectively. Prove that the circumcircle of \(PI_bI_c\) passes through a fixed point as \(P\) varies over \(BC.\)
+
+	\paragraph{Problem \(\triangle\).}
+	Let \(P\) be a subset of points in the plane, and let \(S\) be a subset of the real numbers. Let a function \(f : P \rightarrow S\) be called \emph{silly} if for any point \(D\) strictly inside any triangle \(ABC\), we have \[f(D) < \frac{f(A) + f(B) + f(C)}{3}.\]
+	\begin{enumerate}[(a)]
+	\item Let \(\mathbb{Z}\) denote the set of integers, and \(\mathbb{Z}^2\) denote the set of all points with integer coordinates. Does there exist a silly function \(f : \mathbb{Z}^2 \rightarrow \mathbb{Z}\)?
+	\item Let \(\mathbb{R}\) denote the set of real numbers, and \(\mathbb{R}^2\) denote the set of all points in the plane. Does there exist a silly function \(f : \mathbb{R}^2 \rightarrow \mathbb{R}\)?
+	\end{enumerate}
+	
+	\vfill
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \textit{Mathematical Olympiads Discord Server Invite Link:} \texttt{https://discord.gg/94UnnAG}
+		
+		
+		
+		
+	
+	
+\end{document}

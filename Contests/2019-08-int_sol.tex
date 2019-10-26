@@ -1,0 +1,410 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\ws}{\square}
+\newcommand{\bs}{\blacksquare}
+
+\begin{document}
+		\setcounter{section}{0}
+		\noindent \huge\textbf{Solutions}\vspace{2pt}\\
+		\noindent \large\textbf{to the MODS 2019 August Intermediate Contest} \vspace{3pt}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\
+	
+		\noindent \normalsize Compiled by the Mathematical Olympiads Discord Server (MODS) at \url{https://discord.gg/94UnnAG}\\
+		
+		\noindent This contest was hosted by Sharky Kesa, brainysmurfs, DanieldanDaniel [DT], and Tony Wang in the Mathematical Olympiads Discord Server on the 10th and 11th of August. Throughout the document the following names correspond to the following users on Discord:
+		\begin{itemize}[noitemsep]
+		\item Sharky Kesa \tabto*{100pt}\texttt{268970368524484609}
+		\item brainysmurfs \tabto*{100pt}\texttt{281300961312374785}
+		\item tanyoshi \tabto*{100pt}\texttt{300065144333926400}
+		\item DanieldanDaniel [DT] \tabto*{100pt}\texttt{414141673514467341}
+		\item Joe 1 \tabto*{100pt}\texttt{456178848745259009}
+		\item pianocat31 \tabto*{100pt}\texttt{532692743370178572}
+		\item Tony Wang \tabto*{100pt}\texttt{541318134699786272}
+		\item Xblade \tabto*{100pt}\texttt{603531937382137856}
+		\end{itemize}
+		
+		
+	\newpage		
+			
+	\section*{Problem \Large \(\times\)}
+	
+	Find the smallest positive integer \(c\) such that for any positive integer $n$, there exist integers \(m\) and \(k>1\) satisfying \[1! \times 2! \times \cdots \times (cn)! = m! \times k^2.\]
+	\begin{flushright}
+	\textit{(Proposed by Sharky Kesa)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa)}\\
+	
+	\noindent We claim that the answer is \(c = 4\).
+	
+	\begin{enumerate}[(a)]
+	    \item Firstly, we show $c$ cannot be 1, 2, or 3.
+	    \begin{itemize}
+	        \item 	Note that $c=1$ or 2 doesn't work as if $n=1$, then we would require \(k < 2\), a contradiction.
+	
+	        \item If $c=3$, then substituting $n=1$ yields $1! \times 2! \times 3! = 2^2 \times 3 = m! \times k^2$. Since \(k > 1\), \(k\) must be 2, but then \(m! = 3\), a contradiction.
+	    \end{itemize}
+	    
+	    \item Now, we will show that $c=4$ is sufficient.
+	    
+	    Note that 
+    	$$(4k+1)! \times (4k+2)! \times (4k+3)! \times (4k+4)! = (2k+1)(2k+2) \times (2 (4k+1)! (4k+3)!)^2$$
+    	
+    	So we have
+    	$$\begin{aligned}
+    	1! \times 2! \times \dots \times (4n)! &= \left[(1)(2) \times (2 (1!) (3!))^2\right] \cdots  \left[(2k-1) (2k) \times (2(4n-3)!(4n-1)!)^2\right]\\
+    	&= (2k)! \times [2^n \times 1! \times 3! \times \dots \times (4n-1)!]^2\\
+    	\end{aligned}$$
+    	
+    	So the conditions are satisfied if we set $m=2n$, $k=2^n \times 1! \times 3! \times \dots \times (4n-1)! > 1$.
+	    
+	\end{enumerate}
+	
+	\noindent Hence \(c = 4\) works and we're done. \hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Tony Wang)}\\
+	
+	\noindent We proceed as in case (a) above. Then to show \(c = 4\) is sufficient, we substitute \(m = 2n\) and note that it suffices to prove that \(L(n) = 1! \times \cdots \times (2n-1)! \times (2n+1)! \times \cdots \times (4n)!\) is a square. Note that \[L(n) = 1^{4n-1} \times 2^{4n-2} \times \cdots (2n-1)^{2n+1} \times (2n)^{2n} \times (2n+1)^{2n} \times \cdots \times (4n-1)^2 \times (4n)^1,\] and thus it suffices to prove that \(1 \times 3 \times \cdots \times (2n-1) \times (2n+2) \times (2n+4) \times \cdots \times (4n)\) is a square. We will do this by induction.
+	
+	\begin{enumerate}
+	\item \emph{Base case:} Note that when \(n = 1\), we have \(1 \times 4 = 4\), which is a square.
+	\item \emph{Inductive step:} Suppose that \(T(n) = 1 \times 3 \times \cdots \times (2n-1) \times (2n+2) \times \cdots \times (4n)\) is a square. Then \(\frac{2n+1}{2n+2} (4n+2) (4n+4) = 2^2(2n+1)^2\) which is a square, and thus \begin{align*}T(n) \left(\frac{2n+1}{2n+2}\right) (4n+2) (4n+4) &= 1 \times 3 \times \cdots \times (2n+1) \times (2n+4) \times \cdots \times (4n+4)\\ &= T(n+1)\end{align*}is a square, as desired.\hfill \ensuremath{\square}
+	\end{enumerate} 
+	
+	\newpage
+	
+	\section*{Problem \(\square\)}
+	
+	Consider a \(20\) by \(19\) grid with each square coloured black or white. Andy the ant starts at the center of the square at the bottom-left corner of the grid and travels in horizontal or vertical line segments of positive integer length, never travelling outside the grid. Each time he crosses a black-white boundary, he gets a point. Andy cannot visit a square twice, and before starting he must change the colour of exactly half the squares in the grid.
+	
+	What is the largest number of points Andy can obtain, regardless of how the grid is initially coloured?
+	\begin{flushright}
+	\textit{(Proposed by tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\noindent We will prove that the maximum guaranteed score is 378.
+	
+	\begin{enumerate}
+	    \item A score of at least 378 is always possible.
+	    
+	    \emph{Proof.} Let our path be defined by first travelling right 19 units, then up 1 unit, then left 19 units, then up 1 unit, and so on until we reach the top-right square. Henceforth, the shape of our path does not matter, so let us ``unravel'' our path into a single row of 380 squares, with the leftmost square being Andy's starting square. Notice that with 380 squares, we cross 379 boundaries, so it suffices to prove that not more than one boundary crossing fails to score a point.
+	    
+	    \begin{itemize}
+	        \item Let us denote by \(\mathbb{G}\) the set of all \(380 \times 1\) grids with each square coloured black or white. Let \(S_n \in \mathbb{G}\) be the \(380 \times 1\) grid: \[\underbrace{\bs\ws\bs\ws \cdots }_{n}\underbrace{\ws\bs\ws\bs \cdots}_{380-n} \] In particular, note that \(S_0 = \ws \bs \cdots \ws \bs\) and \(S_{380}=\bs \ws \cdots \bs \ws\) are opposite checkerboard tilings.
+	        \item Define by \(D: \mathbb{G} \times \mathbb{G} \rightarrow \{0, 1, 2, \dots, 380\}\) a function taking in two grids in \(\mathbb{G}\) and returning the number of squares where they are coloured differently. We note that this is equivalent to the number of changes needed to change one grid to the other.
+	        \item Finally, define by \(P: \mathbb{G} \rightarrow \{0, 1, 2, \dots, 379\}\) the number of points Andy obtains by travelling across a certain grid in \(\mathbb{G}\).
+	    \end{itemize}
+	    
+	    Now notice that \(P(S_n) \geq 378\) for all \(n \in \{0, 1, \dots, 380\}\), since at most one pair of adjacent squares (the \(n\)-th and \(n+1\)-th) is the same colour, so it suffices to prove that there exists an \(i\) such that \(D(S, S_i) = 190\).
+	    
+	    Note for any \(S \in \mathbb{G}\), if it differs to \(S_0\) in exactly \(n\) squares, then \(S\) must differ to \(S_{380}\) in exactly the \(380-n\) other squares, and hence \(D(S, S_0) = 380 - D(S, S_{380})\). WLOG, we will assume that \(D(S, S_0) \leq 190 \leq D(S, S_{380})\). Also note that \(D(S_n, S_{n+1}) = 1\), so we have \(D(S,S_n) - D(S,S_{n+1}) = -1 \) or \(1\). Hence, as \(D(S, S_0) \leq 190 \leq D(S, S_{380})\), discrete intermediate value theorem guarantees that there exists a suitable \(i\) such that \(D(S, S_i) = 190\), as required.
+	    
+	    \item A score of 379 is not always possible.
+	    
+	    \emph{Proof.} Firstly, we deduce that since Andy can score 379, then each boundary that he crosses must be a black-white boundary, and thus along his path, the squares must alternate between black and white. Now suppose that the grid is a pink and red checkerboard with the bottom-left square coloured red. Also suppose that Andy has a bucket of black paint and a bucket of white paint, which he is to paint each square he visits alternatingly black and white. WLOG, Andy paints the first square black. Then his next square will be a pink square that will be painted white. Then, his next square will be a red square to be painted black. Continuing in this fashion, we see that all red squares will be painted black and all pink squares will be painted white, and hence the grid must be a checkerboard.
+	
+	    Thus, if the initial position is a checkerboard, we cannot change the colour of 190 squares and still have the grid be a checkerboard, and so 379 is not possible in this case.
+
+	\end{enumerate}
+	As it is always possible to obtain 378 and not always possible to obtain 379, the maximum score Andy can obtain is 378.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by pianocat31 and Xblade)}\\
+	
+	\noindent To prove that a score of at least 378 is always attainable, we proceed as in Solution 1. We then continue as follows:
+	\begin{enumerate}
+	    \item[2.] A score of 379 is not always possible.
+	    
+	    \emph{Proof.} If Andy scores 379 then every boundary he crosses must be a black-white boundary. Such a path would need every pair of adjacent squares in the path to be of opposite colours, and so there would need to be 190 black and 190 white squares. However, consider a grid with an odd number of black squares. Note that changing the colour of an even number of squares preserves the parity of the number of black squares, and thus the number of black squares can never be the required 190.\hfill \ensuremath{\square}
+	\end{enumerate}
+	
+	\newpage
+	
+	\section*{Problem {\large \raisebox{1.6pt}{\(\bigcirc\)}}}
+	
+	\(ABC\) is a triangle and \(P\) is a variable point on side \(BC\) distinct from \(B\) and \(C.\) Let \(I_b\) and \(I_c\) be the incentres of \(ABP\) and \(ACP\) respectively. Prove that the circumcircle of \(PI_bI_c\) passes through a fixed point as \(P\) varies over \(BC.\)
+	\begin{flushright}
+	\textit{(Proposed by tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Sharky Kesa and Tony Wang)}\\
+	
+	\noindent Let $I$ be the incentre of $ABC$, and let $X$, $X_b$, $X_c$ be the feet of the perpendiculars from $I, I_b, I_c$ onto $BC$ respectively. We claim that $X$ is the fixed point on the circumcircle of $PI_bI_c$, and hence it suffices to show that \(PI_bI_cX\) is cyclic for any choice of \(P\).
+	
+\begin{center}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.63cm,y=0.63cm]
+\clip(6.28,-12.85) rectangle (25.82195312739624,-1.8220992764932564);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (7.,-12.);
+\draw [line width=0.4pt] (7.,-12.)-- (25.,-12.);
+\draw [line width=0.4pt] (25.,-12.)-- (11.858997171033835,-2.757189402969289);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (13.188109929892349,-8.26202104434278);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (7.,-12.);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (25.,-12.);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (16.344259981079873,-12.);
+\draw [line width=0.4pt] (16.344259981079873,-12.)-- (11.7564199990822,-9.126845181765269);
+\draw [line width=0.4pt] (16.344259981079873,-12.)-- (17.77594991189002,-9.713884311173356);
+\draw [line width=0.4pt] (11.7564199990822,-9.126845181765269)-- (11.7564199990822,-12.);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt] (17.77594991189002,-9.713884311173356)-- (17.77594991189002,-12.);
+\draw [line width=0.4pt, dashed] (11.7564199990822,-9.126845181765269)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt, dashed] (13.188109929892349,-12.)-- (17.77594991189002,-9.713884311173356);
+\begin{scriptsize}
+\draw [fill=ududff] (11.858997171033835,-2.757189402969289) circle (1.0pt);
+\draw[color=ududff] (11.9,-2.36) node {$A$};
+\draw [fill=ududff] (7.,-12.) circle (1.0pt);
+\draw[color=ududff] (6.93,-12.39) node {$B$};
+\draw [fill=ududff] (25.,-12.) circle (1.0pt);
+\draw[color=ududff] (25.10,-12.39) node {$C$};
+\draw [fill=ududff] (16.344259981079873,-12.) circle (1.0pt);
+\draw[color=ududff] (16.36,-12.39) node {$P$};
+\draw [fill=black] (13.188109929892349,-8.26202104434278) circle (1.0pt);
+\draw[color=black] (13.43,-7.92) node {$I$};
+\draw [fill=black] (11.7564199990822,-9.126845181765269) circle (1.0pt);
+\draw[color=black] (11.48,-8.75) node {$I_b$};
+\draw [fill=black] (17.77594991189002,-9.713884311173356) circle (1.0pt);
+\draw[color=black] (18.02,-9.37) node {$I_c$};
+\draw [fill=black] (11.7564199990822,-12.) circle (1.0pt);
+\draw[color=black] (11.86,-12.39) node {$X_b$};
+\draw [fill=black] (17.77594991189002,-12.) circle (1.0pt);
+\draw[color=black] (17.89,-12.39) node {$X_c$};
+\draw [fill=black] (13.188109929892349,-12.) circle (1.0pt);
+\draw[color=black] (13.2,-12.39) node {$X$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+	
+	We firstly note that $\angle I_b P I_c = \angle I_b PA + \angle AP I_c = \frac{1}{2} \angle BPA + \frac{1}{2} \angle APC = \frac{1}{2} (\angle BPA + \angle APC) = 90^{\circ}$. This also shows that $\angle X_b P I_b + \angle X_c P I_c = 180^\circ - \angle I_b P I_c = 90^{\circ}$. Since $I_bX_bP$ and $I_cX_cP$ are right-angled triangles, we get $\angle X_cI_cP = 90^{\circ} - \angle X_c P I_c = \angle X_bPI_b$ and $\angle X_bI_bP = 90^{\circ} - \angle X_bPI_b = \angle X_cPI_c$ respectively, and so $\triangle I_b X_b P \sim \triangle PX_c I_c$ by the equiangular criterion. We now prove the following lemma:
+	%I put your other proof of this lemma under \end{document}
+	\begin{quote}
+	    \noindent \textbf{Lemma 1:} \(X_bP = XX_c\).
+
+    	\noindent \textit{Proof:} By drawing the incircle of \(\triangle APB\), we have that \(AP = X_bP + (AB-(BP-X_bP))\). Similarly, \(AP = X_cP + (AC-(CP-X_cP))\), and hence equating we get \begin{align*}&X_bP + (AB-(BP-X_bP)) = X_cP + (AC-(CP-X_cP))\\ \implies &2X_bP=2X_cP+(BP-CP)+(AC-AB)\\
+        \implies &2X_bP=2X_cP+(2BP-BC)+(BC-2BX)\\
+        \implies &X_bP=X_cP+BP-BX\\
+        \implies &X_bP = XX_c,\end{align*}as required.
+	\end{quote}
+	
+	\noindent Because $\triangle I_b X_b P \sim \triangle PX_c I_c$, we can deduce $\dfrac{I_bX_b}{X_bP} = \dfrac{PX_c}{X_cI_c}$. Using Lemma 1, we may substitute $X_bP = XX_c$ (and hence $PX_c = X_bX$) to yield $\dfrac{I_bX_b}{XX_c} = \dfrac{X_bX}{X_cI_c} \implies \dfrac{I_bX_b}{X_bX} = \dfrac{XX_c}{X_cI_c}$. Since $\angle I_bX_bX = \angle XX_cI_c = 90^{\circ}$, we get $\triangle I_bX_bX \sim \triangle XX_cI_c$.
+	
+	Finally, we have $\angle I_bXI_c = 180^{\circ} - \angle X_bXI_b - \angle I_cXX_c = 180^{\circ} - \angle X_bXI_b - \angle XI_bX_b = 180^{\circ} - 90^{\circ} = 90^{\circ}$. Thus we have $\angle I_bXI_c = \angle I_bPI_c = 90^{\circ}$, implying $PI_bI_cX$ is cyclic, as desired.\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Joe 1)\footnote{...in which he shows how to instakill this problem with a new technique of geometry: \href{http://bit.ly/MO_moving_points}{the method of moving points}. Knowledge about cross-ratios is required to understand the theory (refer to chapters 8 and 9 in EGMO).}}\\
+	
+	\noindent Let \(I\) be the inceter of \(\triangle ABC\), and let \(X\) be the foot of the altitude from \(I\) to \(BC\). Furthermore, let $U$ and $V$ denote the incentres of $\triangle AXB$ and $\triangle AXC$ respectively. It suffices to prove that \(\angle I_bXI_c = 90^\circ\), as we can complete the proof from there as in Solution 1.
+	
+	\begin{center}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.63cm,y=0.63cm]
+\clip(6.28,-12.85) rectangle (25.82195312739624,-1.8220992764932564);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (7.,-12.);
+\draw [line width=0.4pt] (7.,-12.)-- (25.,-12.);
+\draw [line width=0.4pt] (25.,-12.)-- (11.858997171033835,-2.757189402969289);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (7.,-12.);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (25.,-12.);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (13.188109929892349,-12.); %AX
+\draw [line width=0.4pt] (13.188109929892349,-12.)-- (10.646209331979383,-9.797477112515192); %XU
+\draw [line width=0.4pt] (13.188109929892349,-12.)-- (15.730010527805316,-9.066428373396478); %PV
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (10.646209331979383,-9.797477112515192); %I_bX_b
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (15.730010527805316,-9.066428373396478); %I_cX_c
+\draw [line width=0.4pt, dashed] (11.7564199990822,-9.126845181765269)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt, dashed] (13.188109929892349,-12.)-- (17.77594991189002,-9.713884311173356);
+\begin{scriptsize}
+\draw [fill=ududff] (11.858997171033835,-2.757189402969289) circle (1.0pt);
+\draw[color=ududff] (11.9,-2.36) node {$A$};
+\draw [fill=ududff] (7.,-12.) circle (1.0pt);
+\draw[color=ududff] (6.93,-12.39) node {$B$};
+\draw [fill=ududff] (25.,-12.) circle (1.0pt);
+\draw[color=ududff] (25.10,-12.39) node {$C$};
+\draw [fill=black] (13.188109929892349,-8.26202104434278) circle (1.0pt);
+\draw[color=black] (13.43,-7.92) node {$I$};
+\draw [fill=black] (11.7564199990822,-9.126845181765269) circle (1.0pt);
+\draw[color=black] (11.48,-8.75) node {$I_b$};
+\draw [fill=black] (17.77594991189002,-9.713884311173356) circle (1.0pt);
+\draw[color=black] (18.02,-9.37) node {$I_c$};
+\draw [fill=black] (13.188109929892349,-12.) circle (1.0pt);
+\draw[color=black] (13.2,-12.39) node {$X$};
+\draw [fill=black] (10.646209331979383,-9.797477112515192) circle (1.0pt);
+\draw[color=black] (10.45,-9.4) node {$U$};
+\draw [fill=black] (15.730010527805316,-9.066428373396478) circle (1.0pt);
+\draw[color=black] (15.97,-8.72) node {$V$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+%Deleted Objects
+%\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (13.188109929892349,-8.26202104434278);
+%\draw [fill=black] (11.7564199990822,-12.) circle (1.0pt);
+%\draw[color=black] (11.86,-12.39) node {$X_b$};
+%\draw [fill=black] (17.77594991189002,-12.) circle (1.0pt);
+%\draw[color=black] (17.89,-12.39) node {$X_c$};
+%\draw [fill=ududff] (16.344259981079873,-12.) circle (1.0pt);
+%\draw[color=ududff] (16.36,-12.39) node {$P$};
+	
+	
+	
+	Let $f:\overline{BI} \to \overline{IC}$ be the function that maps points from segment $\overline{BI}$ to segment $\overline{IC}$ in a way such that $\overline{XM} \perp \overline{Xf(M)}$. We have $f(B) = I, f(I) = C$. Also, we have $f(U) = V$, as $\angle UXV = \angle UXA + \angle AXV = \frac{1}{2} \angle BXA + \frac{1}{2} \angle AXC = 90^{\circ}$.
+	
+	We further define $g:\overline{BI} \to \overline{IC}$ to be the function that maps points from segment $\overline{BI}$ to segment $\overline{IC}$ in a way such that $\angle MAg(M) = \frac{1}{2} \angle BAC$ for any point \(M\) on segment \(BC\). We have $g(B) = I, g(I) = C$. Also, we have $g(U) = V$, as $\angle UAV = \angle UAX + \angle XAV = \frac{1}{2} \angle BAX + \frac{1}{2} \angle XAC = \frac{1}{2} \angle BAC$.
+	
+	We claim $f$ and $g$ are both projective functions (i.e. they preserve cross-ratios). This is true as both $f$ and $g$ are rotations -- $f$ rotates points from $BI$ about $X$, whereas $g$ rotates points from $BI$ about $A$. Rotations preserve cross-ratios as for any set of 4 collinear points in a line, rotating the pencil formed by connecting these points to the centre of rotation doesn't change the angles between the lines, so we can assume that only the orientation of the 4 collinear points has changed with respect to the pencil. However, it is well known that cross-ratios are preserved in pencils, so \(f\) and \(g\) must both be projective.
+	
+	Since $f$ and $g$ both preserve cross-ratios, and there exist 3 points such that $f(M) = g(M)$, then $f$ and $g$ are the same function, as for any point $M$ on $BI$, we must have $(B, I; U, M) = (I, C; V, f(M))$ and $(B, I; U, M) = (I, C; V, g(M))$. Therefore, as $\angle I_b A I_c = \angle I_b AP + \angle PAI_c = \frac{1}{2} \angle BAP + \frac{1}{2} \angle PAC = \frac{1}{2} \angle BAC$, we have that \(f(I_b) = g(I_b) = I_c\), so $\angle I_bXI_c = 90^{\circ}$.\hfill \ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem \(\triangle\)}
+
+	
+	Let \(P\) be a subset of points in the plane, and let \(S\) be a subset of the real numbers. Let a function \(f : P \rightarrow S\) be called \emph{silly} if for any point \(D\) strictly inside any triangle \(ABC\), we have \[f(D) < \frac{f(A) + f(B) + f(C)}{3}.\]
+	\begin{enumerate}[(a)]
+	\item Let \(\mathbb{Z}\) denote the set of integers, and \(\mathbb{Z}^2\) denote the set of all points with integer coordinates. Does there exist a silly function \(f : \mathbb{Z}^2 \rightarrow \mathbb{Z}\)?
+	\item Let \(\mathbb{R}\) denote the set of real numbers, and \(\mathbb{R}^2\) denote the set of all points in the plane. Does there exist a silly function \(f : \mathbb{R}^2 \rightarrow \mathbb{R}\)?
+	\end{enumerate}
+	\begin{flushright}
+	\textit{(Proposed by tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Ishan and Tony)}\\
+	
+	\noindent We prove that the answers are (a) yes and (b) no.
+	
+	\begin{enumerate}[(a)]
+	    \item Consider the function \(f(x,y) = 4^{\lvert x \rvert}\). For points $A,B,C$, any point $D$ strictly inside $\triangle ABC$ must have $x$-coordinate strictly closer to $0$ than at least one of $A,B,C$, and so \[f(D) < \frac{\max \{f(A),f(B),f(C)\}}{3} < \frac{f(A)+f(B)+f(C)}{3},\] which implies $f$ is silly.
+	    
+	    \item There exist no silly functions \(f : \mathbb{R}^2 \rightarrow \mathbb{R}\).
+	    
+	    Note that silliness is preserved under certain linear transformations. That is, suppose that \(f(x)\) is silly and \(g(x) = mf(x) + c\) where \(m > 0\). Then we note that for all points \(A, B, C,\) and \(D\),
+	    \begin{align*}
+	    \frac{f(A)+f(B)+f(C)}{3}>f(D) &\iff m\frac{(f(A)+f(B)+f(C))}{3}+c>mf(D)+c\\
+	    &\iff \frac{g(A)+g(B)+g(C)}{3} > g(D).
+	    \end{align*}
+	    
+	    \makebox[15pt]{}Now note that as a constant function is clearly not silly, there must exist points \(A, B, C\) such that \(f(A), f(B), f(C)\) are in decreasing order and not all equal, which guarantees that \(f(A) > \frac{f(B)+f(C)}{2}\). Now let \(c=\frac{f(B)+f(C)}{2}\) and let \(g(x) = \frac{1}{f(A)-c}(f(x) - c)\) such that \(g(A) = 1\) and \(g(B)+g(C) = 0.\)
+	    
+	    \makebox[15pt]{}Note that if \(g\) is to be silly, then \(g(A) > 3g(D) - g(B) - g(C) = 3g(D)\) whenever \(\triangle ABC\) contains \(D\). Suppose that \(P\) is a point such that \(\triangle PBC\) contains \(A\). As \(g(A) = 1\), we can deduce that \(g(P) > 3g(A) > 0\), and so let an integer \(n\) be such that \(n > \log_3 g(P)\) or \(3^n > g(P)\). Construct points \(A = A_0, A_1, \dots, A_n = P\) such that \(A_iBC\) contains \(A_{i-1}\) for \(i \in \{1, 2, \dots, n\}\). Then by repeatedly applying the first inequality in this paragraph we obtain the chain of inequalities
+	    \[g(P) = g(A_n)>3g(A_{n-1}) > 3^2g(A_{n-2}) > \cdots > 3^{n-1}g(A_1) > 3^ng(A_0) = 3^n,\] implying that \(g(P) > 3^n\), a contradiction. Thus there exists no silly functions \(f: \mathbb{R}^2 \rightarrow \mathbb{R}\). \hfill\ensuremath{\square}\\
+	\end{enumerate}
+	
+\end{document}
+
+
+\textbf{Lemma:} \textit{If $ABC$ is a triangle with intouch points $D$, $E$, $F$ with $D$ on $BC$, $E$ on $CA$, $F$ on $AB$, then $AE=AF=\frac{AB+AC-BC}{2}$, $BF=BD=\frac{BA+BC-CA}{2}$, and $CD=CF=\frac{CB+CA-BA}{2}$.}
+	
+	
+	
+	\textit{Proof:} Firstly, by symmetry, it is sufficent to prove any one of those equalities, so we shall prove only $AE=AF=\frac{AB+AC-BC}{2}$. We note that $AE=AF$, $BD=BF$, $CD=CE$ by equal tangent lengths from same point.
+	
+	Thus, we have the following:
+	$$
+	\begin{aligned}
+	& \begin{cases}
+	AE + CE = AC\\
+	AF + BF = AB\\
+	BD + CD = BC\\
+	\end{cases}\\
+	\implies & \begin{cases} AE + CD = AC\\
+	AE + BD = AB\\
+	BD + CD = BC\\
+	\end{cases}\\
+	\implies & AE = \frac{AB+AC-BC}{2}\\
+	\end{aligned}$$
+	
+	so we're done.$_{\blacksquare}$
+	
+	Using this lemma in $\triangle APB$ yields $X_bP = \frac{PB+PA-AB}{2}$. Using this lemma in $\triangle APC$ yields $X_cC = \frac{CP+CA-AP}{2}$. Using this lemma in $\triangle ABC$ yields $CX = \frac{CB+CA-AB}{2}$. Since $XX_c = XC - CX_c$ (this is because as $P$ tends to $C$, $X_c$ tends to $C$, and as $P$ tends to $B$, $X_c$ tends to $X$, so $X_c$ is between $C$ and $X$). Therefore, $XX_c = \frac{CB+CA-AB}{2} - \frac{CP+CA-AP}{2} = \frac{CB-CP+AB-AP}{2} = \frac{BP+AB-AP}{2} = X_bP$. Similarly, $XX_b = X_cP$
+	
+	%Some more stuff from P3 Sol. 2
+	
+		\begin{center}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.63cm,y=0.63cm]
+\clip(6.28,-12.85) rectangle (25.82195312739624,-1.8220992764932564);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (7.,-12.);
+\draw [line width=0.4pt] (7.,-12.)-- (25.,-12.);
+\draw [line width=0.4pt] (25.,-12.)-- (11.858997171033835,-2.757189402969289);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (13.188109929892349,-8.26202104434278);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (7.,-12.);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (25.,-12.);
+\draw [line width=0.4pt] (11.858997171033835,-2.757189402969289)-- (16.344259981079873,-12.);
+\draw [line width=0.4pt] (16.344259981079873,-12.)-- (11.7564199990822,-9.126845181765269);
+\draw [line width=0.4pt] (16.344259981079873,-12.)-- (17.77594991189002,-9.713884311173356);
+\draw [line width=0.4pt] (11.7564199990822,-9.126845181765269)-- (11.7564199990822,-12.);
+\draw [line width=0.4pt] (13.188109929892349,-8.26202104434278)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt] (17.77594991189002,-9.713884311173356)-- (17.77594991189002,-12.);
+\draw [line width=0.4pt, dashed] (11.7564199990822,-9.126845181765269)-- (13.188109929892349,-12.);
+\draw [line width=0.4pt, dashed] (13.188109929892349,-12.)-- (17.77594991189002,-9.713884311173356);
+\begin{scriptsize}
+\draw [fill=ududff] (11.858997171033835,-2.757189402969289) circle (1.0pt);
+\draw[color=ududff] (11.9,-2.36) node {$A$};
+\draw [fill=ududff] (7.,-12.) circle (1.0pt);
+\draw[color=ududff] (6.93,-12.39) node {$B$};
+\draw [fill=ududff] (25.,-12.) circle (1.0pt);
+\draw[color=ududff] (25.10,-12.39) node {$C$};
+\draw [fill=ududff] (16.344259981079873,-12.) circle (1.0pt);
+\draw[color=ududff] (16.36,-12.39) node {$P$};
+\draw [fill=black] (13.188109929892349,-8.26202104434278) circle (1.0pt);
+\draw[color=black] (13.43,-7.92) node {$I$};
+\draw [fill=black] (11.7564199990822,-9.126845181765269) circle (1.0pt);
+\draw[color=black] (11.48,-8.75) node {$I_b$};
+\draw [fill=black] (17.77594991189002,-9.713884311173356) circle (1.0pt);
+\draw[color=black] (18.02,-9.37) node {$I_c$};
+\draw [fill=black] (11.7564199990822,-12.) circle (1.0pt);
+\draw[color=black] (11.86,-12.39) node {$X_b$};
+\draw [fill=black] (17.77594991189002,-12.) circle (1.0pt);
+\draw[color=black] (17.89,-12.39) node {$X_c$};
+\draw [fill=black] (13.188109929892349,-12.) circle (1.0pt);
+\draw[color=black] (13.2,-12.39) node {$X$};
+\draw [fill=black] (10.646209331979383,-9.797477112515192) circle (1.0pt);
+\draw[color=black] (10.45,-9.4) node {$U$};
+\draw [fill=black] (15.730010527805316,-9.066428373396478) circle (1.0pt);
+\draw[color=black] (15.97,-8.72) node {$V$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}

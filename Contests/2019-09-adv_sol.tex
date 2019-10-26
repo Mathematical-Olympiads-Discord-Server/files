@@ -1,0 +1,297 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}}
+
+\newcommand{\ws}{\square}
+\newcommand{\bs}{\blacksquare}
+
+
+
+
+
+
+
+\begin{document}
+		\setcounter{section}{0}
+		\noindent \huge\textbf{Solutions}\vspace{2pt}\\
+		\noindent \large\textbf{to the MODS 2019 September Advanced Contest} \vspace{3pt}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}\\
+	
+		\noindent \normalsize Compiled by the Mathematical Olympiads Discord Server (MODS) at \url{https://discord.gg/94UnnAG}\\
+		
+		\noindent This contest was hosted by Sharky Kesa, brainysmurfs, and Tony Wang in the Mathematical Olympiads Discord Server on the 10th and 11th of August. Throughout the document the following names correspond to the following users on Discord:
+		\begin{itemize}[noitemsep]
+		\item Sharky Kesa \tabto*{100pt}\texttt{268970368524484609}
+		\item ayus \tabto*{100pt}\texttt{269634843468496906}
+		\item brainysmurfs \tabto*{100pt}\texttt{281300961312374785}
+		\item tanyoshi \tabto*{100pt}\texttt{300065144333926400}
+		\item Will \tabto*{100pt}\texttt{429525897167765505}
+		\item Tony Wang \tabto*{100pt}\texttt{541318134699786272}
+		\end{itemize}
+		
+		
+	\newpage		
+			
+	\section*{Problem 1}
+	
+	In a $2019 \times 2019$ grid, the middle square is initially blue, and all other squares are white. In every move, three things happen in order:
+	\begin{enumerate}
+	\item Steve chooses some squares to colour black.
+	\item If any connected black region had a square that was initially blue before step 1., then all white squares adjacent to any black square in this region becomes blue.
+	\item All black squares become white.
+	\end{enumerate}
+	
+	(Two squares are \emph{adjacent} if and only if they share an edge, and two squares \(A\) and \(B\) are in the same \emph{connected region} if and only if there exists a sequence of squares \(A, S_1, S_2, \dots, S_n, B\) of the same colour such that any two consecutive squares in the sequence are adjacent.)
+	
+	\begin{enumerate}[(a)]
+	\item What is the maximum number of blue squares that can exist on the grid at once?
+	\item What is the minimum number of moves required to achieve this number of squares?
+	\end{enumerate}
+	
+	\begin{flushright}
+	\textit{(Proposed by Tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang)}\\
+	
+	\begin{enumerate}[(a)]
+	\item Note that after any non-trivial move, where at least one squares was coloured black, that square becomes white at the end of the move. Since not all squares are blue in the starting configuration, and not all squares can be blue after any move, we cannot reach such a state after any number of moves. We make a construction in the following part.
+	\item Denote by \(S_n\) the set of squares that have taxicab distance exactly \(n\). That is, \(S_n\) is the \(n\)-th diamond of squares from the centre, where the center square is the zeroth diamond. Let \(R_n\) be \(S_n\) minus any squares that are at the edge of the board.
+	
+	Note that if we colour \(R_{n}\) in black, \(S_{n+1}\) and \(R_{n-1}\) become blue by the end of the turn.
+	
+	We begin by colouring the central column of squares, as well as the topmost and bottommost row, minus all of the corner squares, in black. Note that \(S_{2018}\) and \(R_{2016}\) both become blue. Then on each move thereafter, for each of \(i = \{2016, 2015, ..., 0\}\), we observe the following
+		\begin{enumerate}[1.]
+		\item We colour all the squares in \(R_i\) black.
+		\item As each of the squares in \(R_i\) were blue, we note that this causes both \(R_{i-1}\) and \(S_{i+1}\) to become blue.
+		\end{enumerate}
+	Hence \(S_i\) iteratively become blue for all \(i = \{2018, 2017, \dots, 1\}\). Note that the process above takes 2018 steps, one for each \(R_i\) for \(i > 0\), and thus we have shown that the upper bound is \(2018\).
+		
+	We now show that the lower bound is 2018 by proving an intermediate lemma: If a white square \(A\) becomes blue after one move, then at least one of the squares adjacent to it is white. To prove this, we note that to turn a square blue, at least one adjacent square \(B\) must be coloured black at the start of that move. Then by the end of that move, \(B\) becomes white again, and is adjacent to \(A\).
+	
+	This implies that, under the taxicab metric, the distance between the two white squares that are the furthest apart may only decrease by 2 on each move. Since this value is 4036 initially, it must take at least \(4036/2 = 2018\) moves for distance to become 0.\hfill\ensuremath{\square}\\
+	\end{enumerate}
+	
+	\newpage
+	
+	\section*{Problem 2}
+	
+	Find all $n$ such that there exists a set of $n$ consecutive nonnegative integers whose squares can be partitioned into two subsets of equal sum.
+	\begin{flushright}
+	\textit{(Proposed by tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Tony Wang and epicxtroll)}\\
+	
+	\noindent Let \(n\) be \emph{good} if is possible to partition some \(n\) consecutive squares into two subsets of equal sum. We split this problem into several cases:
+	
+	\begin{enumerate}
+	\item \(n = 2k+1\) is good.
+	
+	Let the consecutive squares be \(\{(a-k)^2, \dots, (a+k)^2\}\), and suppose we partition the squares into the \(\{(a-k)^2, \dots, a^2\}\) and \(\{(a+1)^2, \dots, (a+k)^2\}\). By expanding and equating the sums we get \(a^2 - 2k(k+1)a = 0\) and thus setting \(a = 2k(k+1) \geq k\) gives a construction for all odd \(n\).
+		
+	\item \(n = 8k\) is good.
+	
+	Note that \(0^2 + 3^2 + 5^2 + 6^2 = 1^2 + 2^2 + 4^2 + 7^2\), and \(0 + 3 + 5 + 6 = 1 + 2 + 4 + 7\). This means that for any 8 consecutive squares \(\{n^2, \dots, (n+7)^2\}\), the partition \(\{n^2, (n+3)^2, (n+5)^2, (n+6)^2\}\) and \(\{(n+1)^2, (n+2)^2, (n+4)^2, (n+7)^2\}\) have the same sum of \(4n^2 + 28n + 70\). Thus, if \(n = k\) is good, then \(n= k+8\) is good as the next 8 squares can be partitioned as in the construction above and appended to the existing subsets. Hence, all \(n = 8k\) are good by induction.
+	
+	\item \(n = 8k+4\) for \(k > 0\) is good.
+	
+	In this case we note that the squares of \(\{12, 10, 9\}\) and the squares of \(\{11, 8, 7, 6, 5, 4, 3, 2, 1\}\) have the same sum of 325. Using the fact that \(n = k\) is good \(\implies n = k+8\) is good, all \(8k + 4\) greater than 4 are good by induction.
+	
+	\item \(n = 4\) is not good.
+	
+	Note that the squares modulo 8 are \(0, 1, 4, 1\). Thus any 4 consecutive squares have a sum of \(6 \pmod 8\). Each subset must therefore have a sum that is \(3 \pmod 4\), but this is not possible as the squares modulo 4 are 0 and 1.
+	
+	\item \(n = 4k+2\) is not good.
+	
+	As odd and even squares alternate, any consecutive \(4k+2\) squares must contain exactly \(2k+1\) odd squares and \(2k+1\) even squares. Thus the total sum of all squares is odd, but then the parity of the sums of the partitions must be different, a contradiction. Thus there are also no solutions in this case.
+	\end{enumerate}
+	
+	\noindent These cover all possible cases, so we have now proven that all \(n\) are good apart from 4 and all \(n\) of the form \(4k+2\).\hfill\ensuremath{\square}\\
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\paragraph{Solution 2} \textit{(by Tony Wang)}\\
+	
+	\noindent We proceed as above, but in the case where we prove \(n = 4\) is not good it is possible to use a case bash:
+	
+	\begin{enumerate}
+	\item[4.] \(n = 4\) is not good.
+	
+	As \((n+3)^2 > (n+2)^2 > (n+1)^2 > n^2 \geq 0\), the only two possible options are \((n+3)^2 + n^2 = (n+2)^2 + (n+1)^2\) or \((n+3)^2 = (n+2)^2 + (n+1)^2 + n^2\). The former reduces to \(2n^2 + 6n + 9 = 2n^2 + 6n + 5\), a contradiction, and the latter reduces to \(2n^2 = 4\), so there are no solutions in this case.\hfill\ensuremath{\square}
+	\end{enumerate}
+	
+	
+	\newpage
+	
+	\section*{Problem 3}
+	
+	 $ABC$ is a triangle with incentre $I$. The feet of the altitudes from $I$ to $BC, AC, AB$ are $D, E, F$ respectively, and the line through $D$ parallel to $AI$ intersects \(AB\) and \(AC\) at \(X\) and \(Y\) respectively. Prove that the circles with diameters $XF$ and $YE$ have a common point on the circumcircle of $ABC.$\
+	\begin{flushright}
+	\textit{(Proposed by Will)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by Will)}\\
+	
+	\noindent Define $H$ as the intersection of $XY$ and $EF$. Clearly $H$ is the foot from $D$ to $EF.$ Observe that the inversion of $(ABC)$ around the incircle of triangle $ABC$ is the nine-point circle of triangle $DEF$ so must pass through $H.$ Trivially the circles with diameters $XF$ and $YE$ also pass through $H.$
+	
+	Further observe that the circles with diameters $XF$ and $YE$ are orthogonal to the incircle and are hence self-inversive. This means that the inverse of $H$ with respect to the incircle must lie on $(ABC)$ and the circles with diameters $XF$ and $YE,$ proving that these two circles concur on the circumcircle of triangle $ABC.$ \hfill\ensuremath{\square}
+	
+	\newpage
+	
+	\section*{Problem 4}
+
+	
+	Is it true that for any \(n\) there exists a geometric progression of positive integers, with ratio not equal to any power of 10, such that the base-10 representation of the first \(n\) terms contain no $9$s?
+	\begin{flushright}
+	\textit{(Proposed by tanyoshi)}
+	\end{flushright}
+	
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\paragraph{Solution 1} \textit{(by ayus)}\\
+	
+	\noindent We show that the answer to this problem is no.
+
+	Let's first solve an analagous version for arithmetic progressions. Suppose that the AP is $$a+d,a+2d,a+3d,\ldots a+nd.$$
+	This might seem tricky until we look at gaps that we can't jump over. Intuitively, we notice that small $d$ (e.g $d<100$ will crash into a gap of size $100$ between $900$ and $1000$ or between $1900$ and $2000$, etc.) will die early on. But larger $d$ will crash into bigger gaps. Fortunately for us, they also reach these bigger gaps faster. For instance, if $d$ is $2019$, it will crash into a gap of size $1000$ between $10^4n+9000$ and $10^4(n+1)$ within $50$ moves. Let's formalise this.
+	
+	Consider the integer $k$ such that $10^{k-1}\le d<10^k$. Define $S$ as follows: $$S=\bigcup_{i\in\mathbb{N}}\left[10^{k+1}i-10^k,10^{k+1} \right[.$$
+	Note that each of these intervals has size $10^k\ge d$ and thus if $a+d<s<a+nd$ for some $s\in S$ then there exists some $s'\in S$ such that $a+kd=s'$ for some $k$ in... you get the idea.
+	
+	Also, fun fact: everything in $S$ has a $9$ in the $k$th place value. Finally, if we take $n=100$, then it's easy to show that we ``jump over'' such a gap (hint: how far apart are the gaps?)
+	
+	With that said, let's do the actual problem. Let the sequence be $$ar,ar^2,ar^3,\ldots,ar^n.$$ We consider instead the sequence of logarithms, $$a'+r',a'+2r',\ldots,a'+nr'.$$
+	Better yet, we consider the sequence of fractional parts of that sequence, which I'll dub $\{a_i\}_{i=1}^n$.	We define $$ \{S_i\}_{i\in\mathbb N}=\bigcup_{j\in\mathbb N_0,\,10^{i-1}\le j<10^{i}}\left[\frac{10j+9}{10^{i}},\frac{10j+10}{10^{i}} \right[,$$ the set of reals in $[1,10[$ with a $9$ in the $i$th decimal place.
+	
+	We take $S'_i=\log S_i$ (base 10 log) to be the image of $S_i$ under a logarithmic transform in the space $\mathbb R/1\mathbb R$, or informally, ``the reals mod 1''. We now prove the following lemma:
+	
+	\begin{enumerate}
+	\item \textbf{Lemma.} $S_i'$ is a union of finitely many intervals, and there exist positive real constants $C_1$ and $C_2$ such that the size of each interval has size at least $10^{-i}C_1$ and the gap between any two of these intervals has size at most $10^{-i}C_2$.
+	
+	\emph{Proof.} Firstly, note that $0\sim1$ (mod 1, remember) is an endpoint of the "largest" thing. Now, the largest interval is the last interval: consider any gap, between $j$ and $j+1$.
+	\begin{align*}
+	\log\frac{10j+10}{10^{i}}-\log\frac{10j+9}{10^{i}} &= \log\frac{10j+10}{10j+9}\\
+	&=\log\left(1+\frac{1}{10j+9}\right)
+	\end{align*}
+	which is of course minimised when $j$ is maximised (property of compositions of increasing and decreasing functions), which turns out to be 
+	$$\log\left(1+\frac{1}{10(10^i-1)+9}\right)>\log\left(1+\frac{1}{10^{i+2019}}\right)>\frac{1}{10^{i+2019}}.$$
+	Thus $C_1=\frac{1}{2018}$ is a possible $C_1$ value. The $C_2$ value is basically the same (the first interval, from $1$ to $1.0...09$ is minimal), and requires two terms of the corresponding (gasp!) taylor series for logarithm rather than 1. Alternatively, you could bound it very messily as I have and still get a working constant.
+	\end{enumerate}
+	
+	\noindent Anyways, that means that there exists a minimal $i$ such that $\{r'\}<C_110^{-i}$ (I bet you forgot what $r'$ was, didn't you? Well, for those who did, it's the log of the ratio of the GP, and here we take its fractional part); in other words, $C_110^{-i-1}\le\{r'\}<C_110^{-i}$. But because the intervals in $S_i$ are at most $C_210^{-i}$ apart, we have to hit one of them in at most $\frac{C_210^{-i}}{r'}\le10\frac{C_2}{C_1}$ turns, a constant.
+
+	Okay, but wait.
+
+	This is all good and all, but it misses a very very important detail, which I'll leave as an exercise to the reader. As a test of understanding, find the detail and fix it.\footnote{You can find more discussion about this detail in the marker's comments.}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
+
+Let the sequence be \(ar, ar^2, ar^3, \dots, ar^n\). We consider the arithmetic progression obtained by taking the logarithm of each term: \[a' + r', a + 2r', \dots, a' + nr'.\] Let \(\left\{ a_i \right\}^n_{i=1}\) denote the fractional part of the arithmetic progression.
+	
+	Define \[\left\{S_i\right\}_{i \in \mathbb{N}} = \bigcup_{10^{i-1} \leq j < 10^i, j \in \mathbb{N}_0} \left[ \frac{10j+9}{10^i}, \frac{10j+10}{10^i} \right[,\]the set of reals in \([1,10[\) with a 9 in the \(i\)-th decimal place.
+	
+	We take \(S'_i = \log_{10} S_i\) to be the image of \(S_i\) under a logarithmic transform, and note that \(S'_i \subset [0,1]\). We now prove the following lemma:
+	
+	\begin{enumerate}
+	\item \(S'_i\) is a union of finitely many intervals, and there exist positive real constants \(C_1\) and \(C_2\) such that the size of each interval has size at least \(10^{-i}C_1\), and the gap between any two of these intervals has size at most \(10^{-i}C_2\).
+	
+	To prove this lemma, we first note that \(S_i\) is a union of finitely many intervals, and so the image of its logarithm must also be the union of finitely many intervals. We also 
+	\end{enumerate}
+
+	\noindent For any \(\varepsilon > 0\), let \(\mathbb{Q}_{\varepsilon}\) denote the set \(\left\{\left[\frac{c-\varepsilon}{d}, \frac{c+\varepsilon}{d} \right] : \frac cd \in \mathbb{Q}\right\}\). Prove that there exists a finite subset of \(\mathbb{Q}_\varepsilon\) such that their union covers \([0,1]\).
+	
+	I solve by induction on \(m\), where \(\varepsilon = \frac 1m\). Note that when \(m = 1\), we only need \(S_1 = \left\{\frac 12 \pm \frac 12\right\}\) to cover \([0,1]\), where \(a \pm b\) denotes the set \([a-b, a+b]\). For the inductive step we note that for each element \(\frac cd \pm \frac 1{d(n-1)}\) in \(S_{n-1}\), it is a subset of \(\frac{c(n-1)-1}{d(n-1)} \pm \frac{1}{d(n-1)n} \cup \frac cd \pm \frac 1{dn} \cup \frac{c(n-1)-1}{d(n-1)} \pm \frac{1}{d(n-1)n}\), the union of three sets in \(\mathbb{Q}_{1/n}\). Thus \(S_n\) also has finitely many elements.
+	
+	We first note that in the following sets:
+	\begin{align*}
+	\frac cd \pm \frac 1{dn} &= \frac {cn\pm 1}{dn}\\
+	\frac {cn+1}{dn} \pm \frac 1{dn^2} &= \frac {(cn+1)n\pm 1}{dn^2}\\
+	 \frac {(cn+1)n + 1}{dn^2} \pm \frac 1{dn^3} &= \frac {((cn+1)n+1)n \pm 1}{dn^3}\\
+	 &\; \; \vdots
+	\end{align*}
+	the LHS of each equation is in \(\mathbb{Q}_{1/n}\), and furthermore, the difference between the greatest element in each successive set and \(\frac cd\) forms a geometric progression with starting term \(\frac 1{dn}\) and common ratio \(\frac 1n\). Hence after \(j\) terms, their sum will be \[\frac{1}{dn} \frac{\left(1 - \left(\frac 1n \right)^j \right)}{1 - \frac 1n} = \frac 1{d(n-1)} \frac{n^j - 1}{n^j},\] and so the union of these \(j\) sets and the corresponding \(j\) sets reflected about \(\frac cd\) on the number line will yield \(\left[\frac cd - \frac 1{d(n-1)} \frac{n^j - 1}{n^j}, \frac cd + \frac 1{d(n-1)} \frac{n^j - 1}{n^j}\right]\). Taking the union of this with the two sets \(\frac{c(n-1)-1}{d(n-1)} \pm \frac 1{d(n-1)n}, \frac{c(n-1)+1}{d(n-1)} \pm \frac 1{d(n-1)n} \in \mathbb{Q}_{1/n}\) will give the set\[\left[\frac{c(n-1)-1}{d(n-1)} - \frac 1{d(n-1)n}, \frac{c(n-1)+1}{d(n-1)} + \frac 1{d(n-1)n}\right]\] as long as \(j\) is a positive integer satisfying
+	\begin{align*}
+	\frac cd - \frac 1{d(n-1)} \frac{n^j - 1}{n^j} &\leq \frac{c(n-1)-1}{d(n-1)} + \frac 1{d(n-1)n}\\
+	-\frac 1{d(n-1)} \left(1 - \frac 1{n^j} \right) &\leq -\frac{1}{d(n-1)} + \frac 1{d(n-1)n}\\
+	\frac 1{n^j} &\leq \frac 1{n-1}\\
+	\end{align*}
+	
+	\[\frac cd \pm \frac 1{d(n+1)}, \frac {c(n+1)+1}{d(n+1)} \pm \frac 1{d(n+1)^2}, \frac {c(n+1)+1}{d(n+1)} \pm \frac 1{d(n+1)^2}\]
+	
+	To construct \(A_3\), we first note that each element of \(S_2\) 
+	
+	I solve by induction on \(m\), where \(\varepsilon = \frac 1m\) Note that when \(m = 2\), we only need \(\frac 02 \pm \frac 14, \frac 12 \pm \frac 14, \frac 22 \pm \frac 14\) to cover \([0,1]\).
+	
+	To construct A3, we first note that each element of S2 can be approximated by a finite sequence of such elements in m = 3. For example [1/4, 3/4] can be approximated by 1/2±1/6
+	
+
+	
+	Let \(x \pm y\) denote the range \([x-y, x+y]\), and let \(\{[-1/4, 1/4],   [1/4, 3/4],   [3/4, 5/4]} = S2, {0/2, 1/2, 2/2}= A2 and {0/2+1/4,  1/2-1/4 ,  1/2+1/4,  2/2-1/4} = B2
+
+
+
+
+
+
+
+
+
+
+
+
+

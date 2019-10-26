@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\noindent \Large\textbf{Mathematical Olympiads Discord Server}
+		\vspace{5pt}\\
+		\noindent \huge\textbf{2019 October Beginner Contest}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\begin{flushright}
+	\textit{Time: 4 hours} \hfill \textit{Each problem is worth 7 points}
+	\end{flushright}
+	
+	\noindent \textit{Calculators and protractors are not allowed. Do not write your name on your working. After your timeslot finishes, please read the instructions in} \texttt{\#how-to-submit-scripts}\textit{. Do not discuss the contents of this paper outside the text channel }\texttt{\#finished-contestants}\textit{ and the voice channel }\texttt{Post-Contest Banter}\textit{ until notified by staff.}
+	
+	\paragraph{Problem 1.} A positive integer is called \emph{square-free} if it is not a multiple of any square other than 1. George and his \(n\) friends sit around a table. George thinks of a positive integer \(k>1\) and writes it on the blackboard. The person to his left then divides the number on the blackboard by a square-free number to obtain another positive integer \(k_1 < k\), and replaces \(k\) with \(k_1\) on the blackboard. The process repeats with each person in succession, going clockwise around the table, generating positive integers \(k_1 > k_2 > k_3 > \cdots\) and so on. The first person to write 1 on the blackboard wins.
+	
+	Prove that for any value of \(n\), George can always think of a positive integer \(k\) such that he is guaranteed to win.	
+	
+	\paragraph{Problem 2.} Let \(\mathbb{Q}\) denote the set of rational numbers. Find all functions \(f : \mathbb{Q} \rightarrow \mathbb{Q}\) such that for all rational \(a\) and \(b\), \[f(a)f(b) = f(a+b).\]
+
+	\paragraph{Problem 3.} Do there exist points \(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y,\) and \(Z\) in the Euclidean plane, not all the same, such that \(ABCD, EFGH, IJKL, MNOP, QRST, UVWX, YZAB, CDEF, GHIJ, KLMN, OPQR, STUV,\) and \(WXYZ\) are all squares?
+	
+	(Note that the vertices of a square do not necessarily have to be in order, so that if \(ABCD\) is a square then so is \(ACBD\).)
+
+	\paragraph{Problem 4.} Let \(ABC\) be a triangle and denote by \(M\) the midpoint of \(BC\). Suppose \(X\) is the point on the perimeter of \(ABC\) such that \(MX\) bisects the perimeter of \(ABC\). Show that \(MX\) is parallel to the internal angle bisector of \(\angle BAC\).
+	
+	\vfill
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \textit{\href{https://discord.gg/94UnnAG}{Discord Server Invite Link} \hfill Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}
+	
+		
+		
+		
+		
+	
+	
+\end{document}
