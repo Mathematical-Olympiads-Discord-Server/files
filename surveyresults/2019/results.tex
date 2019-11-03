@@ -1,0 +1,75 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{ulem}
+\graphicspath{{./}}
+\usepackage[left=3.00cm, right=3.00cm, top=3.00cm, bottom=2.00cm]{geometry}
+\author{Mathematical Olympiads Discord Server Staff Team}
+\title{2019 MODS Demographics Survey Disclosure}
+
+\newcommand{\graph}[5]{
+	\paragraph{#1} - #2 responses
+	\begin{center}
+	\includegraphics[scale=#3]{#4}
+	\end{center}
+	#5
+}
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}
+	On October 2, 2019 the staff team released the 2019 Demographics Survey which ran until October 17, 2019 (NZ time). These are some of the results we obtained from this survey along with commentary on how it relates to the future direction of the server. We received 131 responses in total. Although summary statistics can be found in this document, the data (which is randomized and is not associated with a specific member) can be found in the associated Github folder. 
+	
+	\section{Data}
+	\subsection{General Demographics}
+	These are just some general demographics about members of the MO Server. 
+	\graph{Age Distribution}{125}{0.4}{q01-age}{Unsurprisingly, most members are in the under-20 age bracket required for qualification in international olympiads. There are some older members as well. }
+	
+	\graph{Gender}{126}{0.4}{q02-gender}
+	
+	\graph{Country of Residence}{124}{0.4}{q03-country}{It seems that the United States is the most common place for Mathematical Olympiad Server members to live. In addition, we have members from 34 countries in total. }
+	
+	\graph{Country of Birth}{121}{0.4}{q04-country-born}{Again it seems that the USA is the most common country. However this time there are 39 different countries in which MO Server members were born. }
+	
+	\subsubsection{Languages}
+	\graph{First Languages}{128}{0.75}{q051a-language-1}{It appears that English is the most common first language among members of the MO Server, with 88 (68.8\%) having it as their first language. }
+	\graph{Second Languages}{112}{0.75}{q052a-language-2}{English is still the most common second language (35, 31.2\%). Chinese is second with 15 (13.4\%) and French and Spanish are in third with 9 (8\%) respectively. }
+	\graph{Third Languages}{65}{0.75}{q053a-language-3}{Only 65 people had a third most proficient language, which is 50.8\% of the people who responded about their primary language. French and Spanish were the most common third language, with 12 people (18.5\%) each. }\\
+	It appears that out of all the people answering the language questions, all of them ($88+35+5=128$) were at least somewhat proficient in English. 
+	
+	\subsection{Social Media Use}
+	We asked some questions about usage of Discord and social media in general to see how active members of the community were on Discord and social media in general. Raw data + 95\% confidence intervals (using normal approximation) are available in this folder. 
+	\graph{Checking Social Media}{127}{0.6}{q11-social}{Most members appear to check social media at least a few times a day. }
+	\graph{Checking Discord}{127}{0.6}{q12-discord}{Most members check Discord at least a few times a day. Interestingly, Discord is checked more often than "social media". }
+	\graph{Checking MO Server}{126}{0.6}{q13-moserver}{Most members check the MO Server more rarely than Discord as a whole. }
+	\graph{Discord Time}{127}{0.6}{q14-discordtime}{Most members either spend less than 30 minutes or more than 2 hours on Discord. \sout{seriously though how do so many people spend that much time on discord} \sout{maybe I do too }}
+	
+	\graph{Finding out about the MO Server}{108}{0.7}{q15-findout}{Most members found out about the Math Olympiad server through Word of Mouth or the Mathematics Server. The full list of provided responses will be available in this folder. }
+	
+	\graph{Uses of the MO Server}{94}{0.7}{q16-use}{Although this was a short-answer question, we have collated the most popular answers. PoTD, Socialising and Contests seemed to be prevalent answers, although this could be because they were the examples provided. People also seemed to enjoy the abundance of problems (non-PoTD) that were posted.}
+	
+	\subsection{Mathematics}
+	We asked some questions in relation to mathematics and how it relates to you and the server. We aim to get a better idea of the types of problems people enjoy and the difficulty they should be at. 
+	
+	\graph{Favourite branch of Olympiad Mathematics}{126}{0.7}{q21-oly-favourite}{Algebra and Number Theory seemed to be the first and second most popular branches, with 39 and 31 people respectively. Combinatorial Geometry had 6 people selecting it \sout{yay tony has 5 friends}}
+	\graph{Length of time doing Olympiad Mathematics}{125}{0.7}{q22-time}{The most common option was 1-2 years, which was selected by 28 people. It was surprising to see that almost an eighth of the respondents (15) had only been doing olympiad mathematics for less than 1 week. }
+	\subsection{PoTD}
+	We asked a few questions about our Problems of the Day (PoTD). Difficulty ratings are rated on the MO Server Difficulty Scale (0-1 is relatively trivial, 4-6 is IMO P1/4, 9-11 is IMO P3/6, etc). On these questions respondents were asked to select a `0' if they had never solved a PoTD problem before, and `10' if they wish to select a difficulty rating in excess of `10'. From this we hope to get a better understanding of the preferred PoTD levels of people. 
+	\graph{How often do you attempt the PoTD?}{125}{0.7}{q231-potd-attempt}{Note: 0 is ``never'' and 5 is ``always''. Only a small portion of members always attempt PoTDs, wheras most seldom attempt them or do not attempt them at all. Since our PoTDs span a wide variety of difficulties, and we recommend to do PoTDs that are around your level, this distribution does make sense. }
+	\graph{Most Difficult PoTD}{105}{0.7}{q232-potd-hardest}{A good portion of people (44.8\%) have never attempted a PoTD. It seems like there is a linear trend up to difficulty 7 (IMO P2/5), and it drops off after that. }
+	\graph{Average PoTD}{99}{0.7}{q233-potd-average}{Again, there were 42.4\% of respondents who did not attempt PoTDs before. The most common difficulty level was level 5, which is just under IMO level. }
+	\graph{Preferred PoTD}{86}{0.7}{q234-potd-preferred}{Difficulty 6 was the most preferred PoTD level at 16, or 18.6\%. After this difficulties 1, 4, and 5 had 13 votes (15.1\%) each. }
+	\subsection{Practice}
+	\graph{Practice time}{122}{0.7}{q241-practice-time}{Most members of the server practice for less than an hour a week. There appears to be a decreasing trend as the amount of time spent practising increases, and only 3 (2.5\%) of people practised for more than 21 hours a week. }
+	\graph{Percentage of Practice}{122}{0.7}{q242-practice-percent}{Respondents were asked to rate their time spent on Olympiad maths as a proportion of all maths from a scale of 0 to 5, from 0\% to 100\%. Around 20\% of their time spent on olympiad maths was the most common answer. }
+	\subsection{Favourites}
+	We asked our respondents what their favourite area of mathematics was (not just Olympiad mathematics). We collated their answers into a graph, but the full list is available in this folder. 
+	\graph{Favourite area of Mathematics}{90}{0.7}{q25-favourite}{As before, Number Theory and Algebra were the top, while combinatorics was third and geometry was fourth. Although Calculus was not an olympiad topic, it seemed to be well-liked by members of the server as well. }
+	
+	\section{Conclusion}
+	Well, that wraps up the 2019 Mathematical Olympiad Discord Server Demographics Survey Disclosure. We hope that you found this an interesting read. Happy maths-ing!
+\end{document}
