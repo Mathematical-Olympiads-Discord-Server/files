@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{C:/Users/tonyw/Dropbox/tony_wang/Maths/MODS/contests/MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 January Beginner Contest}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\paragraph{Problem 1.} What is the minimum number of folds needed to fold a paper circle into a polygon?
+	
+	\paragraph{Problem 2.} The Euclidean plane is initially white. On each move, Luciano chooses a system of Cartesian coordinates and paints the region where \(y \geq x^2\) in red. Is it possible for the Euclidean plane to be painted completely red after a finite number of moves?\\[7pt]
+	\noindent (A system of Cartesian coordinates may be chosen at any angle or scale, and with any point as the origin, but the two axes must be perpendicular.)
+
+	\paragraph{Problem 3.} Prove that for any positive real number \(c\), there exists a positive integer \(n\) such that the sum of the factors of \(n\) is greater than \(cn\).
+
+	\paragraph{Problem 4.} Let \(\mathbb{R}^+\) denote the set of positive real numbers. Find all functions \(f: \mathbb{R}^{+} \to \mathbb{R}^{+}\) such that \(\lfloor f(x)f(y) \rfloor = \lfloor xy \rfloor\) for all positive real numbers \(x\) and \(y\).
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+		
+		
+		
+		
+	
+	
+\end{document}
