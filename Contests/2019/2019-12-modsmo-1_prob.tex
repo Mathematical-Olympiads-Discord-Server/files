@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=1.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[absolute,overlay]{textpos}
+\usepackage{helvet}
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.4]{MODSMO_2019.eps}\\[-33.2pt]
+		\tabto*{242.6pt} \textsf{English (eng), day 1}\\
+		\end{flushleft}
+		
+		\vspace{41.6pt}
+		%\noindent \huge\textbf{2019 MODSMO}\\
+		%\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\begin{flushright}
+	\hfill \textit{Saturday, December 13, 2019}
+	\end{flushright}
+	
+	\paragraph{Problem 1.} Let \(S\) be the set of polynomials of the form \[a_{2019}x^{2019} + \cdots + a_1 x + a_0\] where \(a_i \in \{-1, 0, 1\}\) for all \(i \in \{0, 1, \dots, 2019\}\). Prove that at least 7/8ths of the polynomials in \(S\) have at least one real root.
+	
+	\paragraph{Problem 2.} Let \(\mathbb{N}^+\) denote the set of positive integers. Find all \(b \in \mathbb{N}^+\) such that for all \(c \in \mathbb{N}^+\) there exists an \(n \in \mathbb{N}^+\) satisfying \[1 + b + b^2 + \dots + b^c = \frac{n(n-1)}{2}.\]
+
+	\paragraph{Problem 3.} Let \(M\) be a Discord server with 2019 people such that exactly one third of the pairs of people know each other. A \emph{dynamic} of \(M\) labels a subset of the pairs of people who know each other as exactly one of the three following types of relationships: friends, pending, or blocked. (We consider \(S\) and the empty set to both be subsets of a set \(S\).) The dynamic is called \emph{tanyushi} if and only if each person has either an odd number of each type of relationship, or an even number of each type of relationship.\\[7pt]
+	\noindent Let \(f(M)\) be the number of distinct tanyushi dynamics \(M\) can have. Find all possible values of \(f(M)\).
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours and 30 minutes}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \textit{\href{https://discord.gg/94UnnAG}{Discord Server Invite Link} \hfill Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}
+\end{document}

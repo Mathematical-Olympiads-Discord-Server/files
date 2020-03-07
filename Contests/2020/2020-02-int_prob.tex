@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{./MODS_text_right-eps-converted-to}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 February Intermediate Contest}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\normalsize
+	
+	\paragraph{Problem 1.} How many triples \((n,k,m)\) of integers with \(0 < n,k \leq 20\) satisfy \[\left(n+\frac{1}{1}\right) \left(n+\frac{1}{2}\right) \left(n+\frac{1}{3}\right)\cdots \left(n+\frac{1}{k}\right) = m?\]
+	
+	\paragraph{Problem 2.} Brainy Smurf has two beakers, each of capacity 150 units. In the first beaker there are 100 units of a green liquid and in the second beaker there are 100 units of a red liquid. Brainy Smurf can perform a series of moves, where in each move he pours any amount of the mixture in one beaker into the other, without overflowing, and then stirs both beakers thoroughly to ensure a uniform mixture. Is it possible for Brainy Smurf to have 50 units of each liquid in each beaker after a finite number of moves?
+
+	\paragraph{Problem 3.} Let \(a_1, a_2, \dots, a_n\) be positive real numbers. Is it necessarily true that	\[\frac{1}{a_1} + \frac{2}{a_1 + a_2} + \cdots + \frac{n}{a_1 + a_2 + \cdots + a_n} < \frac{2}{a_1} + \frac{2}{a_2} + \cdots + \frac{2}{a_n}?\]
+
+	\paragraph{Problem 4.} A square \(ABCD\) has side length 1 and centre \(O\). A point \(P\), distinct from \(O\), is chosen in the interior of \(ABCD\). Let \(P_a\) lie on the ray \(AP\) such that \(AP_a \cdot AP = 1\). Define \(P_b\), \(P_c\), and \(P_d\) similarly. Suppose that \(P_aPP_c\) and \(P_bPP_d\) are non-degenerate triangles. Prove that their circumcircles intersect on line \(OP\) at a point other than \(P\).
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+		
+		
+		
+		
+	
+	
+\end{document}

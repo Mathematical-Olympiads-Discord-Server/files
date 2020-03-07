@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=1.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[absolute,overlay]{textpos}
+\usepackage{helvet}
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.4]{MODSMO_2019.eps}\\[-33.2pt]
+		\tabto*{242.6pt} \textsf{English (eng), day 2}\\
+		\end{flushleft}
+		
+		\vspace{41.6pt}
+		%\noindent \huge\textbf{2019 MODSMO}\\
+		%\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\begin{flushright}
+	\hfill \textit{Sunday, December 15, 2019}
+	\end{flushright}
+	
+	\paragraph{Problem 4.} In an acute triangle \(ABC\), the feet of the altitudes from \(B\) to \(AC\) and \(C\) to \(AB\) are \(X\) and \(Y\) respectively. Suppose that \(P\) is a point inside triangle \(ABC\) satisfying \(\angle PBC = \angle PXY\) and \(\angle PCB = \angle PYX\). Prove that \(AP\) bisects \(BC\).
+	
+	\paragraph{Problem 5.} Consider the set \(A = \left\{1,2,...,2019\right\}\) and a function \(f: A \to A\). For a subset \(B \subseteq A\), we say that \(f\) \textit{shrinks} \(B\) if and only if \(f(x) \in B\) for all \(x \in B\). (We consider the empty set to be shrunk by any function \(f\).)\\[7pt]
+	\noindent Is there a function \(f: A \to A\) that shrinks exactly \(2019^{60}-1\) subsets?	
+
+	\paragraph{Problem 6.} Let \(\mathbb{R}\) denote the set of real numbers, and let a function \(f\) be called \emph{linear} if and only if it can be written in the form \(f(x) = mx + d\) for some \(m, d \in \mathbb{R}\). Find all positive real numbers \(r\) such that, if a function \(f: \mathbb{R} \to \mathbb{R}\) satisfies \[bf(x) + cf(x-a)+af(x+c) < 2019 + |a|^r + |b|^r + |c|^r\] for all \(a\), \(b\), \(c\), and \(x \in \mathbb{R}\) with \(a + b + c = 0\), then \(f\) is linear.
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours and 30 minutes}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \textit{\href{https://discord.gg/94UnnAG}{Discord Server Invite Link} \hfill Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}
+\end{document}
