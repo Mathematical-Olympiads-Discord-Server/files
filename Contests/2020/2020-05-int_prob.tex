@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz}
+\usepackage{pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[savepos]{zref} %allows absolute positioning on page
+\usepackage{calc} %allows easy manipulation of lengths arithmetic
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand*{\currpos}[1]{%
+  \zsavepos{#1}%
+  %(\zposx{#1}sp, \zposy{#1}sp) =
+  %(\the\dimexpr\zposx{#1}sp\relax, \the\dimexpr\zposy{#1}sp\relax)%
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 May Intermediate Contest}\\[10pt]
+		\noindent \normalsize{Saturday and Sunday, 9--10 May 2020}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\paragraph{\currpos{one}Problem 1.} Prove that for any positive integer \(n\) greater than \(1010^4\), there exists at most one pair of positive integers whose product is \(n\) and whose difference is not greater than \(2020\).
+	
+	\paragraph{\currpos{two}Problem 2.} Let \(S\) be a set of 2020 points in the plane with integer coordinates. What is the largest possible number of triangles with non-integer area that have vertices in \(S\)?
+	
+	\paragraph{\currpos{three}Problem 3.} Let $ABC$ be an isosceles triangle with $AB = AC$ and $\angle BAC < 60^{\circ}$. Let $M$ be the midpoint of $AB$ and $\Gamma$ be the circumcircle of $MBC$. Let $D$ be a point on $\Gamma$. Suppose that the circle centred at $D$ passing through $A$ intersects $\Gamma$ at distinct points $X$ and $Y$. Let \(P\) and \(Q\) lie on \(XY\) such that \(PB\) and \(QC\) are tangent to \(\Gamma\), and denote by \(R\) the intersection of \(PB\) and \(QC\).\\[7pt]
+Prove that regardless of the choice of \(D\), the triangle \(PQR\) has constant perimeter.
+	
+	\paragraph{\currpos{four}Problem 4.} Let \(\mathbb{R}\) denote the set of real numbers. Find all triples of functions $p,q,r: \mathbb{R} \to \mathbb{R}$ such that for all real \(x\) and \(y\),
+\[p(x^3+y)+q(x+y^3)=r(xy).\]
+	
+	\noindent \currpos{five} %\\[10pt]
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+	\begin{tikzpicture}[remember picture, overlay, shift=(current page.south west)]
+    %top strip
+    \draw[draw=none, fill=black, opacity=0.0] (current page.north west) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %bottom strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,0) rectangle (\paperwidth, \zposy{five}sp+18pt);
+	%left strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,\zposy{one}sp+18pt) rectangle (\zposx{one}sp-10pt,\zposy{five}sp+18pt );
+    %right strip
+    \draw[draw=none, fill=black, opacity=0.0] (\paperwidth-\zposx{one}sp+10pt,\zposy{five}sp+18pt) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %P1
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{one}sp-10pt,\zposy{one}sp+18pt) rectangle (\paperwidth-\zposx{one}sp+10pt, \zposy{two}sp+18pt);
+    %P2
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{two}sp-10pt,\zposy{two}sp+18pt) rectangle (\paperwidth-\zposx{two}sp+10pt, \zposy{three}sp+18pt);
+    %P3
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{three}sp-10pt,\zposy{three}sp+18pt) rectangle (\paperwidth-\zposx{three}sp+10pt, \zposy{four}sp+18pt);
+    %P4
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{four}sp-10pt,\zposy{four}sp+18pt) rectangle (\paperwidth-\zposx{four}sp+10pt, \zposy{five}sp+18pt);
+	\end{tikzpicture}
+		
+		
+		
+	
+	
+\end{document}
