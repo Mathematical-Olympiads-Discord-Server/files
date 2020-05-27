@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz, pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+  \ifmmode%
+    \old@comma\discretionary{}{}{}%
+  \else%
+    \old@comma%
+  \fi%
+}
+\makeatother
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{/home/eliclax/Documents/discord/mods/contests/MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 March Advanced Contest}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+	
+	\normalsize
+	
+	\paragraph{Problem 1.} In terms of \(a\), \(b\), and a prime \(p\), find an expression which gives the number of \(x \in \{0, 1, \ldots, p-1\}\) such that the remainder of \(ax\) upon division by \(p\) is less than the remainder of \(bx\) upon division by \(p\).
+	
+	\paragraph{Problem 2.} An acute triangle \(ABC\) has circumcircle \(\Gamma\) and circumcentre \(O\). The incentres of \(AOB\) and \(AOC\) are \(I_b\) and \(I_c\) respectively. Let \(M\) be the the point on \(\Gamma\) such that \(MB = MC\) and \(M\) lies on the same side of \(BC\) as \(A\). Prove that the points \(M\), \(A\), \(I_b\), and \(I_c\) are concyclic.
+
+	\paragraph{Problem 3.} A \emph{simple polygon} is a polygon whose perimeter does not self-intersect. Suppose a simple polygon $\mathcal P$ can be tiled with a finite number of parallelograms. Prove that regardless of the tiling, the sum of the areas of all rectangles in the tiling is fixed.\\[7pt]
+	\noindent \emph{Note:} Points will be awarded depending on the generality of the polygons for which the result is proven.
+
+	\paragraph{Problem 4.} Let \(\mathbb{Z}^2\) denote the set of points in the Euclidean plane with integer coordinates. Find all functions \(f : \mathbb{Z}^2 \to [0,1]\) such that for any point \(P\), the value assigned to \(P\) is the average of all the values assigned to points in \(\mathbb{Z}^2\) whose Euclidean distance from \(P\) is exactly 2020.
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+		
+		
+		
+		
+	
+	
+\end{document}
