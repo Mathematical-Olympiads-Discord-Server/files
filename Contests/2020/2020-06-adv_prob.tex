@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz}
+\usepackage{pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[savepos]{zref} %allows absolute positioning on page
+\usepackage{calc} %allows easy manipulation of lengths arithmetic
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand*{\currpos}[1]{%
+  \zsavepos{#1}%
+  %(\zposx{#1}sp, \zposy{#1}sp) =
+  %(\the\dimexpr\zposx{#1}sp\relax, \the\dimexpr\zposy{#1}sp\relax)%
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{./MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 June Advanced Contest}\\[10pt]
+		\noindent \normalsize{Saturday and Sunday, 13--14 June 2020}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\paragraph{\currpos{one}Problem 1.} A tuple of real numbers \(\left(a_{1}, a_{2}, \ldots, a_{m}\right)\) is called \emph{stable} if for each \(k \in \{1, 2, \dots, m-1\}\), \[\left\lvert \frac{a_{1}+a_{2}+\cdots+a_{k}}{k}-a_{k+1}\right \rvert < 1.\] Does there exist a stable \(n\)-tuple \(\left(x_{1}, x_{2}, \ldots, x_{n}\right)\) such that for any real number \(x\), the \((n+1)\)-tuple \(\left(x, x_{1}, x_{2}, \ldots, x_{n}\right)\) is not stable?
+	
+	\paragraph{\currpos{two}Problem 2.} Let \(p\) be a prime number. At a school of \(p^{2020}\) students it is required that each club consist of exactly \(p\) students. Is it possible for each pair of students to have exactly one club in common?
+	
+	\paragraph{\currpos{three}Problem 3.} Let a \emph{lattice tetrahedron} denote a tetrahedron whose vertices have integer coordinates. Given a lattice tetrahedron, a \emph{move} consists of picking some vertex and moving it parallel to one of the three edges of the face opposite the vertex so that it lands on a different point with integer coordinates. Prove that any two lattice tetrahedra with the same volume can be transformed into each other by a series of moves.
+	
+	\paragraph{\currpos{four}Problem 4.} Let \(c\) be a positive real number. Alice wishes to pick an integer \(n\) and a sequence \(a_1\), \(a_2\), \(\ldots\) of distinct positive integers such that \(a_{i} \leq ci\) for all positive integers \(i\) and \[n, \qquad n + a_1, \qquad n + a_1 - a_2, \qquad n + a_1 - a_2 + a_3, \qquad \cdots\] is a sequence of distinct nonnegative numbers. Find all \(c\) such that Alice can fulfil her wish.
+	
+	\noindent \currpos{five} %\\[10pt]
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+	\begin{tikzpicture}[remember picture, overlay, shift=(current page.south west)]
+    %top strip
+    \draw[draw=none, fill=black, opacity=0.0] (current page.north west) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %bottom strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,0) rectangle (\paperwidth, \zposy{five}sp+18pt);
+	%left strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,\zposy{one}sp+18pt) rectangle (\zposx{one}sp-10pt,\zposy{five}sp+18pt );
+    %right strip
+    \draw[draw=none, fill=black, opacity=0.0] (\paperwidth-\zposx{one}sp+10pt,\zposy{five}sp+18pt) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %P1
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{one}sp-10pt,\zposy{one}sp+18pt) rectangle (\paperwidth-\zposx{one}sp+10pt, \zposy{two}sp+18pt);
+    %P2
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{two}sp-10pt,\zposy{two}sp+18pt) rectangle (\paperwidth-\zposx{two}sp+10pt, \zposy{three}sp+18pt);
+    %P3
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{three}sp-10pt,\zposy{three}sp+18pt) rectangle (\paperwidth-\zposx{three}sp+10pt, \zposy{four}sp+18pt);
+    %P4
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{four}sp-10pt,\zposy{four}sp+18pt) rectangle (\paperwidth-\zposx{four}sp+10pt, \zposy{five}sp+18pt);
+	\end{tikzpicture}
+		
+		
+		
+	
+	
+\end{document}
