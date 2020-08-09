@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz}
+\usepackage{pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[savepos]{zref} %allows absolute positioning on page
+\usepackage{calc} %allows easy manipulation of lengths arithmetic
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand*{\currpos}[1]{%
+  \zsavepos{#1}%
+  %(\zposx{#1}sp, \zposy{#1}sp) =
+  %(\the\dimexpr\zposx{#1}sp\relax, \the\dimexpr\zposy{#1}sp\relax)%
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{../../MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 August Intermediate Contest}\\[10pt]
+		\noindent \normalsize{Saturday and Sunday, 8--9 August 2020}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\paragraph{\currpos{one}Problem 1.} For a positive integer $n$, let $m_n$ be the number formed by writing the digits of $n$ in ascending order, and $M_n$ be the number formed by writing the digits in descending order. For example, $m_{121} = 112, m_{420} = 24, M_{1337} = 7331$.\\[7pt]	
+	\noindent Do there exist infinitely many positive integers $n$ such that $M_n - m_n = n$?
+	
+	\paragraph{\currpos{two}Problem 2.} Let \(\mathbb{R}^+\) denote the set of positive real numbers. Find all functions $f: \mathbb{R}^+ \to \mathbb{R}^+$ such that for all $x, y, z \in \mathbb{R}^+$ satisfying $x + y + z = xyz,$ $$f(xy) + f(xz) + f(yz) = 3.$$
+	
+	\paragraph{\currpos{three}Problem 3.} Let \(S_0\) be a set of 2020 real numbers. The sequence of sets \(S_0, S_1, \dots, S_n\) is called \emph{culled} if for all \(i \in \{0, 1, \ldots, n-1\}\),
+	\begin{itemize}
+		\item \(S_{i+1} \subset S_i\)
+		\item No element \(x \in S_i\) with \(x \notin S_{i+1}\) is closer to the average of all elements in \(S_i\) than any element in \(S_{i+1}\).
+	\end{itemize}
+	An element \(b \in S_0\) is called \emph{basic} if there exists a culled sequence of sets such that \(S_n = \{b\}\). What is the least possible number of basic elements in \(S_0\)?
+	
+	\paragraph{\currpos{four}Problem 4.} Let \(\Gamma_1\) and \(\Gamma_2\) be two disjoint circles whose interiors do not intersect. Points \(X_1\) and \(X_2\) are on \(\Gamma_1\) and \(\Gamma_2\) respectively such that \(X_1X_2\) is an internal common tangent to \(\Gamma_1\) and \(\Gamma_2\). The circle $\Omega$ with diameter $X_1X_2$ intersects $\Gamma_1$ and $\Gamma_2$ again at $Y_1 \neq X_1$ and $Y_2 \neq X_2$ respectively. Suppose that $X_1Y_1$ and $X_2Y_2$ intersect at $P$. Prove that the perpendiculars from $P$ to the common external tangents of $\Gamma_1$ and $\Gamma_2$ are tangent to $\Omega$.
+	
+	\noindent \currpos{five} %\\[10pt]
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+	\begin{tikzpicture}[remember picture, overlay, shift=(current page.south west)]
+    %top strip
+    \draw[draw=none, fill=black, opacity=0.0] (current page.north west) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %bottom strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,0) rectangle (\paperwidth, \zposy{five}sp+18pt);
+	%left strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,\zposy{one}sp+18pt) rectangle (\zposx{one}sp-10pt,\zposy{five}sp+18pt );
+    %right strip
+    \draw[draw=none, fill=black, opacity=0.0] (\paperwidth-\zposx{one}sp+10pt,\zposy{five}sp+18pt) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %P1
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{one}sp-10pt,\zposy{one}sp+18pt) rectangle (\paperwidth-\zposx{one}sp+10pt, \zposy{two}sp+18pt);
+    %P2
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{two}sp-10pt,\zposy{two}sp+18pt) rectangle (\paperwidth-\zposx{two}sp+10pt, \zposy{three}sp+18pt);
+    %P3
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{three}sp-10pt,\zposy{three}sp+18pt) rectangle (\paperwidth-\zposx{three}sp+10pt, \zposy{four}sp+18pt);
+    %P4
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{four}sp-10pt,\zposy{four}sp+18pt) rectangle (\paperwidth-\zposx{four}sp+10pt, \zposy{five}sp+18pt);
+	\end{tikzpicture}
+		
+		
+		
+	
+	
+\end{document}
