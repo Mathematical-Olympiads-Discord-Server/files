@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[amsthm]{ntheorem} %amsthm but also no newline in lists!
+\usepackage[a4paper,margin=2.5cm]{geometry} %greater control over layout
+\usepackage{tikz}
+\usepackage{pgf, pgfplots} %allows tikzpictures
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{url} %urls easy
+\usepackage[shortlabels]{enumitem} %allows greater customisability of enum
+\usepackage{textcomp} %gets rid of not defining \perthousand and \micro somehow
+\usepackage{gensymb} %symbol package
+\usepackage{sectsty}
+\usepackage{tabto} %absolute/relative horizontal jumps in text
+\usepackage{perpage} %footnote counter resets each page
+\usepackage[symbol]{footmisc} %use symbols instead of numbers for footnotes
+\usepackage{float} %allows "H" parameter for images
+\usepackage[htt]{hyphenat} %tt text breaks properly
+\usepackage{soul} %strikethrough text available
+\usepackage[savepos]{zref} %allows absolute positioning on page
+\usepackage{calc} %allows easy manipulation of lengths arithmetic
+\usepackage{hyperref} %for hyperlinks in text. Package should be loaded last.
+
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand*{\currpos}[1]{%
+  \zsavepos{#1}%
+  %(\zposx{#1}sp, \zposy{#1}sp) =
+  %(\the\dimexpr\zposx{#1}sp\relax, \the\dimexpr\zposy{#1}sp\relax)%
+}
+
+\begin{document}
+	\pagenumbering{gobble}
+		\begin{flushleft}
+		\includegraphics[scale=0.7]{../../MODS_text_right.eps}\\
+		\end{flushleft}
+		\vspace{15pt}
+		\noindent \LARGE\textbf{2020 September Advanced Contest}\\[10pt]
+		\noindent \normalsize{Saturday and Sunday, 12--13 September 2020}\\
+		\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+			
+	\normalsize
+	
+	\paragraph{\currpos{one}Problem 1.} In three-dimensional space, a \emph{lattice point} is a triple of integers \((x, y, z)\). Find the maximum size of a set \(S\) of lattice points in space such that the taxicab distance between any two points is at most 2020.
+	
+	(The \emph{taxicab distance} between two lattice points \(\left(x_1, y_1, z_1\right)\) and \((x_2, y_2, z_2)\) is defined to be \(\left \lvert x_1 - x_2 \right \rvert + \left \lvert y_1 - y_2 \right \rvert + \left \lvert z_1 - z_2 \right \rvert\).)
+	
+	\paragraph{\currpos{two}Problem 2.} Let \(I\) be the incenter of a triangle \(ABC\), and let \(D\), \(E\), and \(F\) be the intersections of the incircle of \(ABC\) with \(BC\), \(CA\), and \(AB\) respectively. Suppose that the circumcircles of $ABC$ and $AID$ intersect again at $P \neq A$, and that $AP$ intersects $EF$ at $Q$. Show that \(DQ\) is perpendicular to \(EF\).
+	
+	\paragraph{\currpos{three}Problem 3.} Let $\mathbb{R}_{>0}$ denote the set of positive real numbers. Find all functions $f:\mathbb{R}_{>0}\to\mathbb{R}_{>0}$ such that for all positive real numbers \(x\) and \(y\), \[\frac{f(x+y)}{f(x)+f(y)} \quad \text{is an integer.}\]
+	
+	\paragraph{\currpos{four}Problem 4.} For a positive integer $n > 2$:
+	\begin{itemize}
+		\item Let $A_n$ be the number of integers $x$ satisfying $0 < x < n/2$ and $\gcd(x,2n) = 1$.
+		\item Let $B_n$ be the number of integers $y$ satisfying $n/2 < y < n$ and $\gcd(y,2n) = 1$.
+	\end{itemize}
+	Find all integers $m$ such that there exists a positive integer $n$ satisfying $A_n - B_n = m$.
+	
+	\noindent \currpos{five} %\\[10pt]
+	
+	\vfill
+	
+	\noindent \textit{Language: English \hfill Time: 4 hours}\\
+	\null \hfill \textit{Each problem is worth 7 points}\\
+	
+	\noindent \makebox[\linewidth]{\rule{\textwidth}{0.4pt}}	
+	
+	\noindent \footnotesize{\textit{Discord Server Invite Link: }\texttt{\href{https://discord.gg/94UnnAG}{discord.gg/94UnnAG}} \hfill \textit{Please support us on \href{https://bit.ly/MODS_patreon}{Patreon}!}}
+	
+	\begin{tikzpicture}[remember picture, overlay, shift=(current page.south west)]
+    %top strip
+    \draw[draw=none, fill=black, opacity=0.0] (current page.north west) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %bottom strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,0) rectangle (\paperwidth, \zposy{five}sp+18pt);
+	%left strip
+    \draw[draw=none, fill=black, opacity=0.0] (0,\zposy{one}sp+18pt) rectangle (\zposx{one}sp-10pt,\zposy{five}sp+18pt );
+    %right strip
+    \draw[draw=none, fill=black, opacity=0.0] (\paperwidth-\zposx{one}sp+10pt,\zposy{five}sp+18pt) rectangle (\paperwidth, \zposy{one}sp+18pt);
+    %P1
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{one}sp-10pt,\zposy{one}sp+18pt) rectangle (\paperwidth-\zposx{one}sp+10pt, \zposy{two}sp+18pt);
+    %P2
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{two}sp-10pt,\zposy{two}sp+18pt) rectangle (\paperwidth-\zposx{two}sp+10pt, \zposy{three}sp+18pt);
+    %P3
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{three}sp-10pt,\zposy{three}sp+18pt) rectangle (\paperwidth-\zposx{three}sp+10pt, \zposy{four}sp+18pt);
+    %P4
+    \draw[draw=none, fill=black, opacity=0.0] (\zposx{four}sp-10pt,\zposy{four}sp+18pt) rectangle (\paperwidth-\zposx{four}sp+10pt, \zposy{five}sp+18pt);
+	\end{tikzpicture}
+		
+		
+		
+	
+	
+\end{document}
